@@ -16,10 +16,15 @@ namespace LV587SETOPENCART.Pages
         //Login button + Click
 
         public IWebDriver driver;
-        public IWebElement inputLogin { get; private set; }
-        public IWebElement inputPass { get; private set; }
-        public IWebElement loginButton { get; private set; }
+        public IWebElement inputLogin { get { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
+        public IWebElement inputPass { get { return driver.FindElement(By.Id("input-password")); } }
+        public IWebElement loginButton { get { return driver.FindElement(By.Id("input-email")); } }
 
+        /*
+        inputLogin = driver.FindElement(By.Id("input-email"));
+        inputPass = driver.FindElement(By.Id("input-password"));
+        loginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
+       
         public LoginPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -28,19 +33,26 @@ namespace LV587SETOPENCART.Pages
             loginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
             // :)
         }
+        */
 
         //input Email
-        public void InputEmail()
+        public void InputEmail(string email)
         {
             inputLogin.Clear();
-            inputLogin.SendKeys("user1@gmal.com");
+            inputLogin.SendKeys(email);
         }
 
         //input Password
-        public void InputPassword()
+        public void InputPassword(string pass)
         {
             inputPass.Clear();
-            inputPass.SendKeys("qwerty");
+            inputPass.SendKeys(pass);
+        }
+
+        //Click Login Button
+        public void ClickOnLoginButton()
+        {
+            loginButton.Click();
         }
     }
 }
