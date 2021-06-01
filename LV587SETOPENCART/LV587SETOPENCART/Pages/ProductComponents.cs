@@ -7,25 +7,17 @@ using OpenQA.Selenium;
 
 namespace LV587SETOPENCART.Pages
 {
-    class ProductComponents
+    class ProductComponents:ClassWithDriver
     {
-        public IWebDriver driver;
 
-        
-        public IWebElement productPrice
+        public IWebElement productPrice;
+        public IWebElement reviewButton;
+        IWebElement userNameTextBox
+        public ProductComponents(IWebDriver driver):base(driver)
         {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > ul:nth-child(4) > li:nth-child(1) > h2"));
-            }
-        }
+            productPrice= driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > ul:nth-child(4) > li:nth-child(1) > h2"));
+            reviewButton= driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > div.rating > p > a:nth-child(6)"));
 
-        public IWebElement reviewButton
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > div.rating > p > a:nth-child(6)"));
-            }
         }
 
         public IWebElement userNameTextBox
