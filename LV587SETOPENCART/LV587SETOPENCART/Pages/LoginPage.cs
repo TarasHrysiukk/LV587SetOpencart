@@ -26,7 +26,7 @@ namespace LV587SETOPENCART.Pages
             LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
             ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
         }
-        
+
         //input Email
         public void InputEmailMethod(string email) //name same as prorety add method
         {
