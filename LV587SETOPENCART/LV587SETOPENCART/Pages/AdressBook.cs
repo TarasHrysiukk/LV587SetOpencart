@@ -28,5 +28,29 @@ namespace LV587SETOPENCART.Pages
             backButton = driver.FindElement(By.CssSelector("a.btn.btn-default"));
             
         }
+
+        // Click on add adress button
+        public void ClickOnAddAdressButton()
+        {
+            addAdressButton.Click();
+        }
+
+        // Click on edit adress button
+        public void ClickOnEditAdressButton()
+        {
+            editAdressButton.Click();
+        }
+
+        // Click on delete adress button
+        public void ClickOnDeleteAdressButton()
+        {
+            deleteAdressButton.Click();
+        }
+
+        // Click on back button
+        public void ClickOnBackButton()
+        {
+            backButton.Click();
+        }
     }
 }
