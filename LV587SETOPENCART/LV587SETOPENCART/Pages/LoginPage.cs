@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Pages
 {
-    class LoginPage
+    class LoginPage : ClassWithDriver
     {
 
         //forgotten password
@@ -15,14 +15,14 @@ namespace LV587SETOPENCART.Pages
         //input password + Click
         //Login button + Click
 
-        public IWebDriver driver;
+       
         public IWebElement inputLogin { get; private set; }
         public IWebElement inputPassword { get; private set; }
         public IWebElement loginButton { get; private set; }
 
-        public LoginPage(IWebDriver driver)
+        public LoginPage(IWebDriver driver) :base(driver)
         {
-            this.driver = driver;
+           //поки параша не трогайте мій мусор
             inputLogin = driver.FindElement(By.Id("input-email"));
             inputPassword = driver.FindElement(By.Id("input-password"));
             loginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
