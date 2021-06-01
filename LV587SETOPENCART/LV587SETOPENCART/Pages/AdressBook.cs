@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 
 namespace LV587SETOPENCART.Pages
 {
-    class AdressBook
+    class AdressBook : ClassWithDriver
     {
         //add new address button click
 
@@ -15,15 +15,13 @@ namespace LV587SETOPENCART.Pages
         //delete address button
         //back button
 
-        public IWebDriver driver;
         public IWebElement addAdressButton { get; private set; }
         public IWebElement editAdressButton { get; private set; }
         public IWebElement deleteAdressButton { get; private set; }
         public IWebElement backButton { get; private set; }
 
-        public AdressBook(IWebDriver driver)
+        public AdressBook(IWebDriver driver) : base(driver)
         {
-            this.driver = driver;
             addAdressButton = driver.FindElement(By.CssSelector("a.btn.btn-primary"));
             editAdressButton = driver.FindElement(By.CssSelector("a.btn.btn-info"));
             deleteAdressButton = driver.FindElement(By.CssSelector("a.btn.btn-danger"));
