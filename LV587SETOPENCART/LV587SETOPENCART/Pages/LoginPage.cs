@@ -9,44 +9,48 @@ namespace LV587SETOPENCART.Pages
 {
     class LoginPage : ClassWithDriver
     {
-
         //forgotten password 
         //input email + Click
         //input password + Click
         //Login button + Click
 
-
-        public IWebElement inputLogin { get { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
-        public IWebElement inputPass { get { return driver.FindElement(By.Id("input-password")); } }
-        public IWebElement loginButton { get { return driver.FindElement(By.Id("input-email")); } }
+        public IWebElement InputEmail { get; private set; } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
+        public IWebElement InputPass { get; private set; } // { return driver.FindElement(By.Id("input-password")); } }
+        public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
+        public IWebElement ForgottenPassButton { get; private set; }
 
         public LoginPage(IWebDriver driver) :base(driver)
         {
-           //поки параша не трогайте мій мусор
-            inputLogin = driver.FindElement(By.Id("input-email"));
-            inputPass = driver.FindElement(By.Id("input-password"));
-            loginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
-            // :)
+            InputEmail = driver.FindElement(By.Id("input-email"));
+            InputPass = driver.FindElement(By.Id("input-password"));
+            LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
+            ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
         }
 
         //input Email
-        public void InputEmail(string email)
+        public void InputEmailMethod(string email) //name same as prorety add method
         {
-            inputLogin.Clear();
-            inputLogin.SendKeys(email);
+            InputEmail.Clear();
+            InputEmail.SendKeys(email);
         }
 
         //input Password
         public void InputPassword(string pass)
         {
-            inputPass.Clear();
-            inputPass.SendKeys(pass);
+            InputPass.Clear();
+            InputPass.SendKeys(pass);
         }
 
         //Click Login Button
         public void ClickOnLoginButton()
         {
-            loginButton.Click();
+            LoginButton.Click();
+        }
+
+        //Fordotten password Click
+        public void ClickForgotPassword()
+        {
+            ForgottenPassButton.Click();
         }
     }
 }
