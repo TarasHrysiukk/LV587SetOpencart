@@ -12,77 +12,30 @@ namespace LV587SETOPENCART.Pages
 
         public IWebElement productPrice;
         public IWebElement reviewButton;
-        IWebElement userNameTextBox
+        public IWebElement userNameTextBox;
+        public IWebElement userReviewTextBox;
+        public IWebElement sendReview;
+        public IWebElement zeroRate;
+        public IWebElement firstRate;
+        public IWebElement secondRate;
+        public IWebElement thirdRate;
+        public IWebElement fourthRate;
+        public IWebElement emptyReview;
         public ProductComponents(IWebDriver driver):base(driver)
         {
             productPrice= driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > ul:nth-child(4) > li:nth-child(1) > h2"));
             reviewButton= driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > div.rating > p > a:nth-child(6)"));
-
+            userNameTextBox= driver.FindElement(By.CssSelector("#input-name"));
+            userReviewTextBox= driver.FindElement(By.CssSelector("#input-review"));
+            sendReview = driver.FindElement(By.CssSelector("#button-review"));
+            zeroRate= driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(2)"));
+            firstRate= driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(3)"));
+            secondRate= driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(4)"));
+            thirdRate= driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(5)"));
+            fourthRate= driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(6)"));
+            emptyReview= driver.FindElement(By.CssSelector("#review > p"));
         }
 
-        public IWebElement userNameTextBox
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#input-name"));
-            }
-        }
-
-        public IWebElement userReviewTextBox
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#input-review"));
-            }
-        }
-
-        public IWebElement sendReview
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#button-review"));
-            }
-        }
-
-        public IWebElement zeroRate
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(2)"));
-            }
-        }
-
-        public IWebElement firstRate
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(3)"));
-            }
-        }
-
-        public IWebElement secondRate
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(4)"));
-            }
-        }
-
-        public IWebElement thirdRate
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(5)"));
-            }
-        }
-
-        public IWebElement fourthRate
-        {
-            get
-            {
-                return driver.FindElement(By.CssSelector("#form-review > div:nth-child(5) > div > input[type=radio]:nth-child(6)"));
-            }
-        }
 
         //method get price 
         public int ProductPrice()
@@ -132,10 +85,12 @@ namespace LV587SETOPENCART.Pages
 
             sendReview.Click();
         }
+
+
+
         // if the review is present 
         public bool reviewPresent()
         {
-            var emptyReview = driver.FindElement(By.CssSelector("#review > p"));
             if(emptyReview.Text!= "There are no reviews for this product.")
             {
                 return true;
