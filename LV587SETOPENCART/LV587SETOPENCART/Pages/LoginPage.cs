@@ -28,7 +28,6 @@ namespace LV587SETOPENCART.Pages
             loginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
             // :)
         }
-        */
 
         //input Email
         public void InputEmail(string email)
