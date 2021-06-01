@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Pages
 {
-    class ClassWithDriver
+    public class ClassWithDriver
     {
-        private IWebDriver driver;
+        public IWebDriver driver;
 
         public ClassWithDriver(IWebDriver driver)
         {

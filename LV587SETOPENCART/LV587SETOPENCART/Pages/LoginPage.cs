@@ -14,24 +14,24 @@ namespace LV587SETOPENCART.Pages
         //input password + Click
         //Login button + Click
 
-        public IWebElement InputLogin { get; private set; } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
+        public IWebElement InputEmail { get; private set; } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
         public IWebElement InputPass { get; private set; } // { return driver.FindElement(By.Id("input-password")); } }
         public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
         public IWebElement ForgottenPassButton { get; private set; }
 
         public LoginPage(IWebDriver driver) :base(driver)
         {
-            InputLogin = driver.FindElement(By.Id("input-email"));
+            InputEmail = driver.FindElement(By.Id("input-email"));
             InputPass = driver.FindElement(By.Id("input-password"));
             LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
             ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
         }
         
         //input Email
-        public void InputEmail(string email)
+        public void InputEmailMethod(string email) //name same as prorety add method
         {
-            InputLogin.Clear();
-            InputLogin.SendKeys(email);
+            InputEmail.Clear();
+            InputEmail.SendKeys(email);
         }
 
         //input Password
