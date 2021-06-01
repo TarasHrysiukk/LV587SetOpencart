@@ -13,20 +13,18 @@ namespace LV587SETOPENCART.Pages
         //input email + Click
         //input password + Click
         //Login button + Click
-        /*
-        private IWebElement inputLogin;
-        private IWebElement inputPass;
-        private IWebElement loginButton;*/
 
-        public IWebElement InputLogin { get; private set; }// { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
-        public IWebElement InputPass { get; private set; }// { return driver.FindElement(By.Id("input-password")); } }
-        public IWebElement LoginButton { get; private set; }// { return driver.FindElement(By.Id("input-email")); } }
+        public IWebElement InputLogin { get; private set; } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
+        public IWebElement InputPass { get; private set; } // { return driver.FindElement(By.Id("input-password")); } }
+        public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
+        public IWebElement ForgottenPassButton { get; private set; }
 
         public LoginPage(IWebDriver driver) :base(driver)
         {
             InputLogin = driver.FindElement(By.Id("input-email"));
             InputPass = driver.FindElement(By.Id("input-password"));
             LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
+            ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
         }
         
         //input Email
@@ -47,6 +45,12 @@ namespace LV587SETOPENCART.Pages
         public void ClickOnLoginButton()
         {
             LoginButton.Click();
+        }
+
+        //Fordotten password Click
+        public void ClickForgotPassword()
+        {
+            ForgottenPassButton.Click();
         }
     }
 }
