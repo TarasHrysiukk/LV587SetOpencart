@@ -123,6 +123,12 @@ namespace LV587SETOPENCART.Pages
             }
         }
 
+        public void SelectSearch()
+        {
+            IWebElement search = Driver.FindElement(searchField);
+            search.Click();
+        }
+
         public void SearchItem(string searchText)
         {
             IWebElement search = Driver.FindElement(searchField);
