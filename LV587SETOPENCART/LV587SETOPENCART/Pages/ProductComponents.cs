@@ -38,9 +38,9 @@ namespace LV587SETOPENCART.Pages
 
 
         //method get price 
-        public int ProductPrice()
+        public string ProductPrice()
         {
-            return int.Parse(productPrice.Text);
+            return productPrice.Text;
         }
 
         public enum RateChoose
