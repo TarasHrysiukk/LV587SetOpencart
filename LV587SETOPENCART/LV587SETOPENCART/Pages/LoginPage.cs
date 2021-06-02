@@ -35,7 +35,7 @@ namespace LV587SETOPENCART.Pages
         }
 
         //input Password
-        public void InputPassword(string pass)
+        public void InputPasswordText(string pass)
         {
             InputPass.Clear();
             InputPass.SendKeys(pass);
