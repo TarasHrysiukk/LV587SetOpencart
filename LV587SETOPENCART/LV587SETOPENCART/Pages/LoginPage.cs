@@ -28,7 +28,7 @@ namespace LV587SETOPENCART.Pages
         }
 
         //input Email
-        public void InputEmailMethod(string email) //name same as prorety add method
+        public void InputEmailText(string email) //name same as prorety add method
         {
             InputEmail.Clear();
             InputEmail.SendKeys(email);

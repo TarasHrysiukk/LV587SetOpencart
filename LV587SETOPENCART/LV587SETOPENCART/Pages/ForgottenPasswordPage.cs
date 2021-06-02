@@ -21,7 +21,7 @@ namespace LV587SETOPENCART.Pages
 
         public void ForgotPasswordEmail(string email)
         {
-            loginPage.InputEmailMethod(email);
+            loginPage.InputEmailText(email);
         }
     }
 }
