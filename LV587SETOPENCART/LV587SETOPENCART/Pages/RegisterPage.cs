@@ -23,8 +23,6 @@ namespace LV587SETOPENCART.Pages
         public IWebElement SubscribeRadioButtonNO { get { return driver.FindElement(By.CssSelector( ".radio-inline input[value='0']")); } }
         public IWebElement ConfirmButton { get { return driver.FindElement(By.CssSelector("input[type='submit']")); } }
 
-        
-
         public RegisterPage(IWebDriver driver): base(driver){}
 
 
