@@ -94,7 +94,7 @@ namespace LV587SETOPENCART.Tests.Pages
             }
 
             [Test]
-            public void Test11()
+            public void Test2()
             {
                 browser.Init_Browser();
                 browser.Goto(test_url);
@@ -102,6 +102,53 @@ namespace LV587SETOPENCART.Tests.Pages
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.EUR);
                 currencySymbol = "€";
+                bool trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.EUR), currencySymbol);
+                //Verify that currency euro is in Drop-down
+                Assert.True(trueCurrency);
+
+                // Select 'Pound Sterling' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.GBP);
+                currencySymbol = "£";
+                trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.GBP), currencySymbol);
+                //Verify that currency PoundSterling is in Drop-down
+                Assert.True(trueCurrency);
+
+                // Select 'US Dollars' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.USD);
+                currencySymbol = "$";
+                trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.USD), currencySymbol);
+                //Verify that currency USA Dollars is in Drop-down 
+                Assert.True(trueCurrency);
+
+                browser.Close();
+            }
+
+            [Test]
+            public void Test3()
+            {
+                browser.Init_Browser();
+                browser.Goto(test_url);
+                //login
+                login.InputEmailText("iva@new.com");
+                login.InputPasswordText("qwerty");
+                login.ClickOnLoginButton();
+
+                //Select category "Phones & PDAs"
+                header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
+                //Add first product to cart from the product list
+                productPage.ClickCartButton();
+                // Open cart page
+                header.ClickOnShoppingCartLink();
+
+                // Select 'Euro' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.EUR);
+                currencySymbol = "€";
+
+
+
                 bool trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
                 //Verify that product price is displayed in euro
                 Assert.True(trueCurrency);
@@ -124,6 +171,7 @@ namespace LV587SETOPENCART.Tests.Pages
 
                 browser.Close();
             }
+
         }
             }
         }

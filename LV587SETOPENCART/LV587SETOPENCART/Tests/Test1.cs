@@ -19,13 +19,9 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void Setup()
         {
-            IWebDriver driver = new ChromeDriver();
+           
 
-            //Navigate to NashFormat.ua page
-            driver.Navigate().GoToUrl("https://nashformat.ua/");
-
-            //Maximize the window
-            driver.Manage().Window.Maximize();
+           
         }
 
         
@@ -34,16 +30,21 @@ namespace LV587SETOPENCART.Tests
         //constructor
         ClassWithDriver dr = new ClassWithDriver();
         LoginPage login = new LoginPage();
-        //HeaderComponent header = new HeaderComponent(driver);
-        //PageWithProducts productPage = new PageWithProducts(driver);
-        //ProjectTools regex = new ProjectTools(driver);
-        //ProductComponents product = new ProductComponents(driver);
+        HeaderComponent header = new HeaderComponent();
+       PageWithProducts productPage = new PageWithProducts();
+       ProjectTools regex = new ProjectTools();
+        ProductComponents product = new ProductComponents();
 
         [Test]
         public void Test12()
         {
-            driver.Navigate().GoToUrl("https://nashformat.ua/");
-            Thread.Sleep(2000);
+            //Navigate to NashFormat.ua page
+            driver.Navigate().GoToUrl("https://demo.opencart.com/");
+
+            //Maximize the window
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.CssSelector(".fa-user")).Click();
+            driver.FindElement(By.CssSelector("a[href*='account/login']")).Click();
             //login
             login.InputEmailText("iva@new.com");
             login.InputPasswordText("qwerty");
