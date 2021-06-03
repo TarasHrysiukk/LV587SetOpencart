@@ -32,7 +32,7 @@ namespace LV587SETOPENCART.Tests
             driver.FindElement(By.Name("lastname")).SendKeys("Tester");
 
             driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys("tesasdasdasdasfaad@gmail.com");
+            driver.FindElement(By.Name("email")).SendKeys("aa@gmail.com");
 
             driver.FindElement(By.Name("telephone")).Clear();
             driver.FindElement(By.Name("telephone")).SendKeys("0679155137");
@@ -60,6 +60,10 @@ namespace LV587SETOPENCART.Tests
             driver.FindElement(By.CssSelector("a.btn.btn-primary")).Click();
 
             Thread.Sleep(1000);
+
+            IWebElement pageAccount = driver.FindElement(By.CssSelector("#content.col-sm-9 > h2:first-child"));
+
+            Assert.AreEqual("My Account", pageAccount.Text);
         }
     }
 }
