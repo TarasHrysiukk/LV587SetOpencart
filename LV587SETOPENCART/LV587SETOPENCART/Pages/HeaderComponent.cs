@@ -38,14 +38,13 @@ namespace LV587SETOPENCART.Pages
     {
         public HeaderComponent(IWebDriver driver) : base(driver){}
 
-        private readonly By currencyDropdown = By.ClassName(".btn-group");
-        private readonly By currencyName = By.CssSelector(".currency-select .btn .btn-link .btn-block");
+        private readonly By currencyDropdown = By.ClassName("#form-currency > div > button");
         private readonly By wishListDropdown = By.CssSelector("#wishlist-total > span");
         private readonly By shoppingCartLink = By.XPath("//html/body/nav/div/div[2]/ul/li[4]/a/span");
         private readonly By checkout = By.CssSelector("#top-links > ul > li:nth-child(5) > a > span");
         private readonly By shoppingCartBlackButton = By.CssSelector("#cart > button");
-        private readonly By searchField = By.CssSelector(".form-control .input-lg");
-        private readonly By searchButton = By.CssSelector(".btn .btn-default .btn-lg");
+        private readonly By searchField = By.CssSelector("#search input");
+        private readonly By searchButton = By.CssSelector("#search button");
         private readonly By myAccountButton = By.CssSelector("#top-links > ul > li.dropdown > a > span.hidden-xs.hidden-sm.hidden-md");
         private readonly By CartButtonLabel = By.CssSelector("#cart-total:not(.fa-shopping-cart)");
 
@@ -142,9 +141,10 @@ namespace LV587SETOPENCART.Pages
         public void SearchItem(string searchText)
         {
             IWebElement search = driver.FindElement(searchField);
+            IWebElement button = driver.FindElement(searchButton);
             search.Clear();
             search.SendKeys(searchText);
-            search.Submit();
+            button.Click();
         }
 
         public void ClickOnMyAccount(MyAccountMenuActions action)
