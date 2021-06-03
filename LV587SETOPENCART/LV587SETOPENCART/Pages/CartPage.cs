@@ -20,6 +20,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement RemoveInCartButton { get; private set; }
         public IWebElement CartButtonSum { get; private set; }
         public IWebElement EmptyCart { get; private set; }
+        public IWebElement TotalPrice { get; private set; }
 
         public CartPage(IWebDriver driver) : base(driver)
         {
@@ -28,6 +29,8 @@ namespace LV587SETOPENCART.Pages
             RemoveInCartButton.FindElement(By.CssSelector(".fa-times-circle"));
             CartButtonSum.FindElement(By.CssSelector(".table-responsive .table-bordered tbody tr > td:last-child"));
             EmptyCart.FindElement(By.CssSelector("#content > p"));
+            TotalPrice.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2)"));
+            //.col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2) Total Price
         }
         public void QuantityInput(string quantity)
         {
@@ -49,6 +52,10 @@ namespace LV587SETOPENCART.Pages
         public string EmptyCartMessage()
         {
             return EmptyCart.Text;
+        }
+        public string GetTotalPrice()
+        {
+            return TotalPrice.Text;
         }
     }
 }

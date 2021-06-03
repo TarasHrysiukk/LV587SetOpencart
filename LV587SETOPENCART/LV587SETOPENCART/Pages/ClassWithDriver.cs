@@ -11,6 +11,12 @@ namespace LV587SETOPENCART.Pages
     {
         public IWebDriver driver;
 
+
+        public IWebDriver Driver { get; private set; }
+
+
+        public ClassWithDriver() { }
+
         public ClassWithDriver(IWebDriver driver)
         {
             this.driver = driver;   

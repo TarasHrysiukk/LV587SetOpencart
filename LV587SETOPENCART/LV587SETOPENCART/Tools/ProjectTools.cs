@@ -11,6 +11,7 @@ namespace LV587SETOPENCART.Tools
 {
     class ProjectTools : ClassWithDriver
     {
+        public ProjectTools() { }
         public ProjectTools(IWebDriver driver) : base(driver) { }
             public bool PriceCurrency(string unitPrice, string currency)
         {
