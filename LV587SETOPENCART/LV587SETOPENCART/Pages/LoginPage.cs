@@ -52,5 +52,5 @@ namespace LV587SETOPENCART.Pages
         {
             ForgottenPassButton.Click();
         }
-    }
+    } 
 }
