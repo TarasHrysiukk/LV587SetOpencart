@@ -15,5 +15,11 @@ namespace LV587SETOPENCART.Pages
         {
             this.driver = driver;   
         }
+
+        public void NavigateToURL()
+        {
+            driver.Navigate().GoToUrl(@"http://localhost/");
+        }
+        
     }
 }

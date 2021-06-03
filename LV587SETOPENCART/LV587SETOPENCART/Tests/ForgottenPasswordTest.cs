@@ -5,11 +5,10 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
-
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
-    class LoginTest
+    class ForgottenPasswordTest
     {
         IWebDriver driver;
 
@@ -30,24 +29,27 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            //driver.Navigate().GoToUrl(@"http://localhost/");
             ClassWithDriver classWithDriver = new ClassWithDriver(driver);
             classWithDriver.NavigateToURL();
         }
 
         [Test]
-        public void LoginPageTest()
+        public void ForgottenPasswordPageTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
 
-            LoginBL loginBL = new LoginBL(driver);
-            //LoginPage loginPage = new LoginPage(driver);
-            loginBL.Login("user1@gmail.com", "qwerty");
+             LoginPage login = new LoginPage(driver);
+             login.ClickForgotPassword();
 
-            MyAccountPage myAccountPage = new MyAccountPage(driver); //crash
-            Assert.AreEqual("My Account", myAccountPage.MyAccountText());
+             ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
+             forgottenPasswordPage.ForgotPasswordEmail("user1@gmail.com");
+             forgottenPasswordPage.ClickOnContinueButton();
+            //ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
+            //forgottenPasswordBL.ForgottenPassword("user1@gmail.com"); //Failed if i use BL
 
+            ForgottenPassSuccess forgottenPassSuccess = new ForgottenPassSuccess(driver);
+            Assert.AreEqual("An email with a confirmation link has been sent your email address.", forgottenPassSuccess.AlertMessageText());
         }
     }
 }

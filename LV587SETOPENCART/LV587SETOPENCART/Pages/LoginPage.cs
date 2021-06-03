@@ -19,16 +19,19 @@ namespace LV587SETOPENCART.Pages
         public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
         public IWebElement ForgottenPassButton { get; private set; }
 
-        public LoginPage(IWebDriver driver) :base(driver)
+      //  public IWebElement AlertMessage { get; private set; } forgot success
+
+        public LoginPage(IWebDriver driver) : base(driver)
         {
             InputEmail = driver.FindElement(By.Id("input-email"));
             InputPass = driver.FindElement(By.Id("input-password"));
             LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
-            ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
+            ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='/forgotten'"));
+            //AlertMessage = driver.FindElement(By.CssSelector(".alert")); forgot success
         }
 
         //input Email
-        public void InputEmailText(string email) //name same as prorety add method
+        public void InputEmailText(string email)
         {
             InputEmail.Clear();
             InputEmail.SendKeys(email);
@@ -52,5 +55,10 @@ namespace LV587SETOPENCART.Pages
         {
             ForgottenPassButton.Click();
         }
-    } 
+
+        //public string AlertMessageText()
+        //{
+        //    return AlertMessage.Text;
+        //} 
+    }
 }
