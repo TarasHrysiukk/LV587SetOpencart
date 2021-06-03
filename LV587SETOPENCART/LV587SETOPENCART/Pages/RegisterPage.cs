@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Pages
 {
-    class RegisterPage: ClassWithDriver
+    class RegisterPage : ClassWithDriver
     {
         //check if you not log NOW
         //Subscribe RadioButtons Click
@@ -20,10 +20,10 @@ namespace LV587SETOPENCART.Pages
         public IWebElement PasswordConfirmInput { get { return driver.FindElement(By.Id("input-confirm")); } }
         public IWebElement PrivacyPolicyCheckBox { get { return driver.FindElement(By.Name("agree")); } }
         public IWebElement SubscribeRadioButtonYES { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='1']")); } }
-        public IWebElement SubscribeRadioButtonNO { get { return driver.FindElement(By.CssSelector( ".radio-inline input[value='0']")); } }
+        public IWebElement SubscribeRadioButtonNO { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='0']")); } }
         public IWebElement ConfirmButton { get { return driver.FindElement(By.CssSelector("input[type='submit']")); } }
 
-        public RegisterPage(IWebDriver driver): base(driver){}
+        public RegisterPage(IWebDriver driver) : base(driver) { }
 
 
         // ATOMIC OPERATIONS 
@@ -94,18 +94,17 @@ namespace LV587SETOPENCART.Pages
         {
             EmailInput.Click();
         }
-        
+
         // Password TextBox
         public string GetPasswordInputText()
         {
             return PasswordInput.GetAttribute("value");
         }
         public void SetPasswordInputTextAndClear(string text)
-        {            
+        {
             PasswordInput.Clear();
             PasswordInput.SendKeys(text);
         }
-
         public void ClickPasswordInput()
         {
             PasswordInput.Click();
@@ -122,7 +121,6 @@ namespace LV587SETOPENCART.Pages
             PasswordConfirmInput.Clear();
             PasswordConfirmInput.SendKeys(text);
         }
-
         public void ClickPasswordConfirmInput()
         {
             PasswordConfirmInput.Click();

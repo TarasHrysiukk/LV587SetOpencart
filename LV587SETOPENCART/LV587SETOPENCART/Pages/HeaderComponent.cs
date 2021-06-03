@@ -51,20 +51,20 @@ namespace LV587SETOPENCART.Pages
 
         public void CurrencyClickAndSelect(Currencies currency)
         {
-            Driver.FindElement(currencyDropdown).Click();
+            driver.FindElement(currencyDropdown).Click();
             
             switch (currency)
             {
                 case Currencies.EUR:
-                    Driver.FindElement(By.Name("EUR")).Click();
+                    driver.FindElement(By.Name("EUR")).Click();
                     break;
 
                 case Currencies.GBP:
-                    Driver.FindElement(By.Name("GBP")).Click();
+                    driver.FindElement(By.Name("GBP")).Click();
                     break;
 
                 case Currencies.USD:
-                    Driver.FindElement(By.Name("USD")).Click();
+                    driver.FindElement(By.Name("USD")).Click();
                     break;
 
                 default:
@@ -74,25 +74,25 @@ namespace LV587SETOPENCART.Pages
 
         public void ClickOnWishList()
         {
-            Driver.FindElement(wishListDropdown).Click();
+            driver.FindElement(wishListDropdown).Click();
         }
 
         public void ClickOnShoppingCartLink()
         {
-            Driver.FindElement(shoppingCartLink).Click();
+            driver.FindElement(shoppingCartLink).Click();
         }
 
         public void ClickOnCheckout()
         {
-            Driver.FindElement(checkout).Click();
+            driver.FindElement(checkout).Click();
         }
         public void ClickOnShoppingCartBlackButton()
         {
-            Driver.FindElement(shoppingCartBlackButton).Click();
+            driver.FindElement(shoppingCartBlackButton).Click();
         }
         public string CartButtonLabelText()
         {
-            IWebElement search = Driver.FindElement(CartButtonLabel);
+            IWebElement search = driver.FindElement(CartButtonLabel);
             return search.Text;
         }
 
@@ -101,32 +101,32 @@ namespace LV587SETOPENCART.Pages
             switch (category)
             {
                 case CategoryMenu.Desktops:
-                    Driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > a")).Click();
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[1]/div/a")).Click();
+                    driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(1) > a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[1]/div/a")).Click();
                     break;
                 case CategoryMenu.LaptopsAndNotebooks:
-                    Driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(2) > a")).Click();
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[2]/a")).Click();
+                    driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(2) > a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[2]/a")).Click();
                     break;
                 case CategoryMenu.Components:
-                    Driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(3) > a")).Click();
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[3]/div/a")).Click();
+                    driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(3) > a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[3]/div/a")).Click();
                     break;
                 case CategoryMenu.Tablets:
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[4]/a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[4]/a")).Click();
                     break;
                 case CategoryMenu.Software:
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[5]/a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[5]/a")).Click();
                     break;
                 case CategoryMenu.PhonesAndPDAs:
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[6]/a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[6]/a")).Click();
                     break;
                 case CategoryMenu.Cameras:
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[7]/a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[7]/a")).Click();
                     break;
                 case CategoryMenu.MP3Players:
-                    Driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(8) > a")).Click();
-                    Driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[8]/div/a")).Click();
+                    driver.FindElement(By.CssSelector("#menu > div.collapse.navbar-collapse.navbar-ex1-collapse > ul > li:nth-child(8) > a")).Click();
+                    driver.FindElement(By.XPath("//*[@id='menu']/div[2]/ul/li[8]/div/a")).Click();
                     break;
                 default:
                     break;
@@ -135,13 +135,13 @@ namespace LV587SETOPENCART.Pages
 
         public void SelectSearch()
         {
-            IWebElement search = Driver.FindElement(searchField);
+            IWebElement search = driver.FindElement(searchField);
             search.Click();
         }
 
         public void SearchItem(string searchText)
         {
-            IWebElement search = Driver.FindElement(searchField);
+            IWebElement search = driver.FindElement(searchField);
             search.Clear();
             search.SendKeys(searchText);
             search.Submit();
@@ -149,21 +149,21 @@ namespace LV587SETOPENCART.Pages
 
         public void ClickOnMyAccount(MyAccountMenuActions action)
         {
-            Driver.FindElement(myAccountButton).Click();
+            driver.FindElement(myAccountButton).Click();
 
             switch (action)
             {
                 case MyAccountMenuActions.Register:
-                    Driver.FindElement(By.LinkText("Register")).Click();
+                    driver.FindElement(By.LinkText("Register")).Click();
                     break;
                 case MyAccountMenuActions.Login:
-                    Driver.FindElement(By.LinkText("Login")).Click();
+                    driver.FindElement(By.LinkText("Login")).Click();
                     break;
                 case MyAccountMenuActions.MyAccount:
-                    Driver.FindElement(By.LinkText("My Account")).Click();
+                    driver.FindElement(By.LinkText("My Account")).Click();
                     break;
                 case MyAccountMenuActions.Logout:
-                    Driver.FindElement(By.LinkText("Logout")).Click();
+                    driver.FindElement(By.LinkText("Logout")).Click();
                     break;
                 default:
                     break;

@@ -19,6 +19,8 @@ namespace LV587SETOPENCART.Pages
         public IWebElement WishListButton { get; private set; }
         public IWebElement ProductPrice { get; private set; }
 
+        public IWebElement MustLoginMessage { get; private set; }
+
         public PageWithProducts(IWebDriver driver) : base(driver)
         {
             FirstProductName = driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4"));
@@ -26,10 +28,15 @@ namespace LV587SETOPENCART.Pages
             CartButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']"));
             WishListButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']"));
             ProductPrice = driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)"));
+            MustLoginMessage = driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)"));
         }
         public void SelectProduct(IWebElement product) // Options [FirstProduct, SecondProduct]
         {
             product.Click();
+        }
+        public string GetSelectedProductName(IWebElement product) // Options [FirstProduct, SecondProduct]
+        {
+            return product.Text;
         }
         public void ClickCartButton()
         {
@@ -42,6 +49,11 @@ namespace LV587SETOPENCART.Pages
         public string GetPrice()
         {
             return ProductPrice.Text;
+        }
+
+        public string GetMustLoginMessageText()
+        {
+            return MustLoginMessage.Text;
         }
 
     }
