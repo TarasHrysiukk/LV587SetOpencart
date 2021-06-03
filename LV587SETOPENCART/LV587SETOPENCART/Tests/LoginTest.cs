@@ -45,7 +45,7 @@ namespace LV587SETOPENCART.Tests
 
             loginBL.Login("user1@gmail.com", "qwerty");
 
-            // MyAccountPage myAccountPage = new MyAccountPage(driver); //crash mafacka
+            // MyAccountPage myAccountPage = new MyAccountPage(driver); //crash
             //Assert.AreEqual("My Account", myAccountPage.MyAccountText());
 
         }
