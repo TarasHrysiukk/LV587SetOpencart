@@ -92,6 +92,38 @@ namespace LV587SETOPENCART.Tests.Pages
 
                 browser.Close();
             }
+
+            [Test]
+            public void Test11()
+            {
+                browser.Init_Browser();
+                browser.Goto(test_url);
+                // Select 'Euro' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.EUR);
+                currencySymbol = "€";
+                bool trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in euro
+                Assert.True(trueCurrency);
+
+                // Select 'Pound Sterling' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.GBP);
+                currencySymbol = "£";
+                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in PoundsSterling
+                Assert.True(trueCurrency);
+
+                // Select 'US Dollars' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.USD);
+                currencySymbol = "$";
+                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in USA Dollars 
+                Assert.True(trueCurrency);
+
+                browser.Close();
+            }
         }
             }
         }

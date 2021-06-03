@@ -170,5 +170,29 @@ namespace LV587SETOPENCART.Pages
                     break;
             }
         }
+
+        public string GetCurrencyName(Currencies currency)
+        {
+            driver.FindElement(currencyDropdown).Click();
+
+            switch (currency)
+            {
+                case Currencies.EUR:
+                    return driver.FindElement(By.Name("EUR")).Text;
+                    break;
+
+                case Currencies.GBP:
+                    return driver.FindElement(By.Name("GBP")).Text;
+                    break;
+
+                case Currencies.USD:
+                    return driver.FindElement(By.Name("USD")).Text;
+                    break;
+
+                default:
+                    return "no element";
+                        break;
+            }
+        }
     }
 }
