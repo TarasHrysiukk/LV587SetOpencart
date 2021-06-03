@@ -36,7 +36,7 @@ namespace LV587SETOPENCART.Pages
 
     class HeaderComponent : ClassWithDriver
     {
-        public HeaderComponent(IWebDriver driver) : base(driver) {}
+        public HeaderComponent(IWebDriver driver) : base(driver){}
 
         private readonly By currencyDropdown = By.ClassName(".btn-group");
         private readonly By currencyName = By.CssSelector(".currency-select .btn .btn-link .btn-block");
@@ -47,6 +47,7 @@ namespace LV587SETOPENCART.Pages
         private readonly By searchField = By.CssSelector(".form-control .input-lg");
         private readonly By searchButton = By.CssSelector(".btn .btn-default .btn-lg");
         private readonly By myAccountButton = By.CssSelector("#top-links > ul > li.dropdown > a > span.hidden-xs.hidden-sm.hidden-md");
+        private readonly By CartButtonLabel = By.CssSelector("#cart-total:not(.fa-shopping-cart)");
 
         public void CurrencyClickAndSelect(Currencies currency)
         {
@@ -83,7 +84,16 @@ namespace LV587SETOPENCART.Pages
 
         public void ClickOnCheckout()
         {
+            Driver.FindElement(checkout).Click();
+        }
+        public void ClickOnShoppingCartBlackButton()
+        {
             Driver.FindElement(shoppingCartBlackButton).Click();
+        }
+        public string CartButtonLabelText()
+        {
+            IWebElement search = Driver.FindElement(CartButtonLabel);
+            return search.Text;
         }
 
         public void ChooseCategory(CategoryMenu category)
