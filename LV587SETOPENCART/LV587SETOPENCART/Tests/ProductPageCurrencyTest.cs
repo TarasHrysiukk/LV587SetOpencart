@@ -27,69 +27,73 @@ namespace LV587SETOPENCART.Tests.Pages
         {
             webDriver.Quit();
         }
-        [OneTimeSetUp]
-        public void SetUp()
-        {
+       
 
-        }
-
-        [TestFixture]
-        public class ProductPageCurrencyTest
+       
+        public class ProductPageCurrencyTest : ClassWithDriver
         {
-           
-           
+            [OneTimeSetUp]
+            public void SetUp()
+            {
+                IWebDriver webDriver;
+                webDriver = new ChromeDriver();
+            }
             Browser_ops browser = new Browser_ops();
-            public void main() {
-                string currencySymbol = "";
-                String test_url = "https://demo.opencart.com/";
-                LoginPage login = new LoginPage(browser.webDriver);
-                HeaderComponent header = new HeaderComponent(browser.webDriver);
-                PageWithProducts productPage = new PageWithProducts(browser.webDriver);
-                ProjectTools regex = new ProjectTools(browser.webDriver);
-                ProductComponents product = new ProductComponents(browser.webDriver);
+            string currencySymbol = "";
+            String test_url = "https://demo.opencart.com/";
+            public static IWebDriver newdriver;
+            //constructor
+            public ProductPageCurrencyTest(IWebDriver driver) : base(driver) { newdriver = driver; }
 
-                [Test]
-                void Test1()
-                {
-                    
-                    browser.Init_Browser();
-                    browser.Goto(test_url);
-                    //login
-                    login.InputEmailText("iva@new.com");
-                    login.InputPasswordText("qwerty");
-                    login.ClickOnLoginButton();
+            ClassWithDriver classw = new ClassWithDriver(newdriver);
+                LoginPage login = new LoginPage(newdriver);
+                HeaderComponent header = new HeaderComponent(newdriver);
+                PageWithProducts productPage = new PageWithProducts(newdriver);
+                ProjectTools regex = new ProjectTools(newdriver);
+                ProductComponents product = new ProductComponents(newdriver);
+            
+            [Test]
+            public void Test()
+            {
+                browser.Init_Browser();
+                browser.Goto(test_url);
+                //login
+                login.InputEmailText("iva@new.com");
+                login.InputPasswordText("qwerty");
+                login.ClickOnLoginButton();
 
-                    //Select category "Phones & PDAs"
-                    header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-                    //Select the product 'Iphone' from the product list
-                    productPage.SelectProduct(productPage.SecondProductName);
-                    // Select 'Euro' in dropdown 'Currency'.
-                    header.SelectSearch();
-                    header.CurrencyClickAndSelect(Currencies.EUR);
-                    currencySymbol = "€";
-                    bool trueCurrency = regex.PriceCurrency(product.ProductPrice(),currencySymbol);
-                    //Verify that product price is displayed in euro
-                    Assert.True(trueCurrency);
+                //Select category "Phones & PDAs"
+                header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
+                //Select the product 'Iphone' from the product list
+                productPage.SelectProduct(productPage.SecondProductName);
+                // Select 'Euro' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.EUR);
+                currencySymbol = "€";
+                bool trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in euro
+                Assert.True(trueCurrency);
 
-                    // Select 'Pound Sterling' in dropdown 'Currency'.
-                    header.SelectSearch();
-                    header.CurrencyClickAndSelect(Currencies.GBP);
-                    currencySymbol = "£";
-                    trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
-                    //Verify that product price is displayed in PoundsSterling
-                    Assert.True(trueCurrency);
+                // Select 'Pound Sterling' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.GBP);
+                currencySymbol = "£";
+                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in PoundsSterling
+                Assert.True(trueCurrency);
 
-                    // Select 'US Dollars' in dropdown 'Currency'.
-                    header.SelectSearch();
-                    header.CurrencyClickAndSelect(Currencies.USD);
-                    currencySymbol = "$";
-                    trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
-                    //Verify that product price is displayed in USA Dollars 
-                    Assert.True(trueCurrency);
+                // Select 'US Dollars' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.USD);
+                currencySymbol = "$";
+                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                //Verify that product price is displayed in USA Dollars 
+                Assert.True(trueCurrency);
 
-                    browser.Close();
-                }
+                browser.Close();
             }
         }
-    }
-}
+            }
+        }
+    
+

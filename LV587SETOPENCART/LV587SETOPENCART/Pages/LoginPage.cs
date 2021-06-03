@@ -19,6 +19,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
         public IWebElement ForgottenPassButton { get; private set; }
 
+        public LoginPage() { }
         public LoginPage(IWebDriver driver) :base(driver)
         {
             InputEmail = driver.FindElement(By.Id("input-email"));
@@ -26,6 +27,7 @@ namespace LV587SETOPENCART.Pages
             LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
             ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
         }
+        
 
         //input Email
         public void InputEmailText(string email) //name same as prorety add method

@@ -36,6 +36,7 @@ namespace LV587SETOPENCART.Pages
 
     class HeaderComponent : ClassWithDriver
     {
+        public HeaderComponent() { }
         public HeaderComponent(IWebDriver driver) : base(driver){}
 
         private readonly By currencyDropdown = By.ClassName(".btn-group");
