@@ -51,6 +51,7 @@ namespace LV587SETOPENCART.Tests.Pages
                 PageWithProducts productPage = new PageWithProducts(newdriver);
                 ProjectTools regex = new ProjectTools(newdriver);
                 ProductComponents product = new ProductComponents(newdriver);
+            CartPage cart = new CartPage(newdriver);
             
             [Test]
             public void Test()
@@ -146,27 +147,24 @@ namespace LV587SETOPENCART.Tests.Pages
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.EUR);
                 currencySymbol = "€";
-
-
-
-                bool trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
-                //Verify that product price is displayed in euro
+                //Verify that Total Price price is displayed in euro
+                bool trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
                 Assert.True(trueCurrency);
 
                 // Select 'Pound Sterling' in dropdown 'Currency'.
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.GBP);
                 currencySymbol = "£";
-                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
-                //Verify that product price is displayed in PoundsSterling
+                //Verify that Total price is displayed in PoundsSterling
+                trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
                 Assert.True(trueCurrency);
 
                 // Select 'US Dollars' in dropdown 'Currency'.
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.USD);
                 currencySymbol = "$";
-                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
-                //Verify that product price is displayed in USA Dollars 
+                //Verify that Total price is displayed in USA Dollars 
+                trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
                 Assert.True(trueCurrency);
 
                 browser.Close();
