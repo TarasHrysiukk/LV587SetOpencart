@@ -52,6 +52,7 @@ namespace LV587SETOPENCART.Tests.Pages
                 ProjectTools regex = new ProjectTools(newdriver);
                 ProductComponents product = new ProductComponents(newdriver);
             CartPage cart = new CartPage(newdriver);
+            WishListPage wishList = new WishListPage(newdriver);
             
             [Test]
             public void Test()
@@ -165,6 +166,50 @@ namespace LV587SETOPENCART.Tests.Pages
                 currencySymbol = "$";
                 //Verify that Total price is displayed in USA Dollars 
                 trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
+                Assert.True(trueCurrency);
+
+                browser.Close();
+            }
+
+            [Test]
+            public void Test4()
+            {
+                browser.Init_Browser();
+                browser.Goto(test_url);
+                //login
+                login.InputEmailText("iva@new.com");
+                login.InputPasswordText("qwerty");
+                login.ClickOnLoginButton();
+
+                //Select category "Phones & PDAs"
+                header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
+                //Add first product to WishList from the product list
+                productPage.ClickWishListButton();
+                // Open WishList page
+                header.ClickOnWishList();
+
+                // Select 'Euro' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.EUR);
+                currencySymbol = "€";
+                //Verify that Unit Price price is displayed in euro
+                bool trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
+                Assert.True(trueCurrency);
+
+                // Select 'Pound Sterling' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.GBP);
+                currencySymbol = "£";
+                //Verify that Unit price is displayed in PoundsSterling
+                trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
+                Assert.True(trueCurrency);
+
+                // Select 'US Dollars' in dropdown 'Currency'.
+                header.SelectSearch();
+                header.CurrencyClickAndSelect(Currencies.USD);
+                currencySymbol = "$";
+                //Verify that Unit price is displayed in USA Dollars 
+                trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
                 Assert.True(trueCurrency);
 
                 browser.Close();
