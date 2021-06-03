@@ -16,7 +16,6 @@ namespace LV587SETOPENCART.Tests
     class LoginTest
     {
         IWebDriver driver = new ChromeDriver();
-        //LoginPage loginPage = new LoginPage(driver);
         [Test]
         public void Test()
         {
