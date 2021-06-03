@@ -24,7 +24,7 @@ namespace LV587SETOPENCART.Pages
         {
             FirstProductName = driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4"));
             SecondProductName = driver.FindElement(By.CssSelector(" #content .product-layout:nth-child(2) .caption h4"));
-            CartButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']"));
+            CartButton = driver.FindElement(By.CssSelector(".product-layout:first-child button[onclick*='1']"));
             WishListButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']"));
             ProductPrice = driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)"));
         }
@@ -43,6 +43,10 @@ namespace LV587SETOPENCART.Pages
         public string GetPrice()
         {
             return ProductPrice.Text;
+        }
+        public string GetFirstProductName()
+        {
+            return FirstProductName.Text;
         }
 
     }
