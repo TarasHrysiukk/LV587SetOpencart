@@ -21,6 +21,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement thirdRate;
         public IWebElement fourthRate;
         public IWebElement emptyReview;
+        public ProductComponents() { }
         public ProductComponents(IWebDriver driver) : base(driver)
         {
             productPrice = driver.FindElement(By.CssSelector("#content > div:nth-child(1) > div.col-sm-4 > ul:nth-child(4) > li:nth-child(1) > h2"));

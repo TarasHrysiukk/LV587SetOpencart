@@ -19,6 +19,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement WishListButton { get; private set; }
         public IWebElement ProductPrice { get; private set; }
 
+        public PageWithProducts() { }
         public PageWithProducts(IWebDriver driver) : base(driver)
         {
             FirstProductName = driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4"));
