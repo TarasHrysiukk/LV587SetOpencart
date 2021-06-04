@@ -19,7 +19,8 @@ namespace LV587SETOPENCART.Pages
         public IWebElement WishListButton { get; private set; }
         public IWebElement ProductPrice { get; private set; }
 
-        public PageWithProducts() { }
+        public IWebElement MustLoginMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
+
         public PageWithProducts(IWebDriver driver) : base(driver)
         {
             FirstProductName = driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4"));
@@ -32,6 +33,10 @@ namespace LV587SETOPENCART.Pages
         {
             product.Click();
         }
+        public string GetSelectedProductName(IWebElement product) // Options [FirstProduct, SecondProduct]
+        {
+            return product.Text;
+        }
         public void ClickCartButton()
         {
             CartButton.Click();
@@ -43,6 +48,11 @@ namespace LV587SETOPENCART.Pages
         public string GetPrice()
         {
             return ProductPrice.Text;
+        }
+
+        public string GetMustLoginMessageText()
+        {
+            return MustLoginMessage.Text;
         }
 
     }
