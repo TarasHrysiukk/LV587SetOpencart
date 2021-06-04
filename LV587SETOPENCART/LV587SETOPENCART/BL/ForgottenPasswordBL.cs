@@ -10,7 +10,7 @@ namespace LV587SETOPENCART.BL
         //LoginPage loginPage;
         public ForgottenPasswordBL(IWebDriver driver): base(driver)
         {
-            //loginPage = new LoginPage(driver);
+            // loginPage = new LoginPage(driver);
             forgottenPasswordPage = new ForgottenPasswordPage(driver);
         }
 
