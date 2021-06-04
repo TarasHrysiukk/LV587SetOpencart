@@ -36,7 +36,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        public void DropdownCurrenciesTest()
+        public void ItemPriceCurrenciesTest()
         {
             string currencySymbol;
             HeaderComponent header = new HeaderComponent(driver);
