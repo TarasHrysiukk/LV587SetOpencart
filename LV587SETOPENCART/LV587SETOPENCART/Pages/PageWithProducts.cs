@@ -19,7 +19,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement WishListButton { get; private set; }
         public IWebElement ProductPrice { get; private set; }
 
-        public IWebElement MustLoginMessage { get; private set; }
+        public IWebElement MustLoginMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
 
         public PageWithProducts(IWebDriver driver) : base(driver)
         {
@@ -28,7 +28,6 @@ namespace LV587SETOPENCART.Pages
             CartButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']"));
             WishListButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']"));
             ProductPrice = driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)"));
-            MustLoginMessage = driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)"));
         }
         public void SelectProduct(IWebElement product) // Options [FirstProduct, SecondProduct]
         {
