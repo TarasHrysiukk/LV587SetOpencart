@@ -23,7 +23,7 @@ namespace LV587SETOPENCART.Tests
         [OneTimeTearDown]
         public void AfterAllMethods()
         {
-            //driver.Quit();
+            driver.Quit();
         }
 
         [SetUp]
