@@ -36,21 +36,17 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void ForgottenPasswordPageTest()
         {
+            //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-
-             LoginPage login = new LoginPage(driver);
-             login.ClickForgotPassword();
-
+            // Click on "Forgotten Password" link text and input email
+            ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
+            forgottenPasswordBL.ForgottenPassword("user1@gmail.com");
+            //Assert
             ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
-            forgottenPasswordPage.ForgotPasswordEmail("user1@gmail.com");
-            forgottenPasswordPage.ClickOnContinueButton();
-
-            //ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
-            //forgottenPasswordBL.ForgottenPassword("user1@gmail.com"); //Failed if i use BL
-
-            ForgottenPassSuccess forgottenPassSuccess = new ForgottenPassSuccess(driver);
-            Assert.AreEqual("An email with a confirmation link has been sent your email address.", forgottenPassSuccess.AlertMessageText());
+            string expRes = "An email with a confirmation link has been sent your email address.";
+            var actRes = forgottenPasswordPage.AlertMessageText();
+            Assert.AreEqual(expRes, actRes);
         }
     }
 }

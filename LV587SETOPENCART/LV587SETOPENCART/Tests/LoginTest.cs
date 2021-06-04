@@ -43,10 +43,12 @@ namespace LV587SETOPENCART.Tests
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
             //login
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345");
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
             //Assert
             MyAccountPage myAccountPage = new MyAccountPage(driver);
-            Assert.AreEqual("My Account", myAccountPage.MyAccountText());
+            string expRes = "My Account";
+            var actRes = myAccountPage.MyAccountText();
+            Assert.AreEqual(expRes, actRes);
         }
     }
 }

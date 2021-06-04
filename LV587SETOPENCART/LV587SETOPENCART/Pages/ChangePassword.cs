@@ -14,16 +14,13 @@ namespace LV587SETOPENCART.Pages
 
         //Click Continue button
 
-        public IWebElement InputNewPassword { get; private set; }
-        public IWebElement InputConfirmNewPassword { get; private set; }
-        public IWebElement ContinueButtonChangePassword { get; private set; }
+        public IWebElement InputNewPassword { get {return driver.FindElement(By.CssSelector(".col-sm-10 #input-password")); } }
+        public IWebElement InputConfirmNewPassword { get {return driver.FindElement(By.CssSelector(".col-sm-10 #input-confirm")); } }
+        public IWebElement ContinueButtonChangePassword { get {return driver.FindElement(By.CssSelector("input[type*='submit']")); } }
+        public IWebElement AlertMessage { get { return driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)")); } }
 
-        public ChangePassword(IWebDriver driver) : base(driver)
-        {
-            InputNewPassword = driver.FindElement(By.CssSelector(".col-sm-10 #input-password"));
-            InputConfirmNewPassword = driver.FindElement(By.CssSelector(".col-sm-10 #input-confirm"));
-            ContinueButtonChangePassword = driver.FindElement(By.XPath("input[type*='submit']"));
-        }
+
+        public ChangePassword(IWebDriver driver) : base(driver) { }
 
         public void InputChangePasswordText(string pass)
         {
@@ -40,9 +37,9 @@ namespace LV587SETOPENCART.Pages
             ContinueButtonChangePassword.Click();
         }
 
-        public void InputPSSSS(string mmm)
+        public string AlertMessageText()
         {
-            InputNewPassword.SendKeys(mmm);
+            return AlertMessage.Text;
         }
     }
 }

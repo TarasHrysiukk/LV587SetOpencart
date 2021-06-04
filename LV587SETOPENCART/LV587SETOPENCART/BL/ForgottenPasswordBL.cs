@@ -7,15 +7,16 @@ namespace LV587SETOPENCART.BL
     class ForgottenPasswordBL : ClassWithDriver
     {
         ForgottenPasswordPage forgottenPasswordPage;
-        //LoginPage loginPage;
+        LoginPage loginPage;
         public ForgottenPasswordBL(IWebDriver driver): base(driver)
         {
-            // loginPage = new LoginPage(driver);
+            loginPage = new LoginPage(driver);
             forgottenPasswordPage = new ForgottenPasswordPage(driver);
         }
 
         public void ForgottenPassword(string email)
         {
+            loginPage.ClickForgotPassword();
             forgottenPasswordPage.ForgotPasswordEmail(email);
             forgottenPasswordPage.ClickOnContinueButton();
         }

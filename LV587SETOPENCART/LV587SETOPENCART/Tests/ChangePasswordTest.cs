@@ -36,19 +36,23 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void ChangePassword()
         {
+            //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+            //login 
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345");
-
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+            //click password button on right side bar
             RightSideBar rightSideBar = new RightSideBar(driver);
             rightSideBar.PasswordListButtonClick();
-
-           // ChangePassword changePassword = new ChangePassword(driver);
-           // changePassword.InputChangePasswordText("qwertyasdf12345678");
-            
-          //  changePassword.ClickContinueButtonChangePassword();
-          //fail
+            //input new pass
+            ChangePassword changePassword = new ChangePassword(driver);
+            changePassword.InputChangePasswordText("qwertyasdf12345678");
+            changePassword.ClickContinueButtonChangePassword();
+            //Assert
+            string expRes = "Success: Your password has been successfully updated.";
+            var actRea = changePassword.AlertMessageText();
+            Assert.AreEqual(expRes, actRea);
 
         }
     }
