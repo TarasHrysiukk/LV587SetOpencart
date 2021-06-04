@@ -9,11 +9,11 @@ namespace LV587SETOPENCART.Pages
 {
     class ForgottenPassSuccess : ClassWithDriver
     {
-        public IWebElement AlertMessage { get; private set; }
+        public IWebElement AlertMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)")); } }
         public ForgottenPassSuccess(IWebDriver driver) : base(driver)
         {
 
-            AlertMessage = driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)"));
+            //AlertMessage = driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)"));
         }
         public string AlertMessageText()
         {

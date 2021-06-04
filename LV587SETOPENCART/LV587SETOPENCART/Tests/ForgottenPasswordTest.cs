@@ -42,9 +42,10 @@ namespace LV587SETOPENCART.Tests
              LoginPage login = new LoginPage(driver);
              login.ClickForgotPassword();
 
-             ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
-             forgottenPasswordPage.ForgotPasswordEmail("user1@gmail.com");
-             forgottenPasswordPage.ClickOnContinueButton();
+            ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
+            forgottenPasswordPage.ForgotPasswordEmail("user1@gmail.com");
+            forgottenPasswordPage.ClickOnContinueButton();
+
             //ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
             //forgottenPasswordBL.ForgottenPassword("user1@gmail.com"); //Failed if i use BL
 

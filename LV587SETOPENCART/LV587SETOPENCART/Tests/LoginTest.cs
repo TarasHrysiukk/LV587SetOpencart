@@ -38,16 +38,15 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void LoginPageTest()
         {
+            //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-
+            //login
             LoginBL loginBL = new LoginBL(driver);
-            //LoginPage loginPage = new LoginPage(driver);
             loginBL.Login("user1@gmail.com", "qwertyasdf12345");
-
-            MyAccountPage myAccountPage = new MyAccountPage(driver); //crash
+            //Assert
+            MyAccountPage myAccountPage = new MyAccountPage(driver);
             Assert.AreEqual("My Account", myAccountPage.MyAccountText());
-
         }
     }
 }
