@@ -20,7 +20,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement RemoveInCartButton { get { return driver.FindElement(By.CssSelector(".fa-times-circle")); } }
         public IWebElement CartButtonSum { get { return driver.FindElement(By.CssSelector(".table-responsive .table-bordered tbody tr > td:last-child")); } }
         public IWebElement EmptyCart { get { return driver.FindElement(By.CssSelector("#content > p")); } }
-        public IWebElement TotalPrice { get { return driver.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2)")); } }
+        public IWebElement TotalPrice { get { return driver.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(2) td:nth-child(2)")); } }
 
         public CartPage(IWebDriver driver) : base(driver)
         { }
