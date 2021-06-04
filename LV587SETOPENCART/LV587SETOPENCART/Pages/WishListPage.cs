@@ -16,22 +16,14 @@ namespace LV587SETOPENCART.Pages
         //method ( get unit price first child )
         //button Continue (return My Account)
 
-        public IWebElement PageTitle { get; private set; } //  PageTitle ("Wish List")
-        public IWebElement ProductName { get; private set; } // Name of product in first row
-        public IWebElement UnitPrice { get; private set; } // Unit Price of product in first row
-        public IWebElement AddToCartButton { get; private set; } // Select AddToCart Button in a first row
-        public IWebElement RemoveButton { get; private set; } // Select Remove Button in a first row
-        public IWebElement ContinueButton { get; private set; } // Select Continue Button 
+        public IWebElement PageTitle { get { return driver.FindElement(By.CssSelector("#content h2")); } } //  PageTitle ("Wish List")
+        public IWebElement ProductName { get { return driver.FindElement(By.CssSelector(".table-hover tr:first-child  td.text-left a")); } } // Name of product in first row
+        public IWebElement UnitPrice { get { return driver.FindElement(By.CssSelector("tr:first-child .price")); } } // Unit Price of product in first row
+        public IWebElement AddToCartButton { get { return driver.FindElement(By.CssSelector("tr:first-child .fa-shopping-cart")); } } // Select AddToCart Button in a first row
+        public IWebElement RemoveButton { get { return driver.FindElement(By.CssSelector("tr:first-child .fa-times")); } } // Select Remove Button in a first row
+        public IWebElement ContinueButton { get { return driver.FindElement(By.CssSelector(".pull-right .btn")); } } // Select Continue Button 
 
-        public WishListPage(IWebDriver driver) : base(driver)
-        {
-            PageTitle = driver.FindElement(By.CssSelector("#content h2"));
-            ProductName = driver.FindElement(By.CssSelector(".table-hover tr:first-child  td.text-left a"));
-            UnitPrice = driver.FindElement(By.CssSelector("tr:first-child .price"));
-            AddToCartButton = driver.FindElement(By.CssSelector("tr:first-child .fa-shopping-cart"));
-            RemoveButton = driver.FindElement(By.CssSelector("tr:first-child .fa-times"));
-            ContinueButton = driver.FindElement(By.CssSelector(".pull-right .btn"));
-        }
+        public WishListPage(IWebDriver driver) : base(driver) { }
 
         //Get Page Title
         public string GetPageTitle()
