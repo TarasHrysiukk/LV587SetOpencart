@@ -39,7 +39,7 @@ namespace LV587SETOPENCART.Pages
         public HeaderComponent() { }
         public HeaderComponent(IWebDriver driver) : base(driver){}
 
-        private readonly By currencyDropdown = By.ClassName("#form-currency > div > button");
+        private readonly By currencyDropdown = By.CssSelector(".pull-left [data-toggle='dropdown']");
         private readonly By wishListDropdown = By.CssSelector("#wishlist-total > span");
         private readonly By shoppingCartLink = By.XPath("//html/body/nav/div/div[2]/ul/li[4]/a/span");
         private readonly By checkout = By.CssSelector("#top-links > ul > li:nth-child(5) > a > span");
