@@ -19,16 +19,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement LoginButton { get {return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } } // { return driver.FindElement(By.Id("input-email")); } }
         public IWebElement ForgottenPassButton { get {return driver.FindElement(By.CssSelector(".form-group a[href*='/forgotten'")); } }
 
-      //  public IWebElement AlertMessage { get; private set; } forgot success
-
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-            //InputEmail = driver.FindElement(By.Id("input-email"));
-            //InputPass = driver.FindElement(By.Id("input-password"));
-            //LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
-            //ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='/forgotten'"));
-            //AlertMessage = driver.FindElement(By.CssSelector(".alert")); forgot success
-        }
+        public LoginPage(IWebDriver driver) : base(driver) { }
 
         //input Email
         public void InputEmailText(string email)
@@ -55,10 +46,5 @@ namespace LV587SETOPENCART.Pages
         {
             ForgottenPassButton.Click();
         }
-
-        //public string AlertMessageText()
-        //{
-        //    return AlertMessage.Text;
-        //} 
     }
 }
