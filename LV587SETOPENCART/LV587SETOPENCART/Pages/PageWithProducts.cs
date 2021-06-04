@@ -13,8 +13,8 @@ namespace LV587SETOPENCART.Pages
         // Select second product from the page 
 
 
-        public IWebElement FirstProductName { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4")); } } //  PageTitle ("Wish List")
-        public IWebElement SecondProductName { get { return driver.FindElement(By.CssSelector(" #content .product-layout:nth-child(2) .caption h4")); } } // Name of product in first row
+        public IWebElement FirstProductName { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4 a")); } } //  PageTitle ("Wish List")
+        public IWebElement SecondProductName { get { return driver.FindElement(By.CssSelector(" #content .product-layout:nth-child(2) .caption h4 a")); } } // Name of product in first row
         public IWebElement CartButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']")); } }
         public IWebElement WishListButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']")); } }
         public IWebElement ProductPrice { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)")); } }

@@ -10,7 +10,7 @@ using LV587SETOPENCART.Tools;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
-    class CurrencyTest
+    class DropdownCurrencyTest
     {
         IWebDriver driver;
 
@@ -34,9 +34,9 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"https://demo.opencart.com/");
 
         }
-
+        
         [Test]
-        public void LoginPageTest()
+        public void DropdownCurrenciesTest()
         {
             string currencySymbol;
             HeaderComponent header = new HeaderComponent(driver);
@@ -74,7 +74,6 @@ namespace LV587SETOPENCART.Tests
             trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.USD), currencySymbol);
             //Verify that currency USA Dollars is in Drop-down 
             Assert.True(trueCurrency);
-
         }
     }
 }
