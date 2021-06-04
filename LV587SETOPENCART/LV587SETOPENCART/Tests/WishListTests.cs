@@ -48,7 +48,6 @@ namespace LV587SETOPENCART.Tests
             PageWithProducts pageProducts = new PageWithProducts(driver);
             string expected = pageProducts.GetSelectedProductName(pageProducts.FirstProductName);
 
-            pageProducts.GetSelectedProductName(pageProducts.FirstProductName);
             pageProducts.ClickWishListButton();
 
             string alertMessage = pageProducts.GetAlertMessageText();
@@ -58,7 +57,7 @@ namespace LV587SETOPENCART.Tests
             WishListPage wishListPage = new WishListPage(driver);
             string actual = wishListPage.GetProductName();
 
-            Assert.IsTrue(alertMessage.ToLower().Contains("Success: You have added"));
+            Assert.IsTrue(alertMessage.Contains("Success"));
             Assert.AreEqual(expected, actual);
 
             header.ClickOnMyAccount(MyAccountMenuActions.Logout);
@@ -75,7 +74,7 @@ namespace LV587SETOPENCART.Tests
 
             string actual = pageWithProduct.GetAlertMessageText();
 
-            Assert.IsTrue(actual.ToLower().Contains(" You must login or create an account to save"));
+            Assert.IsTrue(actual.Contains("must login or create an account to save"));
         }
 
         [Test]
@@ -101,7 +100,7 @@ namespace LV587SETOPENCART.Tests
 
             string actual = wishListPage.GetAlertMessageText();
 
-            Assert.IsTrue(actual.ToLower().Contains("You have modified your wish list"));
+            Assert.IsTrue(actual.Contains("You have modified your wish list"));
 
             header.ClickOnMyAccount(MyAccountMenuActions.Logout);
         }
@@ -128,14 +127,15 @@ namespace LV587SETOPENCART.Tests
             wishListPage.AddToCart();
 
             string alertMessage = wishListPage.GetAlertMessageText();
+
             string expected = wishListPage.GetProductName();
 
             header.ClickOnShoppingCartBlackButton();
             CartButtonComponent cartButton = new CartButtonComponent(driver);
-            
+
             string actual = cartButton.GetProductNameInCart();
-            
-            Assert.IsTrue(alertMessage.ToLower().Contains("Success: You have added"));
+
+            Assert.IsTrue(alertMessage.Contains("Success"));
             Assert.AreEqual(expected, actual);
 
             header.ClickOnMyAccount(MyAccountMenuActions.Logout);
@@ -160,7 +160,7 @@ namespace LV587SETOPENCART.Tests
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             string actual = myAccountPage.MyAccountText();
 
-            Assert.IsTrue(actual.ToLower().Contains("my account"));
+            Assert.IsTrue(actual.Contains("Account"));
         }
 
     }
