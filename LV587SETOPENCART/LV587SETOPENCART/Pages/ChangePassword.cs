@@ -14,23 +14,25 @@ namespace LV587SETOPENCART.Pages
 
         //Click Continue button
 
-        LoginPage loginPage;
         public IWebElement InputNewPassword { get; private set; }
-        public IWebElement InputConfurmNewPassword { get; private set; }
+        public IWebElement InputConfirmNewPassword { get; private set; }
         public IWebElement ContinueButtonChangePassword { get; private set; }
 
         public ChangePassword(IWebDriver driver) : base(driver)
         {
-            loginPage = new LoginPage(driver);
-            InputConfurmNewPassword = driver.FindElement(By.Id("input-confirm"));
+            InputNewPassword = driver.FindElement(By.CssSelector(".col-sm-10 #input-password"));
+            InputConfirmNewPassword = driver.FindElement(By.CssSelector(".col-sm-10 #input-confirm"));
             ContinueButtonChangePassword = driver.FindElement(By.XPath("input[type*='submit']"));
         }
 
         public void InputChangePasswordText(string pass)
         {
-            loginPage.InputPasswordText(pass);
-            InputConfurmNewPassword.Clear();
-            InputConfurmNewPassword.SendKeys(pass);
+            InputNewPassword.Clear();
+            InputNewPassword.SendKeys(pass);
+
+            InputConfirmNewPassword.Click();
+            InputConfirmNewPassword.Clear();
+            InputConfirmNewPassword.SendKeys(pass);
         }
 
         public void ClickContinueButtonChangePassword()
@@ -38,7 +40,9 @@ namespace LV587SETOPENCART.Pages
             ContinueButtonChangePassword.Click();
         }
 
-
-
+        public void InputPSSSS(string mmm)
+        {
+            InputNewPassword.SendKeys(mmm);
+        }
     }
 }
