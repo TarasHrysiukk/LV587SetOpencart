@@ -23,6 +23,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement RemoveButton { get { return driver.FindElement(By.CssSelector("tr:first-child .fa-times")); } } // Select Remove Button in a first row
         public IWebElement ContinueButton { get { return driver.FindElement(By.CssSelector(".pull-right .btn")); } } // Select Continue Button 
 
+        public IWebElement AlertMessage { get { return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
         public WishListPage(IWebDriver driver) : base(driver) { }
 
         //Get Page Title
@@ -55,5 +56,11 @@ namespace LV587SETOPENCART.Pages
         {
             ContinueButton.Click();
         }
+        //Alert message if product was removed
+        public string GetAlertMessageText()
+        {
+            return AlertMessage.Text;
+        }
+
     }
 }
