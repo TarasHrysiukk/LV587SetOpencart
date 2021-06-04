@@ -157,10 +157,10 @@ namespace LV587SETOPENCART.Tests
             WishListPage wishList = new WishListPage(driver);
             wishList.Continue();
 
-            //MyAccountPage myAccountPage = new MyAccountPage(driver);
-            //string actual = myAccountPage.MyAccountText();
+            MyAccountPage myAccountPage = new MyAccountPage(driver);
+            string actual = myAccountPage.MyAccountText();
 
-            //Assert.IsTrue(actual.Contains("Account"));
+            Assert.IsTrue(actual.Contains("Account"));
         }
 
     }
