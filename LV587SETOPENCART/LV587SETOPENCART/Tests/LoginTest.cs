@@ -43,7 +43,7 @@ namespace LV587SETOPENCART.Tests
 
             LoginBL loginBL = new LoginBL(driver);
             //LoginPage loginPage = new LoginPage(driver);
-            loginBL.Login("user1@gmail.com", "qwerty");
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345");
 
             MyAccountPage myAccountPage = new MyAccountPage(driver); //crash
             Assert.AreEqual("My Account", myAccountPage.MyAccountText());
