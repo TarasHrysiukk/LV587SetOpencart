@@ -19,7 +19,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement WishListButton { get; private set; }
         public IWebElement ProductPrice { get; private set; }
 
-        public IWebElement MustLoginMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
+        public IWebElement AlertMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
 
         public PageWithProducts(IWebDriver driver) : base(driver)
         {
@@ -50,9 +50,9 @@ namespace LV587SETOPENCART.Pages
             return ProductPrice.Text;
         }
 
-        public string GetMustLoginMessageText()
+        public string GetAlertMessageText()
         {
-            return MustLoginMessage.Text;
+            return AlertMessage.Text;
         }
 
     }
