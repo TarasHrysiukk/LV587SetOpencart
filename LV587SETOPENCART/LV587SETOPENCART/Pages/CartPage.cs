@@ -23,9 +23,18 @@ namespace LV587SETOPENCART.Pages
         public IWebElement TotalPrice { get { return driver.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(2) td:nth-child(2)")); } }
 
         public CartPage(IWebDriver driver) : base(driver)
-        { }
+        {
+            Quantity.FindElement(By.XPath("//input[@name='quantity[31]']"));
+            RefreshButton.FindElement(By.CssSelector(".fa-refresh"));
+            RemoveInCartButton.FindElement(By.CssSelector(".fa-times-circle"));
+            CartButtonSum.FindElement(By.CssSelector(".table-responsive .table-bordered tbody tr > td:last-child"));
+            EmptyCart.FindElement(By.CssSelector("#content > p"));
+            TotalPrice.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2)"));
+            //.col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2) Total Price
+        }
         public void QuantityInput(string quantity)
         {
+            Quantity.Click();
             Quantity.Clear();
             Quantity.SendKeys(quantity);
         }
