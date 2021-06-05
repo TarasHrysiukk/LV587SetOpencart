@@ -47,7 +47,7 @@ namespace LV587SETOPENCART.Pages
         private readonly By searchField = By.CssSelector("#search input");
         private readonly By searchButton = By.CssSelector("#search button");
         private readonly By myAccountButton = By.CssSelector("#top-links > ul > li.dropdown > a > span.hidden-xs.hidden-sm.hidden-md");
-        private readonly By CartButtonLabel = By.CssSelector("#cart-total:not(.fa-shopping-cart)");
+        public readonly By CartButtonLabel = By.CssSelector("#cart-total:not(.fa-shopping-cart)");
 
         public void CurrencyClickAndSelect(Currencies currency)
         {

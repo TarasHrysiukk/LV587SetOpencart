@@ -40,12 +40,12 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void Test1()
         {
-            //
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             HeaderComponent phones = new HeaderComponent(driver);
             phones.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             PageWithProducts phoneUnit = new PageWithProducts(driver);
             phoneUnit.ClickCartButton();
-            Thread.Sleep(2000);
+            wait.Until(webDriver => webDriver.FindElement(phones.CartButtonLabel).Displayed);
             //
             string act = phones.CartButtonLabelText();
             string exp = "1 item(s) - $122.00";
