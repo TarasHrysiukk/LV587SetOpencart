@@ -14,23 +14,22 @@ namespace LV587SETOPENCART.Pages
 
         //Click Continue button
 
-        LoginPage loginPage;
-        public IWebElement InputNewPassword { get; private set; }
-        public IWebElement InputConfurmNewPassword { get; private set; }
-        public IWebElement ContinueButtonChangePassword { get; private set; }
+        public IWebElement InputNewPassword { get {return driver.FindElement(By.CssSelector(".col-sm-10 #input-password")); } }
+        public IWebElement InputConfirmNewPassword { get {return driver.FindElement(By.CssSelector(".col-sm-10 #input-confirm")); } }
+        public IWebElement ContinueButtonChangePassword { get {return driver.FindElement(By.CssSelector("input[type*='submit']")); } }
+        public IWebElement AlertMessage { get { return driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)")); } }
 
-        public ChangePassword(IWebDriver driver) : base(driver)
-        {
-            loginPage = new LoginPage(driver);
-            InputConfurmNewPassword = driver.FindElement(By.Id("input-confirm"));
-            ContinueButtonChangePassword = driver.FindElement(By.XPath("input[type*='submit']"));
-        }
+
+        public ChangePassword(IWebDriver driver) : base(driver) { }
 
         public void InputChangePasswordText(string pass)
         {
-            loginPage.InputPasswordText(pass);
-            InputConfurmNewPassword.Clear();
-            InputConfurmNewPassword.SendKeys(pass);
+            InputNewPassword.Clear();
+            InputNewPassword.SendKeys(pass);
+
+            InputConfirmNewPassword.Click();
+            InputConfirmNewPassword.Clear();
+            InputConfirmNewPassword.SendKeys(pass);
         }
 
         public void ClickContinueButtonChangePassword()
@@ -38,7 +37,9 @@ namespace LV587SETOPENCART.Pages
             ContinueButtonChangePassword.Click();
         }
 
-
-
+        public string AlertMessageText()
+        {
+            return AlertMessage.Text;
+        }
     }
 }

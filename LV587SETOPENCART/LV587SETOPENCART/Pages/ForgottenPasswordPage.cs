@@ -9,19 +9,26 @@ namespace LV587SETOPENCART.Pages
 {
     class ForgottenPasswordPage : ClassWithDriver
     {
-        LoginPage loginPage;
-        public IWebElement TitleForgotPassword { get; private set; }
+        public IWebElement ContinueButton { get {return driver.FindElement(By.CssSelector("input[type='submit']")); } }
+        public IWebElement InputEmail { get {return driver.FindElement(By.CssSelector(".col-sm-10 > input")); } }
+        public IWebElement AlertMessage { get { return driver.FindElement(By.CssSelector(".alert-success:not(.fa-check-circle)")); } }
 
-        public ForgottenPasswordPage(IWebDriver driver) : base(driver)
-        {
-            TitleForgotPassword = driver.FindElement(By.CssSelector("#content h1"));
-            loginPage = new LoginPage(driver);
-            
-        }
+        public ForgottenPasswordPage(IWebDriver driver) : base(driver) { }
 
         public void ForgotPasswordEmail(string email)
         {
-            loginPage.InputEmailText(email);
+            InputEmail.Clear();
+            InputEmail.SendKeys(email);
+        }
+
+        public void ClickOnContinueButton()
+        {
+            ContinueButton.Click();
+        }
+
+        public string AlertMessageText()
+        {
+            return AlertMessage.Text;
         }
     }
 }

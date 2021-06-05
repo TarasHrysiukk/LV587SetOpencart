@@ -14,14 +14,13 @@ namespace LV587SETOPENCART.Pages
 
         //price total (sum)
         //price unit
-        public IWebElement ProductNameInCart { get; private set; }
-        public IWebElement TotalPriceInCart { get; private set; }
+        public IWebElement ProductNameInCart { get { return driver.FindElement(By.CssSelector(".table-striped .text-left :first-child")); } }
+        public IWebElement TotalPriceInCart { get { return driver.FindElement(By.CssSelector(".table-bordered tbody > tr:last-child > td:last-child")); } }
         WishListPage removeButton;
 
         public CartButtonComponent(IWebDriver driver) : base(driver)
         {
-            ProductNameInCart = driver.FindElement(By.CssSelector(".table-striped .text-left :first-child"));
-            TotalPriceInCart = driver.FindElement(By.CssSelector(".table-bordered tbody > tr:last-child > td:last-child"));
+           
         }
 
         public void RemoveButtonInCart()

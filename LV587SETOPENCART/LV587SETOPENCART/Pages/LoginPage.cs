@@ -14,23 +14,15 @@ namespace LV587SETOPENCART.Pages
         //input password + Click
         //Login button + Click
 
-        public IWebElement InputEmail { get; private set; } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
-        public IWebElement InputPass { get; private set; } // { return driver.FindElement(By.Id("input-password")); } }
-        public IWebElement LoginButton { get; private set; } // { return driver.FindElement(By.Id("input-email")); } }
-        public IWebElement ForgottenPassButton { get; private set; }
+        public IWebElement InputEmail { get { return driver.FindElement(By.Id("input-email")); } } // { return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } }
+        public IWebElement InputPass { get {return driver.FindElement(By.Id("input-password")); } } // { return driver.FindElement(By.Id("input-password")); } }
+        public IWebElement LoginButton { get {return driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]")); } } // { return driver.FindElement(By.Id("input-email")); } }
+        public IWebElement ForgottenPassButton { get {return driver.FindElement(By.CssSelector(".form-group a[href*='/forgotten'")); } }
 
-        public LoginPage() { }
-        public LoginPage(IWebDriver driver) :base(driver)
-        {
-            InputEmail = driver.FindElement(By.Id("input-email"));
-            InputPass = driver.FindElement(By.Id("input-password"));
-            LoginButton = driver.FindElement(By.XPath("//input[contains(@type,\"submit\")]"));
-            ForgottenPassButton = driver.FindElement(By.CssSelector(".form-group a[href*='forgot'"));
-        }
-        
+        public LoginPage(IWebDriver driver) : base(driver) { }
 
         //input Email
-        public void InputEmailText(string email) //name same as prorety add method
+        public void InputEmailText(string email)
         {
             InputEmail.Clear();
             InputEmail.SendKeys(email);
@@ -54,5 +46,5 @@ namespace LV587SETOPENCART.Pages
         {
             ForgottenPassButton.Click();
         }
-    } 
+    }
 }

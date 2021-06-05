@@ -8,11 +8,10 @@ namespace LV587SETOPENCART.Pages
 {
     class MyAccountPage : ClassWithDriver
     {
-        public IWebElement textPageAccount { get; private set; }
+        public IWebElement textPageAccount { get { return driver.FindElement(By.CssSelector("#content.col-sm-9 > h2:first-child")); } }
 
         public MyAccountPage(IWebDriver driver) : base(driver)
         {
-            textPageAccount = driver.FindElement(By.CssSelector("#content.col-sm-9 > h2:first-child"));
         }
         
         public string MyAccountText()

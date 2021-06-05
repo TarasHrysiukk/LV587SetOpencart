@@ -72,7 +72,7 @@ namespace LV587SETOPENCART.Tests.Pages
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.EUR);
                 currencySymbol = "€";
-                bool trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                bool trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
                 //Verify that product price is displayed in euro
                 Assert.True(trueCurrency);
 
@@ -80,7 +80,7 @@ namespace LV587SETOPENCART.Tests.Pages
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.GBP);
                 currencySymbol = "£";
-                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
                 //Verify that product price is displayed in PoundsSterling
                 Assert.True(trueCurrency);
 
@@ -88,7 +88,7 @@ namespace LV587SETOPENCART.Tests.Pages
                 header.SelectSearch();
                 header.CurrencyClickAndSelect(Currencies.USD);
                 currencySymbol = "$";
-                trueCurrency = regex.PriceCurrency(product.ProductPrice(), currencySymbol);
+                trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
                 //Verify that product price is displayed in USA Dollars 
                 Assert.True(trueCurrency);
 

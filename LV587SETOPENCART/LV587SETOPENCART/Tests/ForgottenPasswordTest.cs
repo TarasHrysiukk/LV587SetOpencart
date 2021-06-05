@@ -5,11 +5,10 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
-
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
-    class LoginTest
+    class ForgottenPasswordTest
     {
         IWebDriver driver;
 
@@ -30,24 +29,23 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            //driver.Navigate().GoToUrl(@"http://localhost/");
             ClassWithDriver classWithDriver = new ClassWithDriver(driver);
             classWithDriver.NavigateToURL();
         }
 
         [Test]
-        public void LoginPageTest()
+        public void ForgottenPasswordPageTest()
         {
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            //login
-            LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+            // Click on "Forgotten Password" link text and input email
+            ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
+            forgottenPasswordBL.ForgottenPassword("user1@gmail.com");
             //Assert
-            MyAccountPage myAccountPage = new MyAccountPage(driver);
-            string expRes = "My Account";
-            var actRes = myAccountPage.MyAccountText();
+            ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
+            string expRes = "An email with a confirmation link has been sent your email address.";
+            var actRes = forgottenPasswordPage.AlertMessageText();
             Assert.AreEqual(expRes, actRes);
         }
     }

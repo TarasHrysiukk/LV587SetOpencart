@@ -5,11 +5,10 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
-
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
-    class LoginTest
+    class ChangePasswordTest
     {
         IWebDriver driver;
 
@@ -30,25 +29,31 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            //driver.Navigate().GoToUrl(@"http://localhost/");
             ClassWithDriver classWithDriver = new ClassWithDriver(driver);
             classWithDriver.NavigateToURL();
         }
 
         [Test]
-        public void LoginPageTest()
+        public void ChangePassword()
         {
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            //login
+            //login 
             LoginBL loginBL = new LoginBL(driver);
             loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+            //click password button on right side bar
+            RightSideBar rightSideBar = new RightSideBar(driver);
+            rightSideBar.PasswordListButtonClick();
+            //input new pass
+            ChangePassword changePassword = new ChangePassword(driver);
+            changePassword.InputChangePasswordText("qwertyasdf12345678");
+            changePassword.ClickContinueButtonChangePassword();
             //Assert
-            MyAccountPage myAccountPage = new MyAccountPage(driver);
-            string expRes = "My Account";
-            var actRes = myAccountPage.MyAccountText();
-            Assert.AreEqual(expRes, actRes);
+            string expRes = "Success: Your password has been successfully updated.";
+            var actRea = changePassword.AlertMessageText();
+            Assert.AreEqual(expRes, actRea);
+
         }
     }
 }
