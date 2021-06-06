@@ -54,7 +54,7 @@ namespace LV587SETOPENCART.Tests
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             //Select the product 'Iphone' from the product list
-            //productPage.SelectProduct(productPage.SecondProductName);
+            productPage.SelectProduct(productPage.SecondProductName);
             // Select 'Euro' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);
