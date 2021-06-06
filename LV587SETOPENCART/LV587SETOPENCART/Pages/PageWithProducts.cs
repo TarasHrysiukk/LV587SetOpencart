@@ -20,7 +20,12 @@ namespace LV587SETOPENCART.Pages
         public IWebElement ProductPrice { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)")); } }
         public IWebElement AlertMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
         public PageWithProducts(IWebDriver driver) : base(driver) { }
-        public string GetSelectedProductName(IWebElement product) // Options [FirstProduct, SecondProduct]
+
+        public void SelectProduct(IWebElement product) // Options [FirstProduct, SecondProduct]
+        {
+            product.Click();
+        }
+        public string GetSelectedProductName(IWebElement product) 
         {
             return product.Text;
         }
