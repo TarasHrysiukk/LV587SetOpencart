@@ -131,7 +131,10 @@ namespace LV587SETOPENCART.Pages
         {
             ConfirmButton.Click();
         }
-
+        public void ClickSubscribeRadioButton()
+        {
+            SubscribeRadioButtonYES.Click();
+        }
         //Privacy Policy CheckBox
         public void ClickPrivacyPolicyCheckBox()
         {
