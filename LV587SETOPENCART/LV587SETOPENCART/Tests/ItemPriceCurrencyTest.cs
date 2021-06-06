@@ -5,11 +5,17 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using LV587SETOPENCART.Tools;
-
+using NUnit.Allure.Core;
+using NUnit.Allure.Attributes;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("ProductPagePriceTest")]
+    [AllureDisplayIgnored]
+
     class ProductPagePrice
     {
         IWebDriver driver;
@@ -36,6 +42,12 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:Currency")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("3")]
+        [AllureTms("532")]
+        [AllureOwner("V.Pfayfer")]
+        [AllureSubSuite("Currency")]
         public void ItemPriceCurrenciesTest()
         {
             string currencySymbol;
