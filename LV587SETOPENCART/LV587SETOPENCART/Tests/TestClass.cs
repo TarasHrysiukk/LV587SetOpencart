@@ -8,5 +8,6 @@ namespace LV587SETOPENCART.Tests
 {
     class TestClass
     {
+
     }
 }

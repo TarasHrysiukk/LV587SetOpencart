@@ -7,13 +7,25 @@ using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Pages
 {
-    class ClassWithDriver
+    public class ClassWithDriver
     {
-        private IWebDriver driver;
+        public IWebDriver driver;
+
+
+        public IWebDriver Driver { get; private set; }
+
+
+        public ClassWithDriver() { }
 
         public ClassWithDriver(IWebDriver driver)
         {
             this.driver = driver;   
         }
+
+        public void NavigateToURL()
+        {
+            driver.Navigate().GoToUrl(@"http://localhost/");
+        }
+        
     }
 }
