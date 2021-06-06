@@ -18,17 +18,8 @@ namespace LV587SETOPENCART.Pages
         public IWebElement CartButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']")); } }
         public IWebElement WishListButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']")); } }
         public IWebElement ProductPrice { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)")); } }
-
         public IWebElement AlertMessage { get {return driver.FindElement(By.CssSelector(".alert-success:not( .fa-check-circle)")); } }
         public PageWithProducts(IWebDriver driver) : base(driver) { }
-        public void SelectProduct(IWebElement product) // Options [FirstProduct, SecondProduct]
-        {
-            FirstProductName = driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4"));
-            SecondProductName = driver.FindElement(By.CssSelector(" #content .product-layout:nth-child(2) .caption h4"));
-            CartButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']"));
-            WishListButton = driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']"));
-            ProductPrice = driver.FindElement(By.CssSelector("#content .product-layout:first-child p[class='price']:not(span.price-tax)"));
-        }
         public string GetSelectedProductName(IWebElement product) // Options [FirstProduct, SecondProduct]
         {
             return product.Text;

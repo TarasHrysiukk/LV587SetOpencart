@@ -40,54 +40,72 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void Test1()
         {
-            //
+            //Arrange
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             HeaderComponent phones = new HeaderComponent(driver);
             phones.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             PageWithProducts phoneUnit = new PageWithProducts(driver);
             phoneUnit.ClickCartButton();
-            Thread.Sleep(2000);
-            //
+            wait.Until(webDriver => webDriver.FindElement(phones.CartButtonLabel).Displayed);
+            Thread.Sleep(2000);// for presentation (everything works without it)
+            //Act
             string act = phones.CartButtonLabelText();
             string exp = "1 item(s) - $122.00";
-            //
-            Assert.AreEqual(exp,act);
+            //Assert
+            Assert.AreEqual(exp, act);
 
-            //
+            //Arrange
             phones.ClickOnShoppingCartBlackButton();
             CartButtonComponent textInCart = new CartButtonComponent(driver);
-            PageWithProducts textInPage = new PageWithProducts(driver);
-            //
+            Thread.Sleep(2000);// for presentation (everything works without it)
+            //Act
             string actu = textInCart.GetProductNameInCart();
-            string expe = textInPage.GetFirstProductName();
-            //
+            string expe = phoneUnit.GetFirstProductName();
+            //Assert
             Assert.AreEqual(expe, actu);
+
+            //Arrange
+            textInCart.RemoveButtonInCart();
+            //Act
+            string act_res = "0 item(s) - $0.00";
+            string exp_res = phones.CartButtonLabelText();
+            //Assert
+            Assert.AreEqual(exp_res, act_res);
         }
         [Test]
         public void Test2()
         {
+            WebDriverWait waits = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            //Arrange
             HeaderComponent phones = new HeaderComponent(driver);
-            phones.ClickOnMyAccount(MyAccountMenuActions.Login);
             LoginBL logIn = new LoginBL(driver);
+            PageWithProducts phoneUnit = new PageWithProducts(driver);
+            CartPage input = new CartPage(driver);
+            //Act
+            phones.ClickOnMyAccount(MyAccountMenuActions.Login);
             logIn.Login("hdhgsdh1@gmail.com", "hdhgsdh");
             phones.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-            PageWithProducts phoneUnit = new PageWithProducts(driver);
-            Thread.Sleep(2000);
-
             phoneUnit.ClickCartButton();
-            Thread.Sleep(2000);
-
             phones.ClickOnShoppingCartLink();
-            Thread.Sleep(2000);
-
-            CartPage input = new CartPage(driver);
             input.QuantityInput("55");
             input.RefreshButtonClick();
-            Thread.Sleep(2000);
-
-            CartPage inpt = new CartPage(driver);
-            inpt.RemoveCircleInCartButton();
-            Thread.Sleep(2000);
-
+            string modifiedCart = input.GetRefreshMessageText();
+            //Assert
+            Assert.IsTrue(modifiedCart.Contains("You have modified your shopping cart"));
+            
+            //Arrange & Act
+            string expected = "$5,500.00";
+            string actual = input.GetTotalPrice(); ;
+            //Assert
+            Assert.AreEqual(expected, actual);
+            //Arrange
+            input.RemoveCircleInCartButton();
+            waits.Until(webDriver => webDriver.FindElement(By.CssSelector(".pull-right > a[href*='home']")));
+            //Act
+            string actualRes = input.EmptyCartMessage();
+            //Assert
+            Assert.IsTrue(actualRes.Contains("Your shopping cart is empty!"));
+            Thread.Sleep(2000);// for presentation (everything works without it)
         }
     }
 }
