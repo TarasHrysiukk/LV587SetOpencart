@@ -4,10 +4,15 @@ using OpenQA.Selenium;
 using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("ForgottenPasswordTest")]
+    [AllureDisplayIgnored]
     class ForgottenPasswordTest
     {
         IWebDriver driver;
