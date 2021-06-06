@@ -42,7 +42,7 @@ namespace LV587SETOPENCART.Tests
 
            [Test]
         [AllureSuite("LoginPageTest")]
-        public void aLoginPageTest()
+        public void aLoginPageTest()//first letter a - because this test need run first
         {
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
@@ -64,7 +64,7 @@ namespace LV587SETOPENCART.Tests
 
         [Test]
         [AllureSuite("ForgottenPasswordPageTest")]
-        public void bForgottenPasswordPageTest()
+        public void bForgottenPasswordPageTest()//first letter b - because this test need run second
         {
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
