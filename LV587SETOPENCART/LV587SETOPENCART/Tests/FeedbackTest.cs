@@ -40,7 +40,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user can get product details")]
+        [AllureTag("OpenCart:FeedBack")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user can get product details")]
         public void GetProductDetailsTest()
         {
             //Arrange
@@ -64,7 +67,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user sees error when he enters review without data")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user sees error when he enters review without data")]
         public void ReviewWithoutDataTest()
         {
             //Arrange
@@ -91,7 +96,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user sees error when he enters review with error review text box")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user sees error when he enters review with error review text box")]
         public void ErrorReviewTextBoxTest()
         {
             //Arrange
@@ -119,7 +126,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user sees error when he enters review with error name text box")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user sees error when he enters review with error name text box")]
         public void ErrorNameTextBoxTest()
         {
             //Arrange
@@ -147,7 +156,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user sees error when he enters review with error rate")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user sees error when he enters review with error rate")]
         public void ErrorRateTest()
         {
             //Arrange
@@ -175,7 +186,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks what user  will see when he enters everything correctly")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks what user  will see when he enters everything correctly")]
         public void ReviewTest()
         {
             //Arrange
@@ -203,7 +216,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks what user will see when product does not have reviews ")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks what user will see when product does not have reviews ")]
         public void ItemWithoutReviewsTest()
         {
             //Arrange
@@ -226,7 +241,9 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        //[Description("This test checks if user sees product review when it exists")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Marian-Severyn Shevchuk")]
+        [Description("This test checks if user sees product review when it exists")]
         public void ItemWithReviewTest()
         {
             //Arrange
@@ -247,10 +264,5 @@ namespace LV587SETOPENCART.Tests
             //Assert
             Assert.IsTrue(productComponents.ReviewPresent());
         }
-
-
-
-
-
     }
 }
