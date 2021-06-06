@@ -6,10 +6,17 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using LV587SETOPENCART.Tools;
 using System.Threading;
+using NUnit.Allure.Core;
+using NUnit.Allure.Attributes;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("CartTPriceCyrrencyTest")]
+    [AllureDisplayIgnored]
+
     class CartTPriceCyrrency
     {
         IWebDriver driver;
@@ -36,6 +43,12 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:Currency")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("1")]
+        [AllureTms("532")]
+        [AllureOwner("V.Pfayfer")]
+        [AllureSubSuite("Currency")]
         public void CartCurrenciesTest()
         {
             string currencySymbol;
@@ -82,6 +95,7 @@ namespace LV587SETOPENCART.Tests
             //Verify that Total price is displayed in USA Dollars 
             trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
             Assert.True(trueCurrency);
+            
         }
     }
 }

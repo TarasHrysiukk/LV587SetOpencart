@@ -5,11 +5,17 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using LV587SETOPENCART.Tools;
-
+using NUnit.Allure.Core;
+using NUnit.Allure.Attributes;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("ProductPagePriceTest")]
+    [AllureDisplayIgnored]
+
     class ProductPagePrice
     {
         IWebDriver driver;
@@ -36,6 +42,12 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:Currency")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("3")]
+        [AllureTms("532")]
+        [AllureOwner("V.Pfayfer")]
+        [AllureSubSuite("Currency")]
         public void ItemPriceCurrenciesTest()
         {
             string currencySymbol;
@@ -54,7 +66,7 @@ namespace LV587SETOPENCART.Tests
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             //Select the product 'Iphone' from the product list
-            //productPage.SelectProduct(productPage.SecondProductName);
+            productPage.SelectProduct(productPage.SecondProductName);
             // Select 'Euro' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);
