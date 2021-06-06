@@ -28,7 +28,7 @@ namespace LV587SETOPENCART.Tests
         [OneTimeTearDown]
         public void AfterAllMethods()
         {
-            driver.Quit();
+            //driver.Quit();
         }
 
         [SetUp]
@@ -39,7 +39,9 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void RegisterPageTest()
         {
-
+            // Click on My Account > Register
+            HeaderComponent headerComponent = new HeaderComponent(driver);
+            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Register);
         }
 
     }
