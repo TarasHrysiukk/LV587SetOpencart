@@ -4,9 +4,18 @@ using LV587SETOPENCART.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using NUnit.Allure.Core;
+using NUnit.Allure.Attributes;
+using Allure.Commons;
+
 
 namespace LV587SETOPENCART.Tests
 {
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("WishList")]
+    [AllureDisplayIgnored]
+
     class WishListTests
     {
         private IWebDriver driver;
@@ -32,6 +41,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Daria Slupachyk")]
+        [Description("This test checks if user can add product to wish list being logged in")]
         public void AddToWishList_LoggedIn()
         {
             HeaderComponent header = new HeaderComponent(driver);
@@ -64,6 +77,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Daria Slupachyk")]
+        [Description("This test checks if user can add product to wish list being logged out")]
         public void AddToWishList_LoggedOut()
         {
             HeaderComponent header = new HeaderComponent(driver);
@@ -78,6 +95,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Daria Slupachyk")]
+        [Description("This test checks if user can remove product from wish list")]
         public void RemoveFromWishListTest()
         {
             HeaderComponent header = new HeaderComponent(driver);
@@ -106,6 +127,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Daria Slupachyk")]
+        [Description("This test checks if user can add product to the shopping cart from wish list")]
         public void AddToCartFromWishListTest()
         {
             HeaderComponent header = new HeaderComponent(driver);
@@ -142,6 +167,10 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Daria Slupachyk")]
+        [Description("This test verify if 'continue' button on wish list page works correctly")]
         public void ContinueButtonWishListTest()
         {
             HeaderComponent header = new HeaderComponent(driver);
@@ -161,6 +190,9 @@ namespace LV587SETOPENCART.Tests
             string actual = myAccountPage.MyAccountText();
 
             Assert.IsTrue(actual.Contains("Account"));
+
+            header.ClickOnMyAccount(MyAccountMenuActions.Logout);
+
         }
 
     }
