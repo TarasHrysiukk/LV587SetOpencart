@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LV587SETOPENCART.Pages;
 using LV587SETOPENCART.BL;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-using System.Threading;
+
 
 namespace LV587SETOPENCART.Tests
     
@@ -28,7 +24,7 @@ namespace LV587SETOPENCART.Tests
         [OneTimeTearDown]
         public void AfterAllMethods()
         {
-            //driver.Quit();
+            driver.Quit();
         }
 
         [SetUp]
@@ -42,6 +38,36 @@ namespace LV587SETOPENCART.Tests
             // Click on My Account > Register
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Register);
+
+            // Execute all test methods for fill in the fields
+            RegisterPage registerPage = new RegisterPage(driver);
+            registerPage.SetFirstNameInputTextAndClear("Dima");
+            registerPage.SetLastNameInputTextAndClear("Sukhii");
+            registerPage.SetEmailInputTextAndClear("test@gmail.com");
+            registerPage.SetTelephoneInputTextAndClear("0930020102");
+            registerPage.SetPasswordInputTextAndClear("qwerty12345678");
+            registerPage.SetPasswordConfirmInputTextAndClear("qwerty12345678");
+            registerPage.ClickPrivacyPolicyCheckBox();
+            registerPage.ClickSubscribeRadioButton();
+            registerPage.ClickConfirmButton();
+
+            // verify that user has been create
+            string actResUserCreated = "Your Account Has Been Created!";
+
+            AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
+
+            Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+
+            accountCreatedPage.ClickOnButtonContinue();
+
+            // verify that page 'My Account' has been open
+            string actResMyAccountPage = "My Account";
+
+            MyAccountPage myAccountPage = new MyAccountPage(driver);
+
+            Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+
+            
         }
 
     }
