@@ -10,6 +10,7 @@ using NUnit.Allure.Core;
 using NUnit.Allure.Attributes;
 using Allure.Commons;
 
+
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
@@ -91,11 +92,18 @@ namespace LV587SETOPENCART.Tests
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
-            currencySymbol = "$";
+            currencySymbol = "$1";
             //Verify that Total price is displayed in USA Dollars 
             trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
-            Assert.True(trueCurrency);
-            
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.True(trueCurrency);
+            } catch(Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotImageFormat.Png");
+            }
         }
     }
 }
