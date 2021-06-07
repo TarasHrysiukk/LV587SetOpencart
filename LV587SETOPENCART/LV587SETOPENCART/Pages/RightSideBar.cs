@@ -15,6 +15,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement PasswordListButton { get { return driver.FindElement(By.CssSelector(".list-group > a[href*='password']")); }  }
         public IWebElement AddressBookListButton { get { return driver.FindElement(By.CssSelector(".list-group > a[href*='address']")); } }
         public IWebElement LogoutListButton { get { return driver.FindElement(By.CssSelector(".list-group > a[href*='logout']")); } }
+        public IWebElement EditInfoButton { get { return driver.FindElement(By.CssSelector(".list-group > a[href*='edit']")); } }
         public RightSideBar(IWebDriver driver) : base(driver)
         {
           
@@ -34,6 +35,10 @@ namespace LV587SETOPENCART.Pages
         public void LogoutListButtonClick()
         {
             LogoutListButton.Click();
+        }
+        public void EditInfoButtonClick()
+        {
+            EditInfoButton.Click();
         }
     }
 }

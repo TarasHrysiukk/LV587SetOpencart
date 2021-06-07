@@ -16,16 +16,14 @@ namespace LV587SETOPENCART.Pages
         //price unit
         public IWebElement ProductNameInCart { get { return driver.FindElement(By.CssSelector(".table-striped .text-left :first-child")); } }
         public IWebElement TotalPriceInCart { get { return driver.FindElement(By.CssSelector(".table-bordered tbody > tr:last-child > td:last-child")); } }
-        WishListPage removeButton;
+        public IWebElement RemoveCartButton { get { return driver.FindElement(By.CssSelector(".text-center .btn-xs")); } }
+        
 
-        public CartButtonComponent(IWebDriver driver) : base(driver)
-        {
-           
-        }
+        public CartButtonComponent(IWebDriver driver) : base(driver) { }
 
         public void RemoveButtonInCart()
         {
-            removeButton.RemoveButton.Click();
+            RemoveCartButton.Click();
         }
         public string GetProductNameInCart()
         {

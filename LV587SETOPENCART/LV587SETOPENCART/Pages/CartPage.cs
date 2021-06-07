@@ -15,25 +15,19 @@ namespace LV587SETOPENCART.Pages
 
         //Update button
         //remove button
-        public IWebElement Quantity { get; private set; }
-        public IWebElement RefreshButton { get; private set; }
-        public IWebElement RemoveInCartButton { get; private set; }
-        public IWebElement CartButtonSum { get; private set; }
-        public IWebElement EmptyCart { get; private set; }
-        public IWebElement TotalPrice { get; private set; }
+        public IWebElement Quantity { get { return driver.FindElement(By.CssSelector(".text-left .input-group > input.form-control")); } }
+        public IWebElement RefreshButton { get { return driver.FindElement(By.CssSelector(".fa-refresh")); } }
+        public IWebElement RemoveInCartButton { get { return driver.FindElement(By.CssSelector(".fa-times-circle")); } }
+        public IWebElement CartButtonSum { get { return driver.FindElement(By.CssSelector(".table-responsive .table-bordered tbody tr > td:last-child")); } }
+        public IWebElement EmptyCart { get { return driver.FindElement(By.CssSelector(".col-sm-12 > p")); } }
+        public IWebElement TotalPrice { get { return driver.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(2) td:nth-child(2)")); } }
+        public IWebElement RefreshMessage { get { return driver.FindElement(By.CssSelector(".alert-success")); } }
+        public IWebElement ContinueCartButton { get { return driver.FindElement(By.CssSelector(".pull-right > a[href*='home']")); } }
+        public CartPage(IWebDriver driver) : base(driver) { }
 
-        public CartPage(IWebDriver driver) : base(driver)
-        {
-            Quantity.FindElement(By.XPath("//input[@name='quantity[31]']"));
-            RefreshButton.FindElement(By.CssSelector(".fa-refresh"));
-            RemoveInCartButton.FindElement(By.CssSelector(".fa-times-circle"));
-            CartButtonSum.FindElement(By.CssSelector(".table-responsive .table-bordered tbody tr > td:last-child"));
-            EmptyCart.FindElement(By.CssSelector("#content > p"));
-            TotalPrice.FindElement(By.CssSelector(".col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2)"));
-            //.col-sm-offset-8 .table-bordered tr:nth-child(4) td:nth-child(2) Total Price
-        }
         public void QuantityInput(string quantity)
         {
+            //Quantity.Click();
             Quantity.Clear();
             Quantity.SendKeys(quantity);
         }
@@ -56,6 +50,10 @@ namespace LV587SETOPENCART.Pages
         public string GetTotalPrice()
         {
             return TotalPrice.Text;
+        }
+        public string GetRefreshMessageText()
+        {
+            return RefreshMessage.Text;
         }
     }
 }

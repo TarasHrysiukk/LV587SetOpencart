@@ -12,12 +12,12 @@ namespace LV587SETOPENCART.Pages
         //check if you not log NOW
         //Subscribe RadioButtons Click
 
-        public IWebElement FirstNameInput { get { return driver.FindElement(By.Id("input-firstname")); } }
-        public IWebElement LastNameInput { get { return driver.FindElement(By.Id("input-lastname")); } }
-        public IWebElement EmailInput { get { return driver.FindElement(By.Id("input-email")); } }
-        public IWebElement TelephoneInput { get { return driver.FindElement(By.Id("input-telephone")); } }
-        public IWebElement PasswordInput { get { return driver.FindElement(By.Id("input-password")); } }
-        public IWebElement PasswordConfirmInput { get { return driver.FindElement(By.Id("input-confirm")); } }
+        public IWebElement FirstNameInput { get { return driver.FindElement(By.Name("firstname")); } }
+        public IWebElement LastNameInput { get { return driver.FindElement(By.Name("lastname")); } }
+        public IWebElement EmailInput { get { return driver.FindElement(By.Name("email")); } }
+        public IWebElement TelephoneInput { get { return driver.FindElement(By.Name("telephone")); } }
+        public IWebElement PasswordInput { get { return driver.FindElement(By.Name("password")); } }
+        public IWebElement PasswordConfirmInput { get { return driver.FindElement(By.Name("confirm")); } }
         public IWebElement PrivacyPolicyCheckBox { get { return driver.FindElement(By.Name("agree")); } }
         public IWebElement SubscribeRadioButtonYES { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='1']")); } }
         public IWebElement SubscribeRadioButtonNO { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='0']")); } }
@@ -131,7 +131,10 @@ namespace LV587SETOPENCART.Pages
         {
             ConfirmButton.Click();
         }
-
+        public void ClickSubscribeRadioButton()
+        {
+            SubscribeRadioButtonYES.Click();
+        }
         //Privacy Policy CheckBox
         public void ClickPrivacyPolicyCheckBox()
         {
