@@ -161,6 +161,9 @@ namespace LV587SETOPENCART.Tests
             string actual = myAccountPage.MyAccountText();
 
             Assert.IsTrue(actual.Contains("Account"));
+
+            header.ClickOnMyAccount(MyAccountMenuActions.Logout);
+
         }
 
     }
