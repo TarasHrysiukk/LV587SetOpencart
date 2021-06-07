@@ -94,7 +94,16 @@ namespace LV587SETOPENCART.Tests
             currencySymbol = "$";
             //Verify that Unit price is displayed in USA Dollars 
             trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
-            Assert.True(trueCurrency);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.True(trueCurrency);
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotWishListTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotWishListTest.Png");
+            }
         }
     }
 }

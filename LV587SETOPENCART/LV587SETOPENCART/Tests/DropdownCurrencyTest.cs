@@ -85,7 +85,16 @@ namespace LV587SETOPENCART.Tests
             currencySymbol = "$";
             trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.USD), currencySymbol);
             //Verify that currency USA Dollars is in Drop-down 
-            Assert.True(trueCurrency);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.True(trueCurrency);
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotDropDownTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotDropDownTest.Png");
+            }
         }
     }
 }
