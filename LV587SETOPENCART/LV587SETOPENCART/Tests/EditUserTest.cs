@@ -4,10 +4,17 @@ using LV587SETOPENCART.BL;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 
 
 namespace LV587SETOPENCART.Tests
 {
+    
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("EditUser")]
+    [AllureDisplayIgnored]
     class EditUserTest
     {
         private IWebDriver driver;
