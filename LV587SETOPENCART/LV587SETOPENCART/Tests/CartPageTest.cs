@@ -10,16 +10,10 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
-using NUnit.Allure.Attributes;
-using NUnit.Allure.Core;
-using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
-    [AllureNUnit]
-    [AllureSuite("Cart")]
-    [AllureDisplayIgnored]
     class CartPageTest
     {
         IWebDriver driver;
@@ -44,10 +38,6 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:Cart")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("MykolaK")]
-        [Description("This test checks if user can add product to cart and 'Cart' button functionallity")]
         public void Test1()
         {
             //Arrange
@@ -83,10 +73,6 @@ namespace LV587SETOPENCART.Tests
             Assert.AreEqual(exp_res, act_res);
         }
         [Test]
-        [AllureTag("OpenCart:Cart")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("MykolaK")]
-        [Description("This test checks cart tab functionallity")]
         public void Test2()
         {
             WebDriverWait waits = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
