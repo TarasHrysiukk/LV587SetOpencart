@@ -13,10 +13,10 @@ namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("ProductPagePriceTest")]
+    [AllureSuite("DropdownCurrencyTest")]
     [AllureDisplayIgnored]
 
-    class ProductPagePrice
+    class DropdownCurrencyTest
     {
         IWebDriver driver;
 
@@ -37,18 +37,19 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            driver.Navigate().GoToUrl(@"https://demo.opencart.com/");
-
+            string path = @"http://52.232.34.99/";
+            ClassWithDriver classWithDriver = new ClassWithDriver(driver);
+            classWithDriver.NavigateTo(path);
         }
-
+        
         [Test]
         [AllureTag("OpenCart:Currency")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureIssue("3")]
+        [AllureIssue("2")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
         [AllureSubSuite("Currency")]
-        public void ItemPriceCurrenciesTest()
+        public void DropdownCurrenciesTest()
         {
             string currencySymbol;
             HeaderComponent header = new HeaderComponent(driver);
@@ -63,33 +64,38 @@ namespace LV587SETOPENCART.Tests
             //login
             LoginBL loginBL = new LoginBL(driver);
             loginBL.Login("iva@new.com", "qwerty");
-            //Select category "Phones & PDAs"
-            header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-            //Select the product 'Iphone' from the product list
-            productPage.SelectProduct(productPage.SecondProductName);
             // Select 'Euro' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);
             currencySymbol = "€";
-            bool trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
-            //Verify that product price is displayed in euro
+            bool trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.EUR), currencySymbol);
+            //Verify that currency euro is in Drop-down
             Assert.True(trueCurrency);
 
             // Select 'Pound Sterling' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.GBP);
             currencySymbol = "£";
-            trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
-            //Verify that product price is displayed in PoundsSterling
+            trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.GBP), currencySymbol);
+            //Verify that currency PoundSterling is in Drop-down
             Assert.True(trueCurrency);
 
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
             currencySymbol = "$";
-            trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
-            //Verify that product price is displayed in USA Dollars 
-            Assert.True(trueCurrency);
+            trueCurrency = regex.PriceCurrency(header.GetCurrencyName(Currencies.USD), currencySymbol);
+            //Verify that currency USA Dollars is in Drop-down 
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.True(trueCurrency);
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotDropDownTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotDropDownTest.Png");
+            }
         }
     }
 }
