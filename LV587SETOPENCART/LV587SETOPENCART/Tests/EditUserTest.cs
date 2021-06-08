@@ -6,7 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
-
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
@@ -39,6 +39,10 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
+        [AllureTag("OpenCart: Edit Information about User Test")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Sukhii Dmitro")]
+        [Description("The test verify that you can edit data your account")]
         public void EditUserInformationTest()
         {
             //Click on My Account > Login

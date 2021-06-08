@@ -6,13 +6,14 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
     
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("EditUser")]
+    [AllureSuite("Register Test")]
     [AllureDisplayIgnored]
     class RegisterTest
     {
@@ -38,6 +39,10 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
+        [AllureTag("OpenCart: Register Test")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Sukhii Dmitro")]
+        [Description("The test check that you can create new customer account (Registration)")]
         public void RegisterPageTest()
         {
             // Click on My Account > Register
