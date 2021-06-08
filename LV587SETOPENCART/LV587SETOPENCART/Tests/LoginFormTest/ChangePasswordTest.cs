@@ -36,7 +36,6 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            //driver.Navigate().GoToUrl(@"http://localhost/");
             ClassWithDriver classWithDriver = new ClassWithDriver(driver);
             classWithDriver.NavigateToURL();
         }
@@ -80,10 +79,10 @@ namespace LV587SETOPENCART.Tests
             {
                 Assert.AreEqual(expRes, actRes);
             }
-            catch (Exception e) //Take a ScreenShot if test is failed
+            catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile("D://Projects_C#//demo3//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotForgotPassTest.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
+                AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
             }
 
             Thread.Sleep(2000);  //Only for presentation (workWithout it)
@@ -102,8 +101,8 @@ namespace LV587SETOPENCART.Tests
             }
             catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile("D://Projects_C#//demo3//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotForgotPassLoginTest.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassLoginTest.Png");
+                AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassLoginTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassLoginTest.Png");
             }
         }
     }

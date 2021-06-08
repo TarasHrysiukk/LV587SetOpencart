@@ -71,8 +71,8 @@ namespace LV587SETOPENCART.Tests
             }
             catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile("D://Projects_C#//demo3//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotLoginTest.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotLoginTest.Png");
+                AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
             }
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
             //Thread.Sleep(2000);  //Only for presentation (work Without it)
