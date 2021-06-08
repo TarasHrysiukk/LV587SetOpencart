@@ -77,6 +77,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review without data")]
@@ -115,6 +116,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error review text box")]
@@ -154,6 +156,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error name text box")]
@@ -193,6 +196,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error rate")]
@@ -232,6 +236,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks what user  will see when he enters everything correctly")]
@@ -271,6 +276,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks what user will see when product does not have reviews ")]
@@ -305,6 +311,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees product review when it exists")]
