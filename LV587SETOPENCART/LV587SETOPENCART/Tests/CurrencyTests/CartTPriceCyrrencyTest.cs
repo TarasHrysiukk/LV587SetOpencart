@@ -39,7 +39,9 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            driver.Navigate().GoToUrl(@"https://demo.opencart.com/");
+            string path = @"http://52.232.34.99/";
+            ClassWithDriver classWithDriver = new ClassWithDriver(driver);
+            classWithDriver.NavigateTo(path);
 
         }
 
@@ -92,7 +94,7 @@ namespace LV587SETOPENCART.Tests
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
-            currencySymbol = "$1";
+            currencySymbol = "$";
             //Verify that Total price is displayed in USA Dollars 
             trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
