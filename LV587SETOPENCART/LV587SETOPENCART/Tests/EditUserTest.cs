@@ -66,7 +66,18 @@ namespace LV587SETOPENCART.Tests
             editInformationPage.SetTelephoneInput("94329481348");
             editInformationPage.ButtonClick();
 
-            Assert.AreEqual("Success: Your account has been successfully updated.", myAccountPage.VerifyAccountUpdateText());
+            
+            //Assert
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual("Success: Your account has been successfully updated.", myAccountPage.VerifyAccountUpdateText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
         }
     }
 }
