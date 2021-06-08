@@ -79,7 +79,7 @@ namespace LV587SETOPENCART.Tests
             //Act
             string act_res = "0 item(s) - $0.00";
             string exp_res = phones.CartButtonLabelText();
-            //Assert
+            ////Assert
             Assert.AreEqual(exp_res, act_res);
         }
         [Test]
