@@ -75,9 +75,19 @@ namespace LV587SETOPENCART.Tests
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
 
-            Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
-
             
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+            }
+
+
         }
 
     }
