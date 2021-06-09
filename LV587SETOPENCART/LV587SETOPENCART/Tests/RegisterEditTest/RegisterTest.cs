@@ -73,7 +73,19 @@ namespace LV587SETOPENCART.Tests
 
             AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
 
-            Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+
+            try
+            {
+                Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+            }
+
+            
 
             Thread.Sleep(1000);//only for presentation
 
@@ -82,11 +94,11 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that page 'My Account' has been open
-            string actResMyAccountPage = "My Accounts";
+            string actResMyAccountPage = "My Account";
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             
-            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            
             try
             {
                 Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
