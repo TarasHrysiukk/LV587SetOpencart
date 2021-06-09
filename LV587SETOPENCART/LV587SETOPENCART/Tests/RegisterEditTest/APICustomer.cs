@@ -27,8 +27,11 @@ namespace LV587SETOPENCART.Tests
             request.AddParameter("telephone", "0930020102");
 
             IRestResponse response = client.Execute(request);
-            //Assert
+
             Console.WriteLine(response.Content);
+
+            //Assert
+
             Assert.True(response.Content.Contains("success"));
             Assert.AreEqual(true, response.IsSuccessful);
             
