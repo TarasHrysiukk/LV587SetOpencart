@@ -15,11 +15,11 @@ namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("[Register] Email is already registered exception Test")]
+    [AllureSuite("[Register] Entering incorrect data in fields of register ")]
     [AllureDisplayIgnored]
     class VerifyRegInputFieldsTest
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()

@@ -32,10 +32,7 @@ namespace LV587SETOPENCART.Pages
         // ATOMIC OPERATIONS 
 
         // FirstName TextBox
-        public string GetFirstNameInputText()
-        {
-            return FirstNameInput.GetAttribute("value");
-        }
+        
 
         public void SetFirstNameInputTextAndClear(string text)
         {
@@ -43,32 +40,15 @@ namespace LV587SETOPENCART.Pages
             FirstNameInput.SendKeys(text);
         }
 
-        public void ClickFirstNameInput()
-        {
-            FirstNameInput.Click();
-        }
-
         // LastName TextBox
-        public string GetLastNameInputText()
-        {
-            return LastNameInput.GetAttribute("value");
-        }
+
         public void SetLastNameInputTextAndClear(string text)
         {
             LastNameInput.Clear();
             LastNameInput.SendKeys(text);
         }
 
-        public void ClickLastNameInput()
-        {
-            LastNameInput.Click();
-        }
-
         // Email TextBox
-        public string GetEmailInputText()
-        {
-            return EmailInput.GetAttribute("value");
-        }
 
         public void SetEmailInputTextAndClear(string text)
         {
@@ -76,16 +56,7 @@ namespace LV587SETOPENCART.Pages
             EmailInput.SendKeys(text);
         }
 
-        public void ClickEmailInput()
-        {
-            EmailInput.Click();
-        }
-
         // Telephone TextBox
-        public string GetTelephoneInputText()
-        {
-            return TelephoneInput.GetAttribute("value");
-        }
 
         public void SetTelephoneInputTextAndClear(string text)
         {
@@ -93,40 +64,22 @@ namespace LV587SETOPENCART.Pages
             TelephoneInput.SendKeys(text);
         }
 
-        public void ClickTelephoneInput()
-        {
-            EmailInput.Click();
-        }
 
         // Password TextBox
-        public string GetPasswordInputText()
-        {
-            return PasswordInput.GetAttribute("value");
-        }
+ 
         public void SetPasswordInputTextAndClear(string text)
         {
             PasswordInput.Clear();
             PasswordInput.SendKeys(text);
         }
-        public void ClickPasswordInput()
-        {
-            PasswordInput.Click();
-        }
 
         // Password Confirm TextBox
-        public string GetPasswordConfirmInputText()
-        {
-            return PasswordConfirmInput.GetAttribute("value");
-        }
+
 
         public void SetPasswordConfirmInputTextAndClear(string text)
         {
             PasswordConfirmInput.Clear();
             PasswordConfirmInput.SendKeys(text);
-        }
-        public void ClickPasswordConfirmInput()
-        {
-            PasswordConfirmInput.Click();
         }
 
         // Confirm Button

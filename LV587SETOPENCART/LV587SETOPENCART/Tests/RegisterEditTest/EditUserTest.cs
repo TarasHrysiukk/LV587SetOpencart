@@ -18,7 +18,7 @@ namespace LV587SETOPENCART.Tests
     [AllureDisplayIgnored]
     class EditUserTest
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
