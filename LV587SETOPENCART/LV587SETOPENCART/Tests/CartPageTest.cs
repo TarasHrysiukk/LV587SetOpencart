@@ -10,8 +10,8 @@ using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
-using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
+using NUnit.Allure.Attributes;
 using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
@@ -44,50 +44,59 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:Cart")]
+        [AllureTag("OpenCart:WishList")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("MykolaK")]
-        [Description("This test checks if user can add product to cart and 'Cart' button functionallity")]
-        public void Test1()
+        [AllureOwner("Mykola K")]
+        [Description("This test checks if user can add product to Cart without being logged")]
+        public void CartDropdown_Test()
         {
-            //Arrange
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            HeaderComponent phones = new HeaderComponent(driver);
-            phones.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-            PageWithProducts phoneUnit = new PageWithProducts(driver);
-            phoneUnit.ClickCartButton();
-            wait.Until(webDriver => webDriver.FindElement(phones.CartButtonLabel).Displayed);
-            Thread.Sleep(2000);// for presentation (everything works without it)
-            //Act
-            string act = phones.CartButtonLabelText();
-            string exp = "1 item(s) - $122.00";
-            //Assert
-            Assert.AreEqual(exp, act);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                //Arrange
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                HeaderComponent phones = new HeaderComponent(driver);
+                phones.ChooseCategory(CategoryMenu.PhonesAndPDAs);
+                PageWithProducts phoneUnit = new PageWithProducts(driver);
+                phoneUnit.ClickCartButton();
+                wait.Until(webDriver => webDriver.FindElement(phones.CartButtonLabel).Displayed);
+                Thread.Sleep(2000);// for presentation (everything works without it)
+                //Act
+                string act = phones.CartButtonLabelText();
+                string exp = "1 item(s) - $122.00";
+                //Assert
+                Assert.AreEqual(exp, act);
 
-            //Arrange
-            phones.ClickOnShoppingCartBlackButton();
-            CartButtonComponent textInCart = new CartButtonComponent(driver);
-            Thread.Sleep(2000);// for presentation (everything works without it)
-            //Act
-            string actu = textInCart.GetProductNameInCart();
-            string expe = phoneUnit.GetFirstProductName();
-            //Assert
-            Assert.AreEqual(expe, actu);
+                //Arrange
+                phones.ClickOnShoppingCartBlackButton();
+                CartButtonComponent textInCart = new CartButtonComponent(driver);
+                Thread.Sleep(2000);// for presentation (everything works without it)
+                                   //Act
+                string actu = textInCart.GetProductNameInCart();
+                string expe = phoneUnit.GetFirstProductName();
+                //Assert
+                Assert.AreEqual(expe, actu);
 
-            //Arrange
-            textInCart.RemoveButtonInCart();
-            //Act
-            string act_res = "0 item(s) - $0.00";
-            string exp_res = phones.CartButtonLabelText();
-            //Assert
-            Assert.AreEqual(exp_res, act_res);
+                //Arrange
+                textInCart.RemoveButtonInCart();
+                //Act
+                string act_res = "0 item(s) - $0.00";
+                string exp_res = phones.CartButtonLabelText();
+                //Assert
+                Assert.AreEqual(exp_res, act_res);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Budd\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Budd\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
         }
         [Test]
-        [AllureTag("OpenCart:Cart")]
+        [AllureTag("OpenCart:WishList")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("MykolaK")]
-        [Description("This test checks cart tab functionallity")]
-        public void Test2()
+        [AllureOwner("Mykola K")]
+        [Description("This test checks Cart tab functionality")]
+        public void CartPage_Test()
         {
             WebDriverWait waits = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             //Arrange

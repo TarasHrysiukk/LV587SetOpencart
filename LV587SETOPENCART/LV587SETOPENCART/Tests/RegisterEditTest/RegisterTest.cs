@@ -7,13 +7,13 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using Allure.Commons;
-
+using System.Threading;
 namespace LV587SETOPENCART.Tests
     
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("Register Test")]
+    [AllureSuite("[Register] Create new customer Test")]
     [AllureDisplayIgnored]
     class RegisterTest
     {
@@ -38,6 +38,7 @@ namespace LV587SETOPENCART.Tests
         {
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
+
         [Test]
         [AllureTag("OpenCart: Register Test")]
         [AllureSeverity(SeverityLevel.critical)]
@@ -49,6 +50,8 @@ namespace LV587SETOPENCART.Tests
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Register);
 
+            Thread.Sleep(1000);//only for presentation
+
             // Execute all test methods for fill in the fields
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.SetFirstNameInputTextAndClear("Dima");
@@ -57,9 +60,13 @@ namespace LV587SETOPENCART.Tests
             registerPage.SetTelephoneInputTextAndClear("0930020102");
             registerPage.SetPasswordInputTextAndClear("qwerty12345678");
             registerPage.SetPasswordConfirmInputTextAndClear("qwerty12345678");
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickPrivacyPolicyCheckBox();
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickSubscribeRadioButton();
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickConfirmButton();
+            Thread.Sleep(1000);//only for presentation
 
             // verify that user has been create
             string actResUserCreated = "Your Account Has Been Created!";
@@ -68,16 +75,31 @@ namespace LV587SETOPENCART.Tests
 
             Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
 
+            Thread.Sleep(1000);//only for presentation
+
             accountCreatedPage.ClickOnButtonContinue();
+
+            Thread.Sleep(1000);//only for presentation
 
             // verify that page 'My Account' has been open
             string actResMyAccountPage = "My Account";
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
-
-            Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
-
             
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+            }
+
+            Thread.Sleep(1000);//only for presentation
+
+
         }
 
     }
