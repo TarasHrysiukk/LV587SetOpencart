@@ -50,12 +50,12 @@ namespace LV587SETOPENCART.Tests
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
 
             //login
             LoginBL loginBL = new LoginBL(driver);
             loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
 
             //Assert
             MyAccountPage myAccountPage = new MyAccountPage(driver);
@@ -63,7 +63,7 @@ namespace LV587SETOPENCART.Tests
             var actRes = myAccountPage.MyAccountText();
 
             //Assert.AreEqual(expRes, actRes);
-            //Thread.Sleep(2000);  //Only for presentation (work Without it)
+            //Thread.Sleep(2000);  //Only for presentation (works Without it)
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
@@ -75,7 +75,7 @@ namespace LV587SETOPENCART.Tests
                 AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
             }
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
-            //Thread.Sleep(2000);  //Only for presentation (work Without it)
+            //Thread.Sleep(2000);  //Only for presentation (works Without it)
         }
     }
 }

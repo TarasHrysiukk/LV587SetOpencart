@@ -51,12 +51,12 @@ namespace LV587SETOPENCART.Tests
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
 
             // Click on "Forgotten Password" link text and input email
             ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
             forgottenPasswordBL.ForgottenPassword("user1@gmail.com");
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
 
             //Assert
             ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
@@ -74,7 +74,7 @@ namespace LV587SETOPENCART.Tests
                 AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
             }
 
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
         }
     }
 }

@@ -53,25 +53,25 @@ namespace LV587SETOPENCART.Tests
                 //Click on My Account > Login
                 HeaderComponent headerComponent = new HeaderComponent(driver);
                 headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-                //Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                //Thread.Sleep(2000);  //Only for presentation (works Without it)
 
                 //login 
                 LoginBL loginBL = new LoginBL(driver);
                 loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-                Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
 
                 //click password button on right side bar
                 RightSideBar rightSideBar = new RightSideBar(driver);
                 rightSideBar.PasswordListButtonClick();
-                Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
 
                 //input new pass
                 ChangePassword changePassword = new ChangePassword(driver);
                 changePassword.InputChangePasswordText("qwertyasdf12345678");
-                Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
 
                 changePassword.ClickContinueButtonChangePassword();
-                Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
 
                 //Assert
                 string expRes = "Success: Your password has been successfully updated.";
@@ -80,7 +80,7 @@ namespace LV587SETOPENCART.Tests
                 //Assert.AreEqual(expResChange, actResChange);
                 Assert.AreEqual(expRes, actRes);
 
-                Thread.Sleep(2000);  //Only for presentation (workWithout it)
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
                 headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
 
                 // LoginBL loginBLL = new LoginBL(driver);
