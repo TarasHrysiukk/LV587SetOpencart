@@ -17,7 +17,7 @@ namespace LV587SETOPENCART.Tests
     [AllureDisplayIgnored]
     class RegisterTest
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
@@ -82,7 +82,7 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that page 'My Account' has been open
-            string actResMyAccountPage = "My Account";
+            string actResMyAccountPage = "My Accounts";
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             

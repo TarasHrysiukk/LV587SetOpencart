@@ -18,7 +18,7 @@ namespace LV587SETOPENCART.Tests
     [AllureDisplayIgnored]
     class VefiryRegUser
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()

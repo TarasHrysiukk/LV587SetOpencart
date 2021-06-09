@@ -19,7 +19,7 @@ namespace LV587SETOPENCART.Tests
     [AllureDisplayIgnored]
     class VerifyRegInputFieldsTest
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
