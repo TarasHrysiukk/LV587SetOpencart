@@ -12,6 +12,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("ProductPagePriceTest")]
     [AllureDisplayIgnored]
@@ -48,7 +49,6 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("3")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
         public void ItemPriceCurrenciesTest()
         {
             string currencySymbol;
@@ -87,7 +87,7 @@ namespace LV587SETOPENCART.Tests
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
-            currencySymbol = "$";
+            currencySymbol = "$1";
             trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
             //Verify that product price is displayed in USA Dollars 
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();

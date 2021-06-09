@@ -12,6 +12,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("DropdownCurrencyTest")]
     [AllureDisplayIgnored]
@@ -48,7 +49,6 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("2")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
         public void DropdownCurrenciesTest()
         {
             string currencySymbol;

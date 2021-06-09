@@ -14,6 +14,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("CartTPriceCyrrencyTest")]
     [AllureDisplayIgnored]
@@ -51,7 +52,6 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("1")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
         public void CartCurrenciesTest()
         {
             string currencySymbol;
@@ -101,10 +101,11 @@ namespace LV587SETOPENCART.Tests
             try
             {
                 Assert.True(trueCurrency);
-            } catch(Exception) //Take a ScreenShot if test is failed
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotImageFormat.Png");
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotCartPriceTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotCartPriceTest.Png");
             }
         }
     }

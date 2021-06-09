@@ -13,6 +13,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("WLUnitPriceTest")]
     [AllureDisplayIgnored]
@@ -49,7 +50,6 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("3")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
 
         public void WishListCurrenciesTest()
         {

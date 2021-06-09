@@ -1,17 +1,30 @@
-﻿using NUnit.Framework;
+﻿using Allure.Commons;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Tests.CurrencyTests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
+    [AllureNUnit]
+    [AllureSuite("API")]
+    [AllureDisplayIgnored]
     class CurrencyAPI
     {
         [Test]
+        [AllureTag("OpenCart:CurrencyAPI")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureIssue("2")]
+        [AllureTms("532")]
+        [AllureOwner("V.Pfayfer")]
         public void CurrencyPostRequest()
         {
             string api_token = @"e45cf5cfaa9f60f7bcf8becce4";
@@ -24,7 +37,7 @@ namespace LV587SETOPENCART.Tests.CurrencyTests
             Console.WriteLine(response.Content);
             //Assert
             Assert.True(response.Content.Contains("success"));
-            Assert.AreEqual(true, response.IsSuccessful);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }
