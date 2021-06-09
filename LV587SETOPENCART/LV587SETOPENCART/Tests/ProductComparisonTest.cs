@@ -64,6 +64,7 @@ namespace LV587SETOPENCART.Tests
 
             Assert.AreEqual(expFirstproductName,actFirstproductName);//assert htc htc
             Assert.AreEqual(expSecondproductName,actSecondproductName);//assert iphone iphone
+        
         }
     }
 }
