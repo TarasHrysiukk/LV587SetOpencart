@@ -1,4 +1,7 @@
-﻿using NUnit.Framework;
+﻿using Allure.Commons;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -9,9 +12,16 @@ using System.Threading.Tasks;
 namespace LV587SETOPENCART.Tests.LoginFormTest
 {
     [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("[LoginForm]")]
+    [AllureDisplayIgnored]
     class LoginTestApiTest
     {
         [Test]
+        [AllureTag("OpenCart: Login Test")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Taras Hrysiuk")]
+        [Description("This test checks to if user can log into account")]
         public void CurrencyPostRequest()
         {
             string api_token = @"d574ca47547350d4466657ec2b";
