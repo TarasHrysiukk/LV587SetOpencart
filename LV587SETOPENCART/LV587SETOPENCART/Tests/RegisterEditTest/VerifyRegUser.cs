@@ -14,7 +14,7 @@ namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("[Register] Email is already registered exception Test")]
+    [AllureSuite("[Register] Call warning that the user is already registered")]
     [AllureDisplayIgnored]
     class VefiryRegUser
     {
