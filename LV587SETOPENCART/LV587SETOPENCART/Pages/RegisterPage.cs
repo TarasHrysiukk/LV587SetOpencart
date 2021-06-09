@@ -22,7 +22,7 @@ namespace LV587SETOPENCART.Pages
         public IWebElement SubscribeRadioButtonYES { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='1']")); } }
         public IWebElement SubscribeRadioButtonNO { get { return driver.FindElement(By.CssSelector(".radio-inline input[value='0']")); } }
         public IWebElement ConfirmButton { get { return driver.FindElement(By.CssSelector("input[type='submit']")); } }
-
+        public IWebElement WarningMessageEmailReg { get { return driver.FindElement(By.CssSelector("div.alert.alert-danger.alert-dismissible")); } }
         public RegisterPage(IWebDriver driver) : base(driver) { }
 
 
@@ -139,6 +139,10 @@ namespace LV587SETOPENCART.Pages
         public void ClickPrivacyPolicyCheckBox()
         {
             PrivacyPolicyCheckBox.Click();
+        }
+        public string VerifyExeptionEmailRegText()
+        {
+            return WarningMessageEmailReg.Text;
         }
     }
 }

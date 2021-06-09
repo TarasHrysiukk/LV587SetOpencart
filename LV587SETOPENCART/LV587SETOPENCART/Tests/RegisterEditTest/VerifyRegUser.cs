@@ -7,15 +7,16 @@ using OpenQA.Selenium.Chrome;
 using NUnit.Allure.Attributes;
 using NUnit.Allure.Core;
 using Allure.Commons;
+using System.Threading;
 
 namespace LV587SETOPENCART.Tests
-    
+
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("Register Test")]
+    [AllureSuite("[Register] Email is already registered exception Test")]
     [AllureDisplayIgnored]
-    class RegisterTest
+    class VefiryRegUser
     {
         private IWebDriver driver;
 
@@ -42,12 +43,14 @@ namespace LV587SETOPENCART.Tests
         [AllureTag("OpenCart: Register Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Sukhii Dmitro")]
-        [Description("The test check that you can create new customer account (Registration)")]
+        [Description("The test check that you cannot create new customer account if this email is used (Registration)")]
         public void RegisterPageTest()
         {
             // Click on My Account > Register
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Register);
+
+            Thread.Sleep(1000);//only for presentation
 
             // Execute all test methods for fill in the fields
             RegisterPage registerPage = new RegisterPage(driver);
@@ -57,35 +60,30 @@ namespace LV587SETOPENCART.Tests
             registerPage.SetTelephoneInputTextAndClear("0930020102");
             registerPage.SetPasswordInputTextAndClear("qwerty12345678");
             registerPage.SetPasswordConfirmInputTextAndClear("qwerty12345678");
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickPrivacyPolicyCheckBox();
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickSubscribeRadioButton();
+            Thread.Sleep(1000);//only for presentation
             registerPage.ClickConfirmButton();
+            Thread.Sleep(1000);//only for presentation
 
-            // verify that user has been create
-            string actResUserCreated = "Your Account Has Been Created!";
+            // verify that user geted exception message
+            string actResEmailIsAlreadyRegistered = "Warning: E-Mail Address is already registered!";
 
-            AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
 
-            Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
-
-            accountCreatedPage.ClickOnButtonContinue();
-
-            // verify that page 'My Account' has been open
-            string actResMyAccountPage = "My Account";
-
-            MyAccountPage myAccountPage = new MyAccountPage(driver);
-
-            
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
-                Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+                Assert.AreEqual(actResEmailIsAlreadyRegistered, registerPage.VerifyExeptionEmailRegText());
             }
             catch (Exception)
             {
-                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
             }
+            Thread.Sleep(1000);//only for presentation
+
 
 
         }
