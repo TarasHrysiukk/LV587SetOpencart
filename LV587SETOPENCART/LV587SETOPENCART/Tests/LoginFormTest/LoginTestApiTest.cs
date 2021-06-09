@@ -18,7 +18,7 @@ namespace LV587SETOPENCART.Tests.LoginFormTest
     class LoginTestApiTest
     {
         [Test]
-        [AllureTag("OpenCart: Login Test")]
+        [AllureTag("OpenCart: Login API Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Taras Hrysiuk")]
         [Description("This test checks to if user can log into account")]
@@ -33,7 +33,7 @@ namespace LV587SETOPENCART.Tests.LoginFormTest
             IRestResponse response = client.Execute(request);
 
             //Assert
-            Assert.True(response.Content.Contains("Success"));
+            Assert.True(response.Content.Contains("Success: API session successfully started!"));
             Assert.AreEqual(true, response.IsSuccessful);
             Console.WriteLine(response.Content);
 

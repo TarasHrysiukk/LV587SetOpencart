@@ -40,47 +40,43 @@ namespace LV587SETOPENCART.Tests
             classWithDriver.NavigateToURL();
         }
 
-           [Test]
+        [Test]
         [AllureTag("OpenCart: Login Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Taras Hrysiuk")]
         [Description("This test checks to if user can log into account")]
         public void LoginPageTest()
         {
-            
-            
-            //Click on My Account > Login
-            HeaderComponent headerComponent = new HeaderComponent(driver);
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            Thread.Sleep(2000);  //Only for presentation (works Without it)
 
-            //login
-            LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-            Thread.Sleep(2000);  //Only for presentation (works Without it)
-
-            //Assert
-            MyAccountPage myAccountPage = new MyAccountPage(driver);
-            string expRes = "My Account";
-            var actRes = myAccountPage.MyAccountText();
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
-
-            //Assert.AreEqual(expRes, actRes);
-            //Thread.Sleep(2000);  //Only for presentation (works Without it)
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
-
             try
             {
-                Assert.AreEqual(expRes, actRes);
+                //Click on My Account > Login
+                HeaderComponent headerComponent = new HeaderComponent(driver);
+                headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
 
-                
+                //login
+                LoginBL loginBL = new LoginBL(driver);
+                loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
+
+                //Assert
+                MyAccountPage myAccountPage = new MyAccountPage(driver);
+                string expRes = "My Accountt";
+                var actRes = myAccountPage.MyAccountText();
+
+                Assert.AreEqual(expRes, actRes);
+               // headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
             }
             catch (Exception) //Take a ScreenShot if test is failed
             {
                 AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\allureScreens\ScreenshotLoginTest.Png", ScreenshotImageFormat.Png);
                 AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\allureScreens\ScreenshotLoginTest.Png");
             }
-            
+
+
+
             //Thread.Sleep(2000);  //Only for presentation (works Without it)
         }
     }
