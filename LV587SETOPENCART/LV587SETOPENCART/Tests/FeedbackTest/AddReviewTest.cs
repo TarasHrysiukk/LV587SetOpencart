@@ -14,9 +14,9 @@ namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("FeedbackTest")]
+    [AllureSuite("AddReviewTest")]
     [AllureDisplayIgnored]
-    class FeedbackTest
+    class AddReviewTest
     {
         IWebDriver driver;
         [OneTimeSetUp]
@@ -38,46 +38,8 @@ namespace LV587SETOPENCART.Tests
         {
             driver.Navigate().GoToUrl(@"http://localhost");
         }
-
         [Test]
-        [AllureTag("OpenCart:FeedBack")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("Marian-Severyn Shevchuk")]
-        [Description("This test checks if user can get product details")]
-        public void GetProductDetailsTest()
-        {
-            //Arrange
-            bool expected = false;//to fail and show screen
-
-            //Act
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
-            HeaderComponent desktopsMenu = new HeaderComponent(driver);
-            desktopsMenu.ChooseCategory(CategoryMenu.Desktops);
-            Thread.Sleep(2000);//only for presentation
-            PageWithProducts productPage = new PageWithProducts(driver);
-            productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
-            ProductComponents productComponents = new ProductComponents(driver);
-            Thread.Sleep(2000);//only for presentation
-            bool actual = productComponents.DescriptionPresent();
-
-            //Assert
-            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
-            //Assert.AreEqual(expected,actual);
-            try
-            {
-                Assert.AreEqual(expected, actual);
-            }
-            catch (Exception) //Take a ScreenShot if test failed
-            {
-                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("GetProductDetailsTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
-            }
-        }
-
-        [Test]
-        [AllureTag("OpenCart:FeedBack")]
+        [AllureTag("OpenCart:FeedBack|AddReviewTest")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review without data")]
@@ -88,19 +50,14 @@ namespace LV587SETOPENCART.Tests
 
             //Act
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
             HeaderComponent desktopsMenu = new HeaderComponent(driver);
             desktopsMenu.ChooseCategory(CategoryMenu.Cameras);
-            Thread.Sleep(2000);//only for presentation
             PageWithProducts productPage = new PageWithProducts(driver);
             productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
             ProductComponents productComponents = new ProductComponents(driver);
             productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
             productComponents.WriteReview("", "", RateChoose.noRate);
             string actual = productComponents.GetErrorText();
-            Thread.Sleep(2000);//only for presentation
 
             //Assert
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
@@ -116,7 +73,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:FeedBack")]
+        [AllureTag("OpenCart:FeedBack|AddReviewTest")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error review text box")]
@@ -127,19 +84,14 @@ namespace LV587SETOPENCART.Tests
 
             //Act
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
             HeaderComponent desktopsMenu = new HeaderComponent(driver);
             desktopsMenu.ChooseCategory(CategoryMenu.Cameras);
-            Thread.Sleep(2000);//only for presentation
             PageWithProducts productPage = new PageWithProducts(driver);
             productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
             ProductComponents productComponents = new ProductComponents(driver);
             productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
             productComponents.WriteReview("Severyn", "Text less than 25", RateChoose.excellentRate);
             string actual = productComponents.GetErrorText();
-            Thread.Sleep(2000);//only for presentation
 
             //Assert
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
@@ -156,7 +108,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:FeedBack")]
+        [AllureTag("OpenCart:FeedBack|AddReviewTest")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error name text box")]
@@ -167,19 +119,14 @@ namespace LV587SETOPENCART.Tests
 
             //Act
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
             HeaderComponent desktopsMenu = new HeaderComponent(driver);
             desktopsMenu.ChooseCategory(CategoryMenu.Cameras);
-            Thread.Sleep(2000);//only for presentation
             PageWithProducts productPage = new PageWithProducts(driver);
             productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
             ProductComponents productComponents = new ProductComponents(driver);
             productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
             productComponents.WriteReview("", "Text more than 25 characters", RateChoose.excellentRate);
             string actual = productComponents.GetErrorText();
-            Thread.Sleep(2000);//only for presentation
 
             //Assert
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
@@ -196,7 +143,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:FeedBack")]
+        [AllureTag("OpenCart:FeedBack|AddReviewTest")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error rate")]
@@ -207,19 +154,14 @@ namespace LV587SETOPENCART.Tests
 
             //Act
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
             HeaderComponent desktopsMenu = new HeaderComponent(driver);
             desktopsMenu.ChooseCategory(CategoryMenu.Cameras);
-            Thread.Sleep(2000);//only for presentation
             PageWithProducts productPage = new PageWithProducts(driver);
             productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
             ProductComponents productComponents = new ProductComponents(driver);
             productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
             productComponents.WriteReview("Severyn", "Text more than 25 characters", RateChoose.noRate);
             string actual = productComponents.GetErrorText();
-            Thread.Sleep(2000);//only for presentation
 
             //Assert
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
@@ -236,7 +178,7 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        [AllureTag("OpenCart:FeedBack")]
+        [AllureTag("OpenCart:FeedBack|AddReviewTest")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks what user  will see when he enters everything correctly")]
@@ -273,76 +215,6 @@ namespace LV587SETOPENCART.Tests
                 AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
             }
 
-        }
-
-        [Test]
-        [AllureTag("OpenCart:FeedBack")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("Marian-Severyn Shevchuk")]
-        [Description("This test checks what user will see when product does not have reviews ")]
-        public void ItemWithoutReviewsTest()
-        {
-            //Arrange
-
-            //Act
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
-            HeaderComponent desktopsMenu = new HeaderComponent(driver);
-            desktopsMenu.ChooseCategory(CategoryMenu.Cameras);
-            Thread.Sleep(2000);//only for presentation
-            PageWithProducts productPage = new PageWithProducts(driver);
-            productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
-            ProductComponents productComponents = new ProductComponents(driver);
-            productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
-
-            //Assert
-            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
-            try
-            {
-                Assert.IsFalse(productComponents.ReviewPresent());
-            }
-            catch (Exception)
-            {
-                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("ItemWithoutReviewsTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
-            }
-        }
-
-        [Test]
-        [AllureTag("OpenCart:FeedBack")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("Marian-Severyn Shevchuk")]
-        [Description("This test checks if user sees product review when it exists")]
-        public void ItemWithReviewTest()
-        {
-            //Arrange
-
-            //Act
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            Thread.Sleep(2000);//only for presentation
-            HeaderComponent desktopsMenu = new HeaderComponent(driver);
-            desktopsMenu.ChooseCategory(CategoryMenu.Tablets);
-            Thread.Sleep(2000);//only for presentation
-            PageWithProducts productPage = new PageWithProducts(driver);
-            productPage.SelectProduct(productPage.FirstProductName);
-            Thread.Sleep(2000);//only for presentation
-            ProductComponents productComponents = new ProductComponents(driver);
-            productComponents.ReviewsClick();
-            Thread.Sleep(2000);//only for presentation
-
-            //Assert
-            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
-            try
-            {
-                Assert.IsTrue(productComponents.ReviewPresent());
-            }
-            catch (Exception)
-            {
-                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("ItemWithReviewTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
-            }
         }
     }
 }
