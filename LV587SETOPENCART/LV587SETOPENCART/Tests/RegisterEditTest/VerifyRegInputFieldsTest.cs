@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using LV587SETOPENCART.Pages;
 using LV587SETOPENCART.BL;
 using OpenQA.Selenium;
@@ -16,7 +17,7 @@ namespace LV587SETOPENCART.Tests
     [AllureNUnit]
     [AllureSuite("[Register] Email is already registered exception Test")]
     [AllureDisplayIgnored]
-    class VefiryRegUser
+    class VerifyRegInputFieldsTest
     {
         private IWebDriver driver;
 
@@ -56,12 +57,10 @@ namespace LV587SETOPENCART.Tests
             RegisterPage registerPage = new RegisterPage(driver);
             registerPage.SetFirstNameInputTextAndClear("Dima");
             registerPage.SetLastNameInputTextAndClear("Sukhii");
-            registerPage.SetEmailInputTextAndClear("test@gmail.com");
+            registerPage.SetEmailInputTextAndClear("tasfest@gmail");
             registerPage.SetTelephoneInputTextAndClear("0930020102");
             registerPage.SetPasswordInputTextAndClear("qwerty12345678");
-            registerPage.SetPasswordConfirmInputTextAndClear("qwerty12345678");
-            Thread.Sleep(1000);//only for presentation
-            registerPage.ClickPrivacyPolicyCheckBox();
+            registerPage.SetPasswordConfirmInputTextAndClear("qwerty");
             Thread.Sleep(1000);//only for presentation
             registerPage.ClickSubscribeRadioButton();
             Thread.Sleep(1000);//only for presentation
@@ -69,19 +68,45 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that user geted exception message
-            string actResEmailIsAlreadyRegistered = "Warning: E-Mail Address is already registered!";
-
+            string actResGeneralWarningMessage = "Warning: You must agree to the Privacy Policy!";
+            string actResEmailWarningMessage = "E-Mail Address does not appear to be valid!";
+            string actResPasswordWarningMessage = "Password confirmation does not match password!";
 
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
-                Assert.AreEqual(actResEmailIsAlreadyRegistered, registerPage.VerifyGeneralExeptionRegText());
+                Assert.AreEqual(actResGeneralWarningMessage, registerPage.VerifyGeneralExeptionRegText());
             }
             catch (Exception)
             {
                 AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
                 AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
             }
+
+            Thread.Sleep(1000);//only for presentation
+
+            try
+            {
+                Assert.AreEqual(actResEmailWarningMessage, registerPage.VerifyExeptionEmailText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
+
+            Thread.Sleep(1000);//only for presentation
+
+            try
+            {
+                Assert.AreEqual(actResPasswordWarningMessage, registerPage.VerifyExeptionPasswordText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
+
             Thread.Sleep(1000);//only for presentation
 
 
