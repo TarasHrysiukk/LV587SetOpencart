@@ -14,7 +14,7 @@ namespace LV587SETOPENCART.Tests.CurrencyTests
         [Test]
         public void CurrencyPostRequest()
         {
-            string api_token = @"b00cce1a2d04d064b76b626009";
+            string api_token = @"e45cf5cfaa9f60f7bcf8becce4";
             var client = new RestClient(@"http://52.232.34.99/index.php?route=api/currency&api_token="+api_token);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
