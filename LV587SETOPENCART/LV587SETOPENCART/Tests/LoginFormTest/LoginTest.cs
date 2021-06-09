@@ -61,7 +61,7 @@ namespace LV587SETOPENCART.Tests
 
             //Assert
             MyAccountPage myAccountPage = new MyAccountPage(driver);
-            string expRes = "My Accountt";
+            string expRes = "My Account";
             var actRes = myAccountPage.MyAccountText();
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Logout);
 
