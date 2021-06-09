@@ -17,7 +17,7 @@ namespace LV587SETOPENCART.Tests
     [AllureDisplayIgnored]
     class RegisterTest
     {
-        private IWebDriver driver;
+        IWebDriver driver;
 
         [OneTimeSetUp]
         public void BeforeAllMethods()
@@ -73,7 +73,19 @@ namespace LV587SETOPENCART.Tests
 
             AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
 
-            Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+
+            try
+            {
+                Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+            }
+
+            
 
             Thread.Sleep(1000);//only for presentation
 
@@ -86,7 +98,7 @@ namespace LV587SETOPENCART.Tests
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             
-            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            
             try
             {
                 Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
