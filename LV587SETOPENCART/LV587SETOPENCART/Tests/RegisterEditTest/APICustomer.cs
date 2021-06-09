@@ -20,12 +20,12 @@ namespace LV587SETOPENCART.Tests
             var client = new RestClient("http://localhost/index.php?route=api/customer&api_token=36179d5a6300f49bc8cec672e1");
             
             var request = new RestRequest(Method.POST);
-            request.AddHeader("Cookie", "OCSESSID=a01b44cb47f3dfc8438b143b8e; currency=USD; language=en-gb");
-            request.AlwaysMultipartFormData = true;
+            
             request.AddParameter("firstname", "Dima");
             request.AddParameter("lastname", "Sukhii");
             request.AddParameter("email", "user1@gmail.com");
             request.AddParameter("telephone", "0930020102");
+
             IRestResponse response = client.Execute(request);
             //Assert
             Console.WriteLine(response.Content);
