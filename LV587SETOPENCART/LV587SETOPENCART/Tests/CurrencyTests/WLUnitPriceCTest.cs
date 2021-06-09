@@ -14,10 +14,10 @@ namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("CartTPriceCyrrencyTest")]
+    [AllureSuite("WLUnitPriceTest")]
     [AllureDisplayIgnored]
 
-    class CartTPriceCyrrency
+    class WLUnitPriceTest
     {
         IWebDriver driver;
 
@@ -38,18 +38,20 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            driver.Navigate().GoToUrl(@"https://demo.opencart.com/");
-
+            string path = @"http://52.232.34.99/";
+            ClassWithDriver classWithDriver = new ClassWithDriver(driver);
+            classWithDriver.NavigateTo(path);
         }
 
         [Test]
         [AllureTag("OpenCart:Currency")]
         [AllureSeverity(SeverityLevel.normal)]
-        [AllureIssue("1")]
+        [AllureIssue("3")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
         [AllureSubSuite("Currency")]
-        public void CartCurrenciesTest()
+
+        public void WishListCurrenciesTest()
         {
             string currencySymbol;
             HeaderComponent header = new HeaderComponent(driver);
@@ -66,36 +68,43 @@ namespace LV587SETOPENCART.Tests
             loginBL.Login("iva@new.com", "qwerty");
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-            //Add first product to cart from the product list
-            productPage.ClickCartButton();
-            // Open cart page
-            header.ClickOnShoppingCartLink();
+            //Add first product to WishList from the product list
+            productPage.ClickWishListButton();
+            // Open WishList page
+            header.ClickOnWishList();
 
             // Select 'Euro' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);
             currencySymbol = "€";
-            Thread.Sleep(2000);
-            //Verify that Total Price price is displayed in euro
-            bool trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
+            //Verify that Unit Price price is displayed in euro
+            bool trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
             Assert.True(trueCurrency);
 
             // Select 'Pound Sterling' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.GBP);
             currencySymbol = "£";
-            //Verify that Total price is displayed in PoundsSterling
-            trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
+            //Verify that Unit price is displayed in PoundsSterling
+            trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
             Assert.True(trueCurrency);
 
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
             currencySymbol = "$";
-            //Verify that Total price is displayed in USA Dollars 
-            trueCurrency = regex.PriceCurrency(cart.GetTotalPrice(), currencySymbol);
-            Assert.True(trueCurrency);
-            
+            //Verify that Unit price is displayed in USA Dollars 
+            trueCurrency = regex.PriceCurrency(wishList.GetUnitPrice(), currencySymbol);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.True(trueCurrency);
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotWishListTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotWishListTest.Png");
+            }
         }
     }
 }
