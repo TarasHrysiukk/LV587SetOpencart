@@ -70,9 +70,17 @@ namespace LV587SETOPENCART.Tests
             WishListPage wishListPage = new WishListPage(driver);
             string actual = wishListPage.GetProductName();
 
-            Assert.IsTrue(alertMessage.Contains("Success"));
-            Assert.AreEqual(expected, actual);
-
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.IsTrue(alertMessage.Contains("Success"));
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
+            {
+                AfterTestScreen.SaveAsFile(@"../LV587SetOpencart/LV587SETOPENCART/LV587SETOPENCART/bin/Debug/net5.0/screens/ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"../LV587SetOpencart/LV587SETOPENCART/LV587SETOPENCART/bin/Debug/net5.0/screens/ScreenshotImageFormat.Png");
+            }
             header.ClickOnMyAccount(MyAccountMenuActions.Logout);
         }
 
