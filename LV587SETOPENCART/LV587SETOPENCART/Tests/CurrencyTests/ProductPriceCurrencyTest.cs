@@ -100,7 +100,7 @@ namespace LV587SETOPENCART.Tests
             currencySymbol = "$1";
             trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
             //Verify that product price is displayed in USA Dollars 
-            // Screenshot functionality by Selenium package (it can be also done with Allure package functionality )
+            // Screenshot functionality is used by Selenium package (it can be also done with Allure package functionality )
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
