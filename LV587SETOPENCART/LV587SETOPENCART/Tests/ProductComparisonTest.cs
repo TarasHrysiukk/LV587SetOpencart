@@ -46,14 +46,9 @@ namespace LV587SETOPENCART.Tests
            
             // Click on My Account > Login
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-           // Thread.Sleep(2000);  //Only for presentation (work Without it)
-
-            //login
             loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-            //Thread.Sleep(2000);  //Only for presentation (work Without it)
 
             headerComponent.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-
            
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonHTCOne);//Click copmpare HTC
             string expFirstproductName = pageWithProducts.GetSelectedProductName(pageWithProducts.FirstProductName);//Save name HTC
@@ -61,7 +56,7 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);  //Only for presentation
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonIphone);//Click copmpare Iphone
             string expSecondproductName = pageWithProducts.GetSelectedProductName(pageWithProducts.SecondProductName);//save name iphone
-
+            Thread.Sleep(2000);  //Only for presentation
             pageWithProducts.SelectProduct(pageWithProducts.ProductComparisonButton);//Click link compare
 
             string actFirstproductName = productComparisonPage.GetSelectedProductName(productComparisonPage.FirstProductName);//Save name HTC on compare page
@@ -69,13 +64,6 @@ namespace LV587SETOPENCART.Tests
 
             Assert.AreEqual(expFirstproductName,actFirstproductName);//assert htc htc
             Assert.AreEqual(expSecondproductName,actSecondproductName);//assert iphone iphone
-
-            //productComparisonPage.ClickButton(productComparisonPage.ProductComparisonButton);
-
-
-
-
-
         }
     }
 }
