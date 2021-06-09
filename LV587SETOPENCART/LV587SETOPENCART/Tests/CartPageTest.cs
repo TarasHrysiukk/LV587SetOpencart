@@ -64,7 +64,7 @@ namespace LV587SETOPENCART.Tests
                 Thread.Sleep(2000);// for presentation (everything works without it)
                 //Act
                 string act = phones.CartButtonLabelText();
-                string exp = "1 item(s) - $122.00";
+                string exp = "0 item(s) - $122.00";
                 //Assert
                 Assert.AreEqual(exp, act);
 
@@ -132,6 +132,10 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);// for presentation (everything works without it)
         }
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Mykola K")]
+        [Description("This test checks Cart tab functionality")]
         public void ApiCartEdit() 
         {
             var client = new RestClient("http://localhost/index.php?route=api/cart/edit&api_token=ea9e534ee64eae2cba0e0980e5");
@@ -144,6 +148,10 @@ namespace LV587SETOPENCART.Tests
             Assert.AreEqual(true, response.IsSuccessful);
         }
         [Test]
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Mykola K")]
+        [Description("This test checks Cart tab functionality")]
         public void ApiCartRemove()
         {
             var client = new RestClient("http://localhost/index.php?route=api/cart/remove&api_token=12d98c1cac15a242080711b984");
