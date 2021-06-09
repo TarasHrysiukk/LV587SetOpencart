@@ -17,13 +17,16 @@ namespace LV587SETOPENCART.Tests.LoginFormTest
             string api_token = @"d574ca47547350d4466657ec2b";
             var client = new RestClient("http://localhost/index.php?route=api/login&api_token=" + api_token);
             var request = new RestRequest(Method.POST);
-            request.AlwaysMultipartFormData = true;
+            
             request.AddParameter("username", "userApi");
-            request.AddParameter("key", "mRjNINV5kCI0WMq6NhODkVEx7oYwn5P251aj0t6P0Dw3IBmpuUs6qfnCqhjtkhzhKIo1GDcXoNVsl7TkWo7L7gw6SYDNyU7eCXZuVLmd4SHcOdNzH2adEHtxuMpoNi5zLSjBKZPNCFGtRjIITlLpOCRfuNsxzklUN6MMcp4GYS4Docr5ACQQQiEB5dAFW0Wre5bTLKgmnEJt53JACgSmMwXs4MBPP7AsLDfDT6M0K2dEbhrmKN4jNhWXF3znmV3o");
+            request.AddParameter("key", "ahKlTba67uuK87PUA5tb0DO1CejhrCEscMQid4QmsoFFqccYn6m2qKQ7mTG5f0i7ylhkEydznZtL6KUwsPPr4VBf0NDwRejr36J08K3Btyp4MrwvEJX3wPggLHjdby6fyHaOJSC81F6yIZX5bFvHhQ0kSnPboS7n5wiuBjTFmuP5UrqebW5oCcqJtTL0a7X4nyy1cK33RXTpXSAnQKO3OctXW8r7fZyFr6S7ROb5ZBY0KzLmEE1ToT1Tgv7F58rs");
             IRestResponse response = client.Execute(request);
+
             //Assert
-            Assert.True(response.Content.Contains("success"));
+            Assert.True(response.Content.Contains("Success"));
             Assert.AreEqual(true, response.IsSuccessful);
+            Console.WriteLine(response.Content);
+
         }
     }
 }
