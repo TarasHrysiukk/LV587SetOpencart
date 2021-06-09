@@ -52,6 +52,9 @@ namespace LV587SETOPENCART.Tests
         public void DropdownCurrenciesTest()
         {
             string currencySymbol;
+            //credentials for login
+            string email = "iva@new.com";
+            string password = "qwerty";
             HeaderComponent header = new HeaderComponent(driver);
             PageWithProducts productPage = new PageWithProducts(driver);
             ProjectTools regex = new ProjectTools(driver);
@@ -63,7 +66,7 @@ namespace LV587SETOPENCART.Tests
             header.ClickOnMyAccount(MyAccountMenuActions.Login);
             //login
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("iva@new.com", "qwerty");
+            loginBL.Login(email, password);
             // Select 'Euro' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);

@@ -27,7 +27,7 @@ namespace LV587SETOPENCART.Tests.CurrencyTests
         [AllureOwner("V.Pfayfer")]
         public void CurrencyPostRequest()
         {
-            string api_token = @"e45cf5cfaa9f60f7bcf8becce4";
+            string api_token = @"fcaff6fbba76c63ed68b4ce11a";
             var client = new RestClient(@"http://52.232.34.99/index.php?route=api/currency&api_token="+api_token);
             var request = new RestRequest(Method.POST);
             request.AddHeader("Cookie", "OCSESSID=4cb491b29061ef3ff0828e0217; currency=GBP; language=en-gb");

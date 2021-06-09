@@ -55,6 +55,9 @@ namespace LV587SETOPENCART.Tests
         public void CartCurrenciesTest()
         {
             string currencySymbol;
+            //credentials for login
+            string email = "iva@new.com";
+            string password = "qwerty";
             HeaderComponent header = new HeaderComponent(driver);
             PageWithProducts productPage = new PageWithProducts(driver);
             ProjectTools regex = new ProjectTools(driver);
@@ -66,7 +69,7 @@ namespace LV587SETOPENCART.Tests
             header.ClickOnMyAccount(MyAccountMenuActions.Login);
             //login
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("iva@new.com", "qwerty");
+            loginBL.Login(email, password);
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             //Add first product to cart from the product list
