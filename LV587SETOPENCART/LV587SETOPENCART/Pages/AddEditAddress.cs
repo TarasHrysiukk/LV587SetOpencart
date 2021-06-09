@@ -13,53 +13,87 @@ namespace LV587SETOPENCART.Pages
         //button continue (return address book)
         //button back (return my account)
 
-        public IWebElement FirstName { get; private set; }
-        public IWebElement LastName { get; private set; }
-        public IWebElement Company { get; private set; }
-        public IWebElement AddressFirst { get; private set; }
-        public IWebElement AddressSecond { get; private set; }
-        public IWebElement City { get; private set; }
-        public IWebElement PostCode { get; private set; }
-        public IWebElement Country { get; private set; }  //drop down menu
-        public IWebElement CountryValue { get; private set; }  
-        public IWebElement Region{ get; private set; }  //drop down menu
-        public IWebElement RegionValue { get; private set; } 
-        public IWebElement DefoultAddressRadioButton { get; private set; }
-        public IWebElement ContinueButton { get; private set; }
-        public IWebElement BackButton { get; private set; }
-
-
-        public AddEditAddress(IWebDriver driver) : base(driver) 
+        public IWebElement FirstName { get { return driver.FindElement(By.Id("input-firstname")); }  }
+        public IWebElement LastName { get { return driver.FindElement(By.Id("input-lastname")); } }
+        public IWebElement Company { get { return driver.FindElement(By.Id("input-company")); } }
+        public IWebElement AddressFirst { get { return driver.FindElement(By.Id("input-address-1")); } }
+        public IWebElement AddressSecond { get { return driver.FindElement(By.Id("input-address-2")); } }
+        public IWebElement City { get { return driver.FindElement(By.Id("input-city")); } }
+        public IWebElement PostCode { get { return driver.FindElement(By.Id("input-postcode")); } }
+        public IWebElement Country { get { return driver.FindElement(By.Id("input-country")); } }  
+        public IWebElement CountryValue { get { return driver.FindElement(By.XPath("//select/option[@value='220']")); } }  
+        public IWebElement Region{ get { return driver.FindElement(By.Id("input-zone")); } }  
+        public IWebElement RegionValue { get { return driver.FindElement(By.XPath("//select/option[@value='3493']")); } } 
+        public IWebElement DefoultAddressRadioButton { get { return driver.FindElement(By.CssSelector(".radio-inline input[value=\"0\"]")); } }
+        public IWebElement ContinueButton { get { return driver.FindElement(By.CssSelector(".pull-right input[type='submit']")); } }
+        public IWebElement BackButton { get { return driver.FindElement(By.CssSelector(".pull-left a[href*='/address']")); } }
+        public void SetFirstName(string text)
         {
-            //First Name field
-            FirstName = driver.FindElement(By.Id("input-firstname"));
-            //Last Name field
-            LastName = driver.FindElement(By.Id("input-lastname"));
-            //Company Name field
-            Company = driver.FindElement(By.Id("input-company"));
-            //Addres-1  field
-            AddressFirst = driver.FindElement(By.Id("input - address - 1"));
-            //Addres-2  field
-            AddressSecond = driver.FindElement(By.Id("input-address-2"));
-            //Add City  field
-            City = driver.FindElement(By.Id("input-city"));
-            //Add Post Code  field
-            PostCode = driver.FindElement(By.Id("input-postcode"));
-            //add Countr
-            Country = driver.FindElement(By.Id("input-country"));
-            CountryValue = driver.FindElement(By.XPath("//select/option[@value='220']"));
-            //add Region
-            Region = driver.FindElement(By.Id("input-zone"));
-            RegionValue = driver.FindElement(By.XPath("//select/option[@value='3493']"));
-            //Radio Button  Defoult Address
-            DefoultAddressRadioButton = driver.FindElement(By.CssSelector(".radio-inline input[value=\"0\"]"));
-            //Button Continue
-            ContinueButton = driver.FindElement(By.CssSelector(".pull-right input[type='submit']"));
-            //Back button
-            BackButton = driver.FindElement(By.CssSelector(".pull-left a[href*='/address']"));
+            FirstName.Clear();
+            FirstName.SendKeys(text);
         }
+        public void SetLastName(string text)
+        {
+            LastName.Clear();
+            LastName.SendKeys(text);
+        }
+        public void SetCompany(string text)
+        {
+            Company.Clear();
+            Company.SendKeys(text);
+        }
+        public void SetAddressFirst(string text)
+        {
+            AddressFirst.Clear();
+            AddressFirst.SendKeys(text);
+        }
+        public void SetAddressSecond(string text)
+        {
+            AddressSecond.Clear();
+            AddressSecond.SendKeys(text);
+        }
+        public void SetCity(string text)
+        {
+            City.Clear();
+            City.SendKeys(text);
+        }
+        public void SetPostCode(string text)
+        {
+            PostCode.Clear();
+            PostCode.SendKeys(text);
+        }
+        public void SetCountry(string text)
+        {
+            Country.Clear();
+            Country.SendKeys(text);
+        }
+        public void SetCountryValue(string text)
+        {
+            CountryValue.Clear();
+            CountryValue.SendKeys(text);
+        }
+        public void SetRegion(string text)
+        {
+            Region.Clear();
+            Region.SendKeys(text);
+        }
+        public void SetRegionValue(string text)
+        {
+            RegionValue.Clear();
+            RegionValue.SendKeys(text);
+        }
+        public void SetDefoultAddressRadioButton(string text)
+        {
+            DefoultAddressRadioButton.Clear();
+            DefoultAddressRadioButton.SendKeys(text);
+        }
+        public void Continue()
+        {
+            ContinueButton.Click();
+        }
+        public AddEditAddress(IWebDriver driver) : base(driver) { }
 
-        public void AddNewAddres()
+        public void AddNewAddress()
         {
             //Input First Name
             FirstName.Clear();
@@ -94,7 +128,7 @@ namespace LV587SETOPENCART.Pages
             ContinueButton.Click();
         }
 
-        public void EditAddres(IWebElement element,string text)
+        public void EditAddress(IWebElement element,string text)
         {
             element.Clear();
             element.SendKeys(text);
