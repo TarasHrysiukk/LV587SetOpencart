@@ -32,10 +32,6 @@ namespace LV587SETOPENCART.Tests
         }
 
         [OneTimeTearDown]
-        [AllureTag("OpenCart:WishList")]
-        [AllureSeverity(SeverityLevel.normal)]
-        [AllureOwner("Mykola K")]
-        [Description("This test checks if user can add product to Cart without being logged")]
         public void AfterAllMethods()
         {
             driver.Quit();
@@ -48,7 +44,11 @@ namespace LV587SETOPENCART.Tests
         }
 
         [Test]
-        public void Test1()
+        [AllureTag("OpenCart:WishList")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("Mykola K")]
+        [Description("This test checks if user can add product to Cart without being logged")]
+        public void CartDropdown_Test()
         {
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
@@ -61,7 +61,7 @@ namespace LV587SETOPENCART.Tests
                 phoneUnit.ClickCartButton();
                 wait.Until(webDriver => webDriver.FindElement(phones.CartButtonLabel).Displayed);
                 Thread.Sleep(2000);// for presentation (everything works without it)
-                                   //Act
+                //Act
                 string act = phones.CartButtonLabelText();
                 string exp = "1 item(s) - $122.00";
                 //Assert
@@ -96,7 +96,7 @@ namespace LV587SETOPENCART.Tests
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Mykola K")]
         [Description("This test checks Cart tab functionality")]
-        public void Test2()
+        public void CartPage_Test()
         {
             WebDriverWait waits = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             //Arrange
