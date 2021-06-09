@@ -4,10 +4,17 @@ using LV587SETOPENCART.BL;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
 {
+    
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("EditUser")]
+    [AllureDisplayIgnored]
     class EditUserTest
     {
         private IWebDriver driver;
@@ -32,6 +39,10 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
+        [AllureTag("OpenCart: Edit Information about User Test")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Sukhii Dmitro")]
+        [Description("The test verify that you can edit data your account")]
         public void EditUserInformationTest()
         {
             //Click on My Account > Login
@@ -40,11 +51,21 @@ namespace LV587SETOPENCART.Tests
             //login
             LoginBL loginBL = new LoginBL(driver);
             loginBL.Login("test12@gmail.com", "qwerty");
-            //Assert
+            // Assert
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             string expRes = "My Account";
             var actRes = myAccountPage.MyAccountText();
             Assert.AreEqual(expRes, actRes);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expRes, actRes);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
             RightSideBar rightSideBar = new RightSideBar(driver);
             rightSideBar.EditInfoButtonClick();
             EditInformationPage editInformationPage = new EditInformationPage(driver);
@@ -55,7 +76,19 @@ namespace LV587SETOPENCART.Tests
             editInformationPage.SetTelephoneInput("94329481348");
             editInformationPage.ButtonClick();
 
-            Assert.AreEqual("Success: Your account has been successfully updated.", myAccountPage.VerifyAccountUpdateText());
+
+            //Assert
+            string expResult = "Success: Your account has been successfully updated.";
+            
+            try
+            {
+                Assert.AreEqual(expResult, myAccountPage.VerifyAccountUpdateText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\ScreenshotImageFormat.Png");
+            }
         }
     }
 }

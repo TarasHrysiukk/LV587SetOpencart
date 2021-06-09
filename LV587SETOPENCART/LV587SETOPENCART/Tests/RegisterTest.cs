@@ -4,11 +4,17 @@ using LV587SETOPENCART.BL;
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
-
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using Allure.Commons;
 
 namespace LV587SETOPENCART.Tests
     
 {
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("Register Test")]
+    [AllureDisplayIgnored]
     class RegisterTest
     {
         private IWebDriver driver;
@@ -33,6 +39,10 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
+        [AllureTag("OpenCart: Register Test")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("Sukhii Dmitro")]
+        [Description("The test check that you can create new customer account (Registration)")]
         public void RegisterPageTest()
         {
             // Click on My Account > Register
@@ -65,9 +75,19 @@ namespace LV587SETOPENCART.Tests
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
 
-            Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
-
             
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Dsyhi\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\AllureScreenShots\MyAccount.Png");
+            }
+
+
         }
 
     }

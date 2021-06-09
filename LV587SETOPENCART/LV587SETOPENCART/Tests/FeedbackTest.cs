@@ -63,10 +63,21 @@ namespace LV587SETOPENCART.Tests
             bool actual = productComponents.DescriptionPresent();
 
             //Assert
-            Assert.AreEqual(expected,actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            //Assert.AreEqual(expected,actual);
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception) //Take a ScreenShot if test failed
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("GetProductDetailsTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review without data")]
@@ -92,10 +103,20 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewWithoutDataTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error review text box")]
@@ -121,11 +142,21 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ErrorReviewTextBoxTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
 
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error name text box")]
@@ -151,11 +182,21 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ErrorNameTextBoxTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
 
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees error when he enters review with error rate")]
@@ -181,11 +222,21 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ErrorRateTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
 
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks what user  will see when he enters everything correctly")]
@@ -211,11 +262,21 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.AreEqual(expected, actual);
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ReviewTestTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
 
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks what user will see when product does not have reviews ")]
@@ -237,10 +298,20 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.IsFalse(productComponents.ReviewPresent());
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.IsFalse(productComponents.ReviewPresent());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ItemWithoutReviewsTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
         }
 
         [Test]
+        [AllureTag("OpenCart:FeedBack")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Marian-Severyn Shevchuk")]
         [Description("This test checks if user sees product review when it exists")]
@@ -262,7 +333,16 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(2000);//only for presentation
 
             //Assert
-            Assert.IsTrue(productComponents.ReviewPresent());
+            Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
+            try
+            {
+                Assert.IsTrue(productComponents.ReviewPresent());
+            }
+            catch (Exception)
+            {
+                AfterTestScreen.SaveAsFile(@"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("ItemWithReviewTearDown", "application/png", @"C:\Users\Sevka\source\repos\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\failscreens\ScreenshotImageFormat.Png");
+            }
         }
     }
 }
