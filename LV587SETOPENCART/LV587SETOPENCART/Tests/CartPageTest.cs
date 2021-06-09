@@ -13,6 +13,7 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Allure.Core;
 using NUnit.Allure.Attributes;
 using Allure.Commons;
+using RestSharp;
 
 namespace LV587SETOPENCART.Tests
 {
@@ -129,6 +130,29 @@ namespace LV587SETOPENCART.Tests
             //Assert
             Assert.IsTrue(actualRes.Contains("Your shopping cart is empty!"));
             Thread.Sleep(2000);// for presentation (everything works without it)
+        }
+        [Test]
+        public void ApiCartEdit() 
+        {
+            var client = new RestClient("http://localhost/index.php?route=api/cart/edit&api_token=ea9e534ee64eae2cba0e0980e5");
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", "10");
+            request.AddParameter("quantity", "2");
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+            Assert.True(response.Content.Contains("success"));
+            Assert.AreEqual(true, response.IsSuccessful);
+        }
+        [Test]
+        public void ApiCartRemove()
+        {
+            var client = new RestClient("http://localhost/index.php?route=api/cart/remove&api_token=12d98c1cac15a242080711b984");
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", "10");
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+            Assert.True(response.Content.Contains("success"));
+            Assert.AreEqual(true, response.IsSuccessful);
         }
     }
 }
