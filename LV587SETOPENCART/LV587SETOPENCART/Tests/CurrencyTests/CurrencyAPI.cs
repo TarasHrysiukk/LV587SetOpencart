@@ -16,7 +16,6 @@ namespace LV587SETOPENCART.Tests.CurrencyTests
         {
             string api_token = @"e45cf5cfaa9f60f7bcf8becce4";
             var client = new RestClient(@"http://52.232.34.99/index.php?route=api/currency&api_token="+api_token);
-            client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Cookie", "OCSESSID=4cb491b29061ef3ff0828e0217; currency=GBP; language=en-gb");
             request.AlwaysMultipartFormData = true;
