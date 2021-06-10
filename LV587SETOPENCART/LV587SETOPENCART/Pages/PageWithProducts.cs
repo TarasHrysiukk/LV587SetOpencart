@@ -24,7 +24,10 @@ namespace LV587SETOPENCART.Pages
         public IWebElement CompareButtonIphone { get { return driver.FindElement(By.CssSelector("#content .product-layout:nth-child(2) .button-group button[onclick*='compare']")); } }
         public IWebElement ProductComparisonButton { get { return driver.FindElement(By.CssSelector(".form-group a[href*='/compare']")); } }
         public PageWithProducts(IWebDriver driver) : base(driver) { }
-
+        public string GetProductComparisonText()
+        {
+            return ProductComparisonButton.Text;
+        }
         public void SelectProduct(IWebElement product) // Options [FirstProduct, SecondProduct]
         {
             product.Click();
