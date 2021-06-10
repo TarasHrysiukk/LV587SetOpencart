@@ -24,6 +24,7 @@ namespace LV587SETOPENCART.Tests
     class CartPageTest
     {
         IWebDriver driver;
+        string api_token = "908afe0e7d4450f434788502ce";
         [OneTimeSetUp]
         public void BeforeAllMethods()
         {
@@ -49,7 +50,7 @@ namespace LV587SETOPENCART.Tests
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("Mykola K")]
         [Description("This test checks if user can add product to Cart without being logged")]
-        public void CartDropdown_Test()
+        public void CartDropdown_Test()// this test was broken by me to show how allure works
         {
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
@@ -138,7 +139,7 @@ namespace LV587SETOPENCART.Tests
         [Description("This test checks Cart tab functionality")]
         public void ApiCartEdit() 
         {
-            var client = new RestClient("http://localhost/index.php?route=api/cart/edit&api_token=ea9e534ee64eae2cba0e0980e5");
+            var client = new RestClient("http://localhost/index.php?route=api/cart/edit&api_token=" + api_token);
             var request = new RestRequest(Method.POST);
             request.AddParameter("key", "10");
             request.AddParameter("quantity", "2");
@@ -154,7 +155,7 @@ namespace LV587SETOPENCART.Tests
         [Description("This test checks Cart tab functionality")]
         public void ApiCartRemove()
         {
-            var client = new RestClient("http://localhost/index.php?route=api/cart/remove&api_token=12d98c1cac15a242080711b984");
+            var client = new RestClient("http://localhost/index.php?route=api/cart/remove&api_token=" + api_token);
             var request = new RestRequest(Method.POST);
             request.AddParameter("key", "10");
             IRestResponse response = client.Execute(request);

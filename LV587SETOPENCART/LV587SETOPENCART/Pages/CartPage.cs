@@ -9,12 +9,6 @@ namespace LV587SETOPENCART.Pages
 {
     class CartPage : ClassWithDriver
     {
-        //Quantity fiela
-        //Unit Price (only first row)
-        //Total price (down total)
-
-        //Update button
-        //remove button
         public IWebElement Quantity { get { return driver.FindElement(By.CssSelector(".text-left .input-group > input.form-control")); } }
         public IWebElement RefreshButton { get { return driver.FindElement(By.CssSelector(".fa-refresh")); } }
         public IWebElement RemoveInCartButton { get { return driver.FindElement(By.CssSelector(".fa-times-circle")); } }
@@ -27,7 +21,6 @@ namespace LV587SETOPENCART.Pages
 
         public void QuantityInput(string quantity)
         {
-            //Quantity.Click();
             Quantity.Clear();
             Quantity.SendKeys(quantity);
         }
