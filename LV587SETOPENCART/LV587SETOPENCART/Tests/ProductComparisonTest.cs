@@ -48,22 +48,18 @@ namespace LV587SETOPENCART.Tests
         public void CompareButtonTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            LoginBL loginBL = new LoginBL(driver);
             ProductComparisonPage productComparisonPage = new ProductComparisonPage(driver);
             PageWithProducts pageWithProducts = new PageWithProducts(driver);
-           
-            // Click on My Account > Login
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
 
             headerComponent.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-           
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonHTCOne);//Click copmpare HTC
             string expFirstproductName = pageWithProducts.GetSelectedProductName(pageWithProducts.FirstProductName);//Save name HTC
 
             Thread.Sleep(2000);  //Only for presentation
+            
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonIphone);//Click copmpare Iphone
             string expSecondproductName = pageWithProducts.GetSelectedProductName(pageWithProducts.SecondProductName);//save name iphone
+            
             Thread.Sleep(2000);  //Only for presentation
             pageWithProducts.SelectProduct(pageWithProducts.ProductComparisonButton);//Click link compare
 
@@ -78,18 +74,14 @@ namespace LV587SETOPENCART.Tests
         [AllureTag("OpenCart: Add Product Comparison Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Vlad Vozniuk")]
-        [Description("This test checks to if address book was added.")]
+        [Description("This test checks correct amount of products in compare.")]
         public void AddProductComparisonTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            LoginBL loginBL = new LoginBL(driver);
             ProductComparisonPage productComparisonPage = new ProductComparisonPage(driver);
             PageWithProducts pageWithProducts = new PageWithProducts(driver);
 
-            // Click on My Account > Login
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-
             headerComponent.ChooseCategory(CategoryMenu.PhonesAndPDAs);
 
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonHTCOne);//Click copmpare HTC
@@ -120,16 +112,10 @@ namespace LV587SETOPENCART.Tests
         public void CheckComparisonTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            LoginBL loginBL = new LoginBL(driver);
             ProductComparisonPage productComparisonPage = new ProductComparisonPage(driver);
             PageWithProducts pageWithProducts = new PageWithProducts(driver);
 
-            // Click on My Account > Login
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-
             headerComponent.ChooseCategory(CategoryMenu.PhonesAndPDAs);
-
             pageWithProducts.SelectProduct(pageWithProducts.CompareButtonHTCOne);//Click copmpare HTC
             
             Thread.Sleep(2000);  //Only for presentation

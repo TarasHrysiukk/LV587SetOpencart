@@ -16,7 +16,6 @@ namespace LV587SETOPENCART.Pages
         //click on label product comparison (add waite)
         public IWebElement FirstProductName {get { return driver.FindElement(By.CssSelector(".table.table-bordered a[href*='/htc-touch-hd']")); } }
         public IWebElement SecondProductName { get { return driver.FindElement(By.CssSelector(".table.table-bordered a[href*='iphone']")); } }
-        public IWebElement Dimensions { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(10) td:last-child")); } }
         public IWebElement Product { get { return driver.FindElement(By.CssSelector("a[href*='/htc-touch-hd'] strong")); } }
         public IWebElement Image { get { return driver.FindElement(By.CssSelector(".text-center img")); } }
         public IWebElement Price { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(3) td:last-child")); } }
@@ -26,7 +25,8 @@ namespace LV587SETOPENCART.Pages
         public IWebElement Rating { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(7) td:last-child")); } }
         public IWebElement Summary { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(8) td:last-child")); } }
         public IWebElement Weight { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(9) td:last-child")); } }
-        
+        public IWebElement Dimensions { get { return driver.FindElement(By.CssSelector(".table-bordered tbody tr:nth-child(10) td:last-child")); } }
+
         public ProductComparisonPage(IWebDriver driver) : base(driver) { }
 
         public void ClickButton(IWebElement product)
