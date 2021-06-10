@@ -76,7 +76,7 @@ namespace LV587SETOPENCART.Tests
 
                 //Assert
                 string expRes = "Success: Your password has been successfully updated.";
-                var actRes = changePassword.AlertMessageText();
+                string actRes = changePassword.AlertMessageText();
 
                 //Assert.AreEqual(expResChange, actResChange);
                 Assert.AreEqual(expRes, actRes);
@@ -87,9 +87,10 @@ namespace LV587SETOPENCART.Tests
                 // LoginBL loginBLL = new LoginBL(driver);
                 headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
                 loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
                 MyAccountPage myAccountPage = new MyAccountPage(driver);
                 string expResChange = "My Account";
-                var actResChange = myAccountPage.MyAccountText();
+                string actResChange = myAccountPage.MyAccountText();
                 Assert.AreEqual(expResChange, actResChange);
             }
 

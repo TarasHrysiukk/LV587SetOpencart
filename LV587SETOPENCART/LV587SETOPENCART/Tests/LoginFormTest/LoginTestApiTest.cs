@@ -22,14 +22,14 @@ namespace LV587SETOPENCART.Tests.LoginFormTest
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Taras Hrysiuk")]
         [Description("This test checks to if user can log into account")]
-        public void CurrencyPostRequest()
+        public void LoginPostRequest()
         {
-            string api_token = @"d574ca47547350d4466657ec2b";
+            string api_token = @"aee1573e56e440106cbed4caf2";
             var client = new RestClient("http://localhost/index.php?route=api/login&api_token=" + api_token);
             var request = new RestRequest(Method.POST);
             
             request.AddParameter("username", "userApi");
-            request.AddParameter("key", "ahKlTba67uuK87PUA5tb0DO1CejhrCEscMQid4QmsoFFqccYn6m2qKQ7mTG5f0i7ylhkEydznZtL6KUwsPPr4VBf0NDwRejr36J08K3Btyp4MrwvEJX3wPggLHjdby6fyHaOJSC81F6yIZX5bFvHhQ0kSnPboS7n5wiuBjTFmuP5UrqebW5oCcqJtTL0a7X4nyy1cK33RXTpXSAnQKO3OctXW8r7fZyFr6S7ROb5ZBY0KzLmEE1ToT1Tgv7F58rs");
+            request.AddParameter("key", "F0oGxrtTiO4lGPWbZZ7oijZ2BYcRGNfxDo7O4auA2466zE12T4ho4R5wFYHlQhswhT2f87o8wuwZOmDuXsZ3dQg807TSLE8Bzbp0E11S4llzn2tHS2raobq8gBm8oevawpgF2u7ZHYCdWPbucFLRktwBk5ro6ovkG523gIddnIItaPFA8mExNN3PzIcjKgL15jGP8DxGlwvoWgprqDOoFxfWAtntKTP8RmyQmSDijLTUjyZrvvj5FqDnf7SohCaT");
             IRestResponse response = client.Execute(request);
 
             //Assert
