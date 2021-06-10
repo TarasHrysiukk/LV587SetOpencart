@@ -9,11 +9,8 @@ namespace LV587SETOPENCART.Pages
 {
     class PageWithProducts : ClassWithDriver
     {
-        // Select first product from the page
-        // Select second product from the page 
-
-
-        public IWebElement FirstProductName { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4 a")); } } //  PageTitle ("Wish List")
+        //Here we create public autoproperties with path to elements on the page
+        public IWebElement FirstProductName { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .caption h4 a")); } } 
         public IWebElement SecondProductName { get { return driver.FindElement(By.CssSelector(" #content .product-layout:nth-child(2) .caption h4 a")); } } // Name of product in first row
         public IWebElement CartButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='cart']")); } }
         public IWebElement WishListButton { get { return driver.FindElement(By.CssSelector("#content .product-layout:first-child .button-group button[onclick*='wish']")); } }
