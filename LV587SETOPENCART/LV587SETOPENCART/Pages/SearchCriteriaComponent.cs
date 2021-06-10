@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
-using System;
-using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace LV587SETOPENCART.Pages
 {
@@ -14,27 +13,27 @@ namespace LV587SETOPENCART.Pages
     {
         public SearchCriteriaComponent(IWebDriver driver) : base(driver) { }
 
-        private readonly By allCategories = By.CssSelector("#content > div > div:nth-child(2) > select");
-        private readonly By searchCriteriaField = By.Id("input-search");
-        private readonly By productDescriptionCheckbox = By.Id("description");
-        private readonly By subcategoriesCheckbox = By.Name("sub_category");
-        private readonly By searchCriteriaButton = By.Id("button-search");
+        public IWebElement AllCategories { get { return driver.FindElement(By.CssSelector("#content > div > div:nth-child(2) > select")); } }
+        public IWebElement SearchCriteriaField { get { return driver.FindElement(By.Id("input-search")); } }
+        public IWebElement ProductDescriptionCheckbox { get { return driver.FindElement(By.Id("description")); } }
+        public IWebElement SubcategoriesCheckbox { get { return driver.FindElement(By.Name("sub_category")); } }
+        public IWebElement SearchCriteriaButton { get { return driver.FindElement(By.Id("button-search")); } }
+        public IList<IWebElement> FoundProducts { get { return driver.FindElements(By.ClassName("product-thumb")); } }
 
         public void SearchItem(string searchText)
         {
-            IWebElement search = driver.FindElement(searchCriteriaField);
-            search.Clear();
-            search.SendKeys(searchText);
+            SearchCriteriaField.Clear();
+            SearchCriteriaField.SendKeys(searchText);
         }
 
         public void SearchClick()
         {
-            driver.FindElement(searchCriteriaButton).Click();
+            SearchCriteriaButton.Click();
         }
 
         public void AllCategoriesClick(DropdownCategories option)
         {
-            driver.FindElement(allCategories).Click();
+            AllCategories.Click();
 
             switch (option)
             {
@@ -52,12 +51,12 @@ namespace LV587SETOPENCART.Pages
 
         public void ClickOnSearchInProdDescription()
         {
-            driver.FindElement(productDescriptionCheckbox).Click();
+            ProductDescriptionCheckbox.Click();
         }
 
         public void ClickOnSearchInSubcategories()
         {
-            driver.FindElement(subcategoriesCheckbox).Click();
+            SubcategoriesCheckbox.Click();
         }
     }
 }

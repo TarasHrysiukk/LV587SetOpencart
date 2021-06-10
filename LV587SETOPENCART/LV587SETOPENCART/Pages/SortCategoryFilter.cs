@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LV587SETOPENCART.Pages
 {
@@ -33,37 +28,33 @@ namespace LV587SETOPENCART.Pages
     {
         public SortCategoryFilter(IWebDriver driver) : base(driver) { }
 
-        private readonly By listButton = By.CssSelector("#list-view");
-        private readonly By gridButton = By.CssSelector("#grid-view");
-        private readonly By compareProductsLink = By.Id("compare-total");
-        private readonly By sortByDropdown = By.Id("input-sort");
-        private readonly By showDropdown = By.Id("input-limit");
+        public IWebElement ListView { get { return driver.FindElement(By.CssSelector("#list-view")); } }
+        public IWebElement GridView { get { return driver.FindElement(By.CssSelector("#grid-view")); } }
+        public IWebElement CompareProductsLink { get { return driver.FindElement(By.Id("compare-total")); } }
+        public IWebElement SortByDropdown { get { return driver.FindElement(By.Id("input-sort")); } }
+        public IWebElement ShowDropdown { get { return driver.FindElement(By.Id("input-limit")); } }
 
-
-        //Add about pagination
 
         public IWebElement SwitchToListView()
         {
-            IWebElement listView = driver.FindElement(listButton);
-            listView.Click();
-            return listView;
+            ListView.Click();
+            return ListView;
         }
 
         public IWebElement SwitchToGridView()
         {
-            IWebElement gridView = driver.FindElement(gridButton);
-            gridView.Click();
-            return gridView;
+            GridView.Click();
+            return GridView;
         }
 
         public void CompareProduct()
         {
-            driver.FindElement(compareProductsLink).Click();
+            CompareProductsLink.Click();
         }
 
         public void SortingByCriteria(SortBy criteria)
         {
-            driver.FindElement(sortByDropdown).Click();
+            SortByDropdown.Click();
 
             switch (criteria)
             {
@@ -99,7 +90,7 @@ namespace LV587SETOPENCART.Pages
 
         public void ShowingElementsPerPage(PageSize number)
         {
-            driver.FindElement(showDropdown).Click();
+            ShowDropdown.Click();
 
             switch (number)
             {
