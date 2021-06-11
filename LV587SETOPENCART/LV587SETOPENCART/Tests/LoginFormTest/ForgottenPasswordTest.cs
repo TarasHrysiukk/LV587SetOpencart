@@ -48,33 +48,34 @@ namespace LV587SETOPENCART.Tests
         [Description("This test checks to if user can input their email to if he forgot password")]
         public void ForgottenPasswordPageTest()
         {
-            //Click on My Account > Login
-            HeaderComponent headerComponent = new HeaderComponent(driver);
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
 
-            // Click on "Forgotten Password" link text and input email
-            ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
-            forgottenPasswordBL.ForgottenPassword("user1@gmail.com");
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
-
-            //Assert
-            ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
-            string expRes = "An email with a confirmation link has been sent your email address.";
-            var actRes = forgottenPasswordPage.AlertMessageText();
-            //Assert.AreEqual(expRes, actRes);
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
+                //Click on My Account > Login
+                HeaderComponent headerComponent = new HeaderComponent(driver);
+                headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
+
+                // Click on "Forgotten Password" link text and input email
+                ForgottenPasswordBL forgottenPasswordBL = new ForgottenPasswordBL(driver);
+                forgottenPasswordBL.ForgottenPassword("user1@gmail.com");
+                Thread.Sleep(2000);  //Only for presentation (works Without it)
+
+                //Assert
+                ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
+                string expRes = "An email with a confirmation link has been sent your email address.";
+                var actRes = forgottenPasswordPage.AlertMessageText();
+                //Assert.AreEqual(expRes, actRes);
                 Assert.AreEqual(expRes, actRes);
             }
             catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotForgotPassTest.Png");
+                AfterTestScreen.SaveAsFile(@"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\aallureScreens\ScreenshotForgotPassTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"D:\Projects_C#\Demo3\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\allureScreens\ScreenshotForgotPassTest.Png");
             }
 
-            Thread.Sleep(2000);  //Only for presentation (work Without it)
+            Thread.Sleep(2000);  //Only for presentation (works Without it)
         }
     }
 }

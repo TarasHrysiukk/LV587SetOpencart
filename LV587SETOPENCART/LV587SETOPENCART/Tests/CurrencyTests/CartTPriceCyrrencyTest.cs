@@ -14,6 +14,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("CartTPriceCyrrencyTest")]
     [AllureDisplayIgnored]
@@ -51,10 +52,12 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("1")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
         public void CartCurrenciesTest()
         {
             string currencySymbol;
+            //credentials for login
+            string email = "iva@new.com";
+            string password = "qwerty";
             HeaderComponent header = new HeaderComponent(driver);
             PageWithProducts productPage = new PageWithProducts(driver);
             ProjectTools regex = new ProjectTools(driver);
@@ -66,7 +69,7 @@ namespace LV587SETOPENCART.Tests
             header.ClickOnMyAccount(MyAccountMenuActions.Login);
             //login
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("iva@new.com", "qwerty");
+            loginBL.Login(email, password);
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             //Add first product to cart from the product list
@@ -101,10 +104,11 @@ namespace LV587SETOPENCART.Tests
             try
             {
                 Assert.True(trueCurrency);
-            } catch(Exception) //Take a ScreenShot if test is failed
+            }
+            catch (Exception) //Take a ScreenShot if test is failed
             {
-                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotImageFormat.Png", ScreenshotImageFormat.Png);
-                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotImageFormat.Png");
+                AfterTestScreen.SaveAsFile("C://Users//vpfaitc//Desktop//OpenCart//LV587SetOpencart//LV587SETOPENCART//LV587SETOPENCART//bin//Debug//net5.0//screens//ScreenshotCartPriceTest.Png", ScreenshotImageFormat.Png);
+                AllureLifecycle.Instance.AddAttachment("TearDown", "application/png", @"C:\Users\vpfaitc\Desktop\OpenCart\LV587SetOpencart\LV587SETOPENCART\LV587SETOPENCART\bin\Debug\net5.0\screens\ScreenshotCartPriceTest.Png");
             }
         }
     }
