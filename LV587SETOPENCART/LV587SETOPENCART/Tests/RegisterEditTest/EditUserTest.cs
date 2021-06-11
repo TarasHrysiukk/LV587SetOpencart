@@ -47,8 +47,6 @@ namespace LV587SETOPENCART.Tests
         public void EditUserInformationTest()
         {
 
-
-
             //Click on My Account > Login
             HeaderComponent headerComponent = new HeaderComponent(driver);
             headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
