@@ -69,7 +69,7 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that user has been create
-            string actResUserCreated = "Your Account Has Been Created!";
+            string expResUserCreated = "Your Account Has Been Created!";
 
             AccountCreatedPage accountCreatedPage = new AccountCreatedPage(driver);
 
@@ -77,7 +77,7 @@ namespace LV587SETOPENCART.Tests
 
             try
             {
-                Assert.AreEqual(actResUserCreated, accountCreatedPage.AccountCreatedText());
+                Assert.AreEqual(expResUserCreated, accountCreatedPage.AccountCreatedText());
             }
             catch (Exception)
             {
@@ -94,14 +94,14 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that page 'My Account' has been open
-            string actResMyAccountPage = "My Account";
+            string expResMyAccountPage = "My Account";
 
             MyAccountPage myAccountPage = new MyAccountPage(driver);
             
             
             try
             {
-                Assert.AreEqual(actResMyAccountPage, myAccountPage.MyAccountText());
+                Assert.AreEqual(expResMyAccountPage, myAccountPage.MyAccountText());
             }
             catch (Exception)
             {

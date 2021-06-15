@@ -12,6 +12,7 @@ using Allure.Commons;
 namespace LV587SETOPENCART.Tests
 {
     [TestFixture]
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureSuite("ProductPagePriceTest")]
     [AllureDisplayIgnored]
@@ -24,6 +25,7 @@ namespace LV587SETOPENCART.Tests
         public void BeforeAllMethods()
         {
             driver = new ChromeDriver();
+            //implicit wait to 10 seconds 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
         }
@@ -37,6 +39,7 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
+            // ClassWithDriver contains web driver
             string path = @"http://52.232.34.99/";
             ClassWithDriver classWithDriver = new ClassWithDriver(driver);
             classWithDriver.NavigateTo(path);
@@ -48,10 +51,13 @@ namespace LV587SETOPENCART.Tests
         [AllureIssue("3")]
         [AllureTms("532")]
         [AllureOwner("V.Pfayfer")]
-        [AllureSubSuite("Currency")]
         public void ItemPriceCurrenciesTest()
         {
+            //Here we create objects of page classes 
             string currencySymbol;
+            //credentials for login
+            string email = "iva@new.com";
+            string password = "qwerty";
             HeaderComponent header = new HeaderComponent(driver);
             PageWithProducts productPage = new PageWithProducts(driver);
             ProjectTools regex = new ProjectTools(driver);
@@ -59,19 +65,23 @@ namespace LV587SETOPENCART.Tests
             CartPage cart = new CartPage(driver);
             WishListPage wishList = new WishListPage(driver);
 
+            //Steps as in manual tests
             //Click on My Account > Login
             header.ClickOnMyAccount(MyAccountMenuActions.Login);
-            //login
+            //login with method that knows how to login. 
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("iva@new.com", "qwerty");
+            loginBL.Login(email, password);
             //Select category "Phones & PDAs"
             header.ChooseCategory(CategoryMenu.PhonesAndPDAs);
             //Select the product 'Iphone' from the product list
             productPage.SelectProduct(productPage.SecondProductName);
             // Select 'Euro' in dropdown 'Currency'.
+            // Firstly select search to close dropdown if it is opened. 
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.EUR);
+            // with currency symbol we compare selected currency by Regex.
             currencySymbol = "€";
+            //we compare value ProductPrice if it contains currency symbol
             bool trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
             //Verify that product price is displayed in euro
             Assert.True(trueCurrency);
@@ -87,9 +97,10 @@ namespace LV587SETOPENCART.Tests
             // Select 'US Dollars' in dropdown 'Currency'.
             header.SelectSearch();
             header.CurrencyClickAndSelect(Currencies.USD);
-            currencySymbol = "$";
+            currencySymbol = "$1";
             trueCurrency = regex.PriceCurrency(product.GetProductPrice(), currencySymbol);
             //Verify that product price is displayed in USA Dollars 
+            // Screenshot functionality is used by Selenium package (it can be also done with Allure package functionality )
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {

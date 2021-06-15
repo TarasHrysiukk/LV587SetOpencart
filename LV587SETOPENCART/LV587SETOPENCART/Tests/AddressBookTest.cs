@@ -53,16 +53,16 @@ namespace LV587SETOPENCART.Tests
         {
 
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-
-            LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
-
             AddEditAddress addEditAddress = new AddEditAddress(driver);
             AddressBook addressBook = new AddressBook(driver);
+            LoginBL loginBL = new LoginBL(driver);
+
+            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
             addressBook.ClickOnAddressButton();
             addressBook.ClickOnAddAdressButton();
             addEditAddress.AddNewAddress();
+
             var actual = addressBook.GetAlertMessageText();
 
             Assert.IsTrue(actual.Contains("Your address has been successfully added"));
@@ -76,11 +76,11 @@ namespace LV587SETOPENCART.Tests
         public void DeleteAddressBookTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-
-            LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
             AddressBook addressBook = new AddressBook(driver);
+            LoginBL loginBL = new LoginBL(driver);
+
+            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
             addressBook.ClickOnAddressButton();
             addressBook.ClickOnDeleteAdressButton();
             var actual = addressBook.GetAlertMessageText();
@@ -96,14 +96,14 @@ namespace LV587SETOPENCART.Tests
         public void EditAddressBookTest()
         {
             HeaderComponent headerComponent = new HeaderComponent(driver);
-            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
-
             LoginBL loginBL = new LoginBL(driver);
-            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
+            AddEditAddress addEditAddress = new AddEditAddress(driver);
             AddressBook addressBook = new AddressBook(driver);
+
+            headerComponent.ClickOnMyAccount(MyAccountMenuActions.Login);
+            loginBL.Login("user1@gmail.com", "qwertyasdf12345678");
             addressBook.ClickOnAddressButton();
             addressBook.ClickOnEditAdressButton();
-            AddEditAddress addEditAddress = new AddEditAddress(driver);
             addEditAddress.SetCity("Kiev");
             addEditAddress.Continue();
 

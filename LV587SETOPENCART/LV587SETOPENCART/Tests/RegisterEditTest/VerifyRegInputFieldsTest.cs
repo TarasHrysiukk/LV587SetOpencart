@@ -41,7 +41,7 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
-        [AllureTag("OpenCart: Register Test")]
+        [AllureTag("OpenCart: Verify warning message in Register Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Sukhii Dmitro")]
         [Description("The test check that you cannot create new customer account if this email is used (Registration)")]
@@ -68,14 +68,14 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that user geted exception message
-            string actResGeneralWarningMessage = "Warning: You must agree to the Privacy Policy!";
-            string actResEmailWarningMessage = "E-Mail Address does not appear to be valid!";
-            string actResPasswordWarningMessage = "Password confirmation does not match password!";
+            string expResGeneralWarningMessage = "Warning: You must agree to the Privacy Policy!";
+            string expResEmailWarningMessage = "E-Mail Address does not appear to be valid!";
+            string expResPasswordWarningMessage = "Password confirmation does not match password!";
 
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
-                Assert.AreEqual(actResGeneralWarningMessage, registerPage.VerifyGeneralExeptionRegText());
+                Assert.AreEqual(expResGeneralWarningMessage, registerPage.VerifyGeneralExeptionRegText());
             }
             catch (Exception)
             {
@@ -87,7 +87,7 @@ namespace LV587SETOPENCART.Tests
 
             try
             {
-                Assert.AreEqual(actResEmailWarningMessage, registerPage.VerifyExeptionEmailText());
+                Assert.AreEqual(expResEmailWarningMessage, registerPage.VerifyExeptionEmailText());
             }
             catch (Exception)
             {
@@ -99,7 +99,7 @@ namespace LV587SETOPENCART.Tests
 
             try
             {
-                Assert.AreEqual(actResPasswordWarningMessage, registerPage.VerifyExeptionPasswordText());
+                Assert.AreEqual(expResPasswordWarningMessage, registerPage.VerifyExeptionPasswordText());
             }
             catch (Exception)
             {

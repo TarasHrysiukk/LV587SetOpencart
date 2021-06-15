@@ -40,7 +40,7 @@ namespace LV587SETOPENCART.Tests
             driver.Navigate().GoToUrl(@"http://localhost/");
         }
         [Test]
-        [AllureTag("OpenCart: Register Test")]
+        [AllureTag("OpenCart: User is already registered Test")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("Sukhii Dmitro")]
         [Description("The test check that you cannot create new customer account if this email is used (Registration)")]
@@ -69,13 +69,13 @@ namespace LV587SETOPENCART.Tests
             Thread.Sleep(1000);//only for presentation
 
             // verify that user geted exception message
-            string actResEmailIsAlreadyRegistered = "Warning: E-Mail Address is already registered!";
+            string expResEmailIsAlreadyRegistered = "Warning: E-Mail Address is already registered!";
 
 
             Screenshot AfterTestScreen = ((ITakesScreenshot)driver).GetScreenshot();
             try
             {
-                Assert.AreEqual(actResEmailIsAlreadyRegistered, registerPage.VerifyGeneralExeptionRegText());
+                Assert.AreEqual(expResEmailIsAlreadyRegistered, registerPage.VerifyGeneralExeptionRegText());
             }
             catch (Exception)
             {

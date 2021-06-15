@@ -35,7 +35,6 @@ namespace LV587SETOPENCART.Tests
 
             Assert.True(response.Content.Contains(textRes));
             Assert.AreEqual(true, response.IsSuccessful);
-            Console.WriteLine(response.Content);
         }
         [Test]
         [AllureTag("OpenCart: OrderAdd Test")]
@@ -55,7 +54,6 @@ namespace LV587SETOPENCART.Tests
 
             Assert.True(response.Content.Contains(textRes));
             Assert.AreEqual(true, response.IsSuccessful);
-            Console.WriteLine(response.Content);
         }
     }
 }

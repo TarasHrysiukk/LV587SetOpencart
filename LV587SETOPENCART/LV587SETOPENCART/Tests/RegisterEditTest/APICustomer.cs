@@ -17,7 +17,7 @@ namespace LV587SETOPENCART.Tests
         [Test]
         public void CustomerApiTest()
         {
-            var client = new RestClient("http://localhost/index.php?route=api/customer&api_token=36179d5a6300f49bc8cec672e1");
+            var client = new RestClient("http://localhost/index.php?route=api/customer&api_token=281a0632abb9988e61816bd5ad");
             
             var request = new RestRequest(Method.POST);
             
