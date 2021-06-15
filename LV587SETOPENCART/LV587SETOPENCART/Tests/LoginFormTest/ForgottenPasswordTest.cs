@@ -65,7 +65,7 @@ namespace LV587SETOPENCART.Tests
                 //Assert
                 ForgottenPasswordPage forgottenPasswordPage = new ForgottenPasswordPage(driver);
                 string expRes = "An email with a confirmation link has been sent your email address.";
-                var actRes = forgottenPasswordPage.AlertMessageText();
+                string actRes = forgottenPasswordPage.AlertMessageText();
                 //Assert.AreEqual(expRes, actRes);
                 Assert.AreEqual(expRes, actRes);
             }
