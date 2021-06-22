@@ -41,7 +41,7 @@ namespace LV587SETOPENCART.Tests
         [SetUp]
         public void SetUp()
         {
-            driver.Navigate().GoToUrl(@"http://localhost");
+            driver.Navigate().GoToUrl(@"http://35.203.49.52/store");
         }
 
         [Test]
